@@ -1,0 +1,13 @@
+# flutter pub run flutter_launcher_icons
+# dart run flutter_launcher_icons -f flutter_launcher_icons.yaml
+flutter_launcher_icons:
+  image_path: "assets/app/app_icon.png"
+
+  android: "launcher_icon"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  adaptive_icon_foreground: "assets/app/app_icon.png"
+  adaptive_icon_background: "#1A1F24"
+  adaptive_icon_monochrome: "assets/app/app_icon.png"
+
+  ios: true
+  remove_alpha_channel_ios: true

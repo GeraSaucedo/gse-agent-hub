@@ -1,0 +1,5 @@
+{
+  "ENVIRONMENT": "prod",
+  "API_URL": "https://api.example.com",
+  "USE_MOCK_AUTH": "false"
+}

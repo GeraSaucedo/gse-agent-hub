@@ -1,0 +1,30 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - tools/**
+  errors:
+    switch_on_type: ignore
+    # == Uncoment this for modify rules
+    #inference_failure_on_instance_creation: ignore
+    #strict_raw_type: ignore
+    #throw_of_invalid_type: ignore
+    #inference_failure_on_function_invocation: ignore
+    #avoid_dynamic_calls: ignore
+    #sort_constructors_first: ignore
+    #flutter_style_todos: ignore
+
+linter:
+  rules:
+    public_member_api_docs: false
+    comment_references: false
+    avoid_catches_without_on_clauses: false
+    # == Uncoment this for modify rules
+    #use_setters_to_change_properties: false
+    #lines_longer_than_80_chars: false
+    #unnecessary_raw_strings: false
+    #cascade_invocations: false
+    #use_setters_to_change_properties: false
+
+formatter:
+  trailing_commas: preserve

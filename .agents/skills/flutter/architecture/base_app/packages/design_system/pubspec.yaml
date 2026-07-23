@@ -1,0 +1,17 @@
+name: gse_design_system
+description: Design system reutilizable con multi-brand y persistencia de tema.
+version: 1.0.0
+
+environment:
+  sdk: ^3.11.0
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.5.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: 10.1.0

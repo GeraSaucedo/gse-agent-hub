@@ -1,0 +1,5 @@
+{
+  "ENVIRONMENT": "stg",
+  "API_URL": "https://api-stg.example.com",
+  "USE_MOCK_AUTH": "false"
+}

@@ -1,0 +1,101 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "DEV (debug)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--flavor", "dev",
+        "--dart-define-from-file", ".vscode/defines/dev.json"
+      ]
+    },
+    {
+      "name": "DEV (release)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "release",
+      "args": [
+        "--flavor", "dev",
+        "--dart-define-from-file", ".vscode/defines/dev.json"
+      ]
+    },
+    {
+      "name": "DEV (profile)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "profile",
+      "args": [
+        "--flavor", "dev",
+        "--dart-define-from-file", ".vscode/defines/dev.json"
+      ]
+    },
+    {
+      "name": "STG (debug)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--flavor", "stg",
+        "--dart-define-from-file", ".vscode/defines/stg.json"
+      ]
+    },
+    {
+      "name": "STG (release)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "release",
+      "args": [
+        "--flavor", "stg",
+        "--dart-define-from-file", ".vscode/defines/stg.json"
+      ]
+    },
+    {
+      "name": "STG (profile)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "profile",
+      "args": [
+        "--flavor", "stg",
+        "--dart-define-from-file", ".vscode/defines/stg.json"
+      ]
+    },
+    {
+      "name": "PROD (debug)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--flavor", "prod",
+        "--dart-define-from-file", ".vscode/defines/prod.json"
+      ]
+    },
+    {
+      "name": "PROD (release)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "release",
+      "args": [
+        "--flavor", "prod",
+        "--dart-define-from-file", ".vscode/defines/prod.json"
+      ]
+    },
+    {
+      "name": "PROD (profile)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "profile",
+      "args": [
+        "--flavor", "prod",
+        "--dart-define-from-file", ".vscode/defines/prod.json"
+      ]
+    }
+  ]
+}

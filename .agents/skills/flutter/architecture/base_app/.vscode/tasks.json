@@ -1,0 +1,85 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    // ===== SETUP =====
+    {
+      "label": "Generate Keystore & key.properties",
+      "type": "shell",
+      "command": "echo 'Unsupported OS'",
+      "windows": {
+        "command": ".vscode\\scripts\\generate_keystore.cmd",
+        "options": {
+          "shell": {
+            "executable": "cmd.exe",
+            "args": ["/d", "/c"]
+          }
+        }
+      },
+      "osx": {
+        "command": "bash .vscode/scripts/generate_keystore.sh"
+      },
+      "problemMatcher": []
+    },
+    // ===== GENERATORS =====
+    {
+      "label": "Generate Icons",
+      "type": "shell",
+      "command": "if [ -f tools/generate_icons.dart ]; then dart run tools/generate_icons.dart; else echo 'File not found: tools/generate_icons.dart'; fi",
+      "windows": {
+        "command": "if exist tools\\generate_icons.dart (dart run tools\\generate_icons.dart) else (echo File not found: tools\\generate_icons.dart)",
+        "options": {
+          "shell": {
+            "executable": "cmd.exe",
+            "args": ["/d", "/c"]
+          }
+        }
+      },
+      "problemMatcher": []
+    },
+    // ===== APK =====
+    {
+      "label": "APK DEV",
+      "type": "shell",
+      "command": "flutter build apk --flavor dev --dart-define-from-file .vscode/defines/dev.json --obfuscate --split-debug-info=obfuscate/data --release",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "APK PROD",
+      "type": "shell",
+      "command": "flutter build apk --flavor prod --dart-define-from-file .vscode/defines/prod.json --obfuscate --split-debug-info=obfuscate/data --release",
+      "group": "build",
+      "problemMatcher": []
+    },
+    // ===== AAB =====
+    {
+      "label": "AAB DEV",
+      "type": "shell",
+      "command": "flutter build appbundle --flavor dev --dart-define-from-file .vscode/defines/dev.json --obfuscate --split-debug-info=obfuscate/data --release",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "AAB PROD",
+      "type": "shell",
+      "command": "flutter build appbundle --flavor prod --dart-define-from-file .vscode/defines/prod.json --obfuscate --split-debug-info=obfuscate/data --release",
+      "group": "build",
+      "problemMatcher": []
+    },
+    // ===== IOS =====
+    {
+      "label": "IOS DEV",
+      "type": "shell",
+      "command": "flutter build ios --flavor dev --dart-define-from-file .vscode/defines/dev.json --obfuscate --split-debug-info=obfuscate/data --release",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "IOS PROD",
+      "type": "shell",
+      "command": "flutter build ios --flavor prod --dart-define-from-file .vscode/defines/prod.json --obfuscate --split-debug-info=obfuscate/data --release",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}
