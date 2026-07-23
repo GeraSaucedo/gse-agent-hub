@@ -7,7 +7,7 @@ specialized per stack under `.agents/skills/<stack>/`.
 ## How this hub is organized
 - `.agents/roles/` — agent role definitions (planner, implementer, reviewer, tester). Stack-agnostic.
 - `.agents/skills/<stack>/` — how-to manuals for a stack (e.g. `flutter/`). Each stack folder has its own `AGENTS.md` (conventions) plus one folder per skill with a `SKILL.md`.
-- `.agents/skills/_shared/` — cross-stack skills (e.g. `code-quality`).
+- `.agents/skills/_shared/` — cross-stack skills: `code-quality` (index), `code-smells` + `design-patterns` (reference catalogs, after Refactoring Guru), `refactor-review` (proposes a refactor/pattern for a session's changes).
 - `.agents/workflows/` — flow rules: node order, retries, human approval gates.
 
 ## How to apply this hub to a real project

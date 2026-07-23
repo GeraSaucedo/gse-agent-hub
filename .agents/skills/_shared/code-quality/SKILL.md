@@ -27,20 +27,20 @@ Writing or reviewing code on any stack.
 - **I**nterface segregation — small, focused interfaces over fat ones.
 - **D**ependency inversion — depend on abstractions; point dependencies inward (see architecture).
 
-## Code smells to avoid
-- Duplication (DRY) — but don't abstract until the third occurrence.
-- Long functions / large classes / long parameter lists.
-- Deep nesting and complex conditionals — extract or invert.
-- Feature envy / inappropriate intimacy — logic living far from its data.
-- Dead code, commented-out code, speculative "just in case" generality (YAGNI).
-- Primitive obsession — model concepts as types, not raw strings/ints.
+## Code smells & refactoring
+- Watch for the usual families: bloaters (long method/class, primitive obsession, long param
+  lists), change preventers (divergent change, shotgun surgery), dispensables (dead code,
+  duplication, speculative generality), and couplers (feature envy, message chains).
+- The full catalog — each smell mapped to the refactoring that cures it — lives in the
+  `code-smells` skill (`.agents/skills/_shared/code-smells/SKILL.md`). Don't restate it here.
+- To decide whether a smell is worth acting on *now*, use `refactor-review`
+  (`.agents/skills/_shared/refactor-review/SKILL.md`). Default: rule of three, present pain only.
 
 ## Design patterns
-- Patterns are a vocabulary, not a goal. Reach for one only when it removes real,
-  present pain — never to look sophisticated.
-- Prefer the plainest solution first; introduce a pattern when duplication or
-  change-friction actually shows up.
-- Know the cost: every pattern adds indirection. Indirection you don't need is a smell.
+- Patterns are a vocabulary, not a goal. Reach for one only when it removes real, present pain
+  — never to look sophisticated. Every pattern adds indirection; unneeded indirection is a smell.
+- The GoF catalog with the situation that justifies each lives in the `design-patterns` skill
+  (`.agents/skills/_shared/design-patterns/SKILL.md`).
 
 ## Architecture (clean architecture)
 - **Dependencies point inward:** domain ← application ← data/presentation. Inner

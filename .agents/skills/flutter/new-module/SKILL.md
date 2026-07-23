@@ -57,6 +57,12 @@ When `--docs <url>` is present, `WebFetch` is called **once** at the start (Step
 
 ---
 
+> **Skill paths are relative to the generated project.** References like
+> `.claude/skills/new-model.md` below point to where `generate.mjs` distributes the sibling
+> skills inside the target Flutter project (`<project>/.claude/skills/<name>.md`) — not to the
+> hub layout (`.agents/skills/flutter/<name>/SKILL.md`). This skill runs *in* the deployed
+> project, so `.claude/skills/` is correct there.
+
 ## Step 0 — Setup
 
 1. Read `pubspec.yaml` → extract `name:` as `<package_name>`
