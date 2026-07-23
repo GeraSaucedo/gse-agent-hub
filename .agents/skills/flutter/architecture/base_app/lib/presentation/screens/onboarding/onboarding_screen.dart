@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/gse_localization.dart';
 import 'package:gse_base_app/core/services/storage/utils/onboarding_manager.dart';
 import 'package:gse_base_app/main_injector.dart';
 import 'package:gse_base_app/presentation/screens/login/login_screen.dart';
-import 'package:gse_design_system/gse_design_system.dart';
-import 'package:gse_localization/gse_localization.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});

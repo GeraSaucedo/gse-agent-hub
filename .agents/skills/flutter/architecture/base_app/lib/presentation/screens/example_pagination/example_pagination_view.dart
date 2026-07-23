@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_base_app/data/repositories/example/example_repository.dart';
 import 'package:gse_base_app/domain/models/example_model.dart';
 import 'package:gse_base_app/main_injector.dart';
 import 'package:gse_base_app/presentation/blocs/pagination/pagination_cubit.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/app_searchbar.dart';
 import 'package:gse_base_app/presentation/widgets/lists/paginated_list.dart';
-import 'package:gse_design_system/gse_design_system.dart';
 
 class ExamplePaginationView extends StatefulWidget {
   const ExamplePaginationView({super.key});
@@ -89,72 +89,76 @@ class _ExamplePaginationViewState extends State<ExamplePaginationView> {
     String initialValue = '',
   }) {
     final controller = TextEditingController(text: initialValue);
-    unawaited(showDialog<void>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(title),
-        content: TextField(
-          controller: controller,
-          autofocus: true,
-          decoration: const InputDecoration(hintText: 'Texto'),
-          onSubmitted: (_) {
-            final value = controller.text.trim();
-            if (value.isNotEmpty) {
-              onConfirm(value);
-              Navigator.of(ctx).pop();
-            }
-          },
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text('Cancelar'),
-          ),
-          TextButton(
-            onPressed: () {
+    unawaited(
+      showDialog<void>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text(title),
+          content: TextField(
+            controller: controller,
+            autofocus: true,
+            decoration: const InputDecoration(hintText: 'Texto'),
+            onSubmitted: (_) {
               final value = controller.text.trim();
               if (value.isNotEmpty) {
                 onConfirm(value);
                 Navigator.of(ctx).pop();
               }
             },
-            child: const Text('Aceptar'),
           ),
-        ],
-      ),
-    ));
-  }
-
-  void _showItemOptions(ExampleModel item) {
-    unawaited(showModalBottomSheet<void>(
-      context: context,
-      builder: (ctx) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.edit_outlined),
-              title: const Text('Editar'),
-              onTap: () {
-                Navigator.of(ctx).pop();
-                _onEdit(item);
-              },
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(),
+              child: const Text('Cancelar'),
             ),
-            ListTile(
-              leading: const Icon(Icons.delete_outline, color: Colors.red),
-              title: const Text(
-                'Eliminar',
-                style: TextStyle(color: Colors.red),
-              ),
-              onTap: () {
-                Navigator.of(ctx).pop();
-                _onDelete(item);
+            TextButton(
+              onPressed: () {
+                final value = controller.text.trim();
+                if (value.isNotEmpty) {
+                  onConfirm(value);
+                  Navigator.of(ctx).pop();
+                }
               },
+              child: const Text('Aceptar'),
             ),
           ],
         ),
       ),
-    ));
+    );
+  }
+
+  void _showItemOptions(ExampleModel item) {
+    unawaited(
+      showModalBottomSheet<void>(
+        context: context,
+        builder: (ctx) => SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.edit_outlined),
+                title: const Text('Editar'),
+                onTap: () {
+                  Navigator.of(ctx).pop();
+                  _onEdit(item);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.delete_outline, color: Colors.red),
+                title: const Text(
+                  'Eliminar',
+                  style: TextStyle(color: Colors.red),
+                ),
+                onTap: () {
+                  Navigator.of(ctx).pop();
+                  _onDelete(item);
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   @override

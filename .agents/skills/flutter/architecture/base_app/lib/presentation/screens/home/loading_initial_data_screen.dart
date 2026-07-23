@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_base_app/presentation/widgets/utils/app_loader.dart';
 import 'package:gse_base_app/presentation/widgets/utils/app_logo.dart';
-import 'package:gse_design_system/gse_design_system.dart';
 
 class LoadingInitialDataScreen extends StatelessWidget {
   const LoadingInitialDataScreen({

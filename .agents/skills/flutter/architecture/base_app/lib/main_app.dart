@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gse_base_app/core/routes/app_router.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
+import 'package:gse_base_app/core/routes/app_router.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({required this.dsController, super.key});
@@ -39,8 +39,7 @@ class _MainAppState extends State<MainApp> {
               theme: ds.lightTheme,
               darkTheme: ds.darkTheme,
               themeMode: ds.themeMode,
-              localizationsDelegates:
-                  AppLocalizations.localizationsDelegates,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               locale: localeCtrl.locale,
             );

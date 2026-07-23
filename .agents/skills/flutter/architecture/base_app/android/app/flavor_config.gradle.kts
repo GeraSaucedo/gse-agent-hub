@@ -1,6 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
 
-val appName = "Gse Base App"
+val appName = "Test Agent Hub"
 
 configure<ApplicationExtension> {
     flavorDimensions += "environment"

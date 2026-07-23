@@ -2,12 +2,12 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/generated/app_localizations.dart';
 import 'package:gse_base_app/presentation/blocs/forgot_password/forgot_password_bloc.dart';
 import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/password/password_text_field.dart';
 import 'package:gse_base_app/presentation/widgets/utils/custom_appbar.dart';
-import 'package:gse_design_system/gse_design_system.dart';
-import 'package:gse_localization/generated/app_localizations.dart';
 
 class ForgotPasswordForm extends StatelessWidget {
   const ForgotPasswordForm({super.key});

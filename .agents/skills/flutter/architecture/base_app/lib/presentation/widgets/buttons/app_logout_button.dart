@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gse_base_app/presentation/blocs/app/app_bloc.dart';
-import 'package:gse_base_app/presentation/blocs/auth/auth_cubit.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
+import 'package:gse_base_app/presentation/blocs/app/app_bloc.dart';
+import 'package:gse_base_app/presentation/blocs/auth/auth_cubit.dart';
 
 class LogoutButton extends StatelessWidget {
   const LogoutButton({

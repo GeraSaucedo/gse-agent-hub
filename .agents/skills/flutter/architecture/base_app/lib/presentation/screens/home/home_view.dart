@@ -1,10 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_base_app/core/constants/app_constants.dart';
 import 'package:gse_base_app/core/environments/env_config.dart';
 import 'package:gse_base_app/presentation/widgets/drawer/app_drawer.dart';
 import 'package:gse_base_app/presentation/widgets/utils/app_logo.dart';
-import 'package:gse_design_system/gse_design_system.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({

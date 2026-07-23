@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/gse_localization.dart';
 import 'package:gse_base_app/core/constants/app_constants.dart';
 import 'package:gse_base_app/presentation/blocs/login/login_bloc.dart';
 import 'package:gse_base_app/presentation/screens/forgot_password/forgot_password_username.dart';
@@ -11,8 +13,6 @@ import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dar
 import 'package:gse_base_app/presentation/widgets/inputs/email/email_text_field.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/password/password_text_field.dart';
 import 'package:gse_base_app/presentation/widgets/utils/app_logo.dart';
-import 'package:gse_design_system/gse_design_system.dart';
-import 'package:gse_localization/gse_localization.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});

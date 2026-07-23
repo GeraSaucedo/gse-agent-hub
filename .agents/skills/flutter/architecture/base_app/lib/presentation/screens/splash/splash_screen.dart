@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_base_app/core/services/logger/app_logger.dart';
 import 'package:gse_base_app/core/services/storage/utils/onboarding_manager.dart';
 import 'package:gse_base_app/main_injector.dart';
@@ -10,7 +11,6 @@ import 'package:gse_base_app/presentation/blocs/auth/auth_cubit.dart';
 import 'package:gse_base_app/presentation/screens/onboarding/onboarding_screen.dart';
 import 'package:gse_base_app/presentation/widgets/utils/app_loader.dart';
 import 'package:gse_base_app/presentation/widgets/utils/app_logo.dart';
-import 'package:gse_design_system/gse_design_system.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

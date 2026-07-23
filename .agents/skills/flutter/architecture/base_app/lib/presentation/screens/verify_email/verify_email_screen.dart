@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/generated/app_localizations.dart';
 import 'package:gse_base_app/presentation/blocs/verify_email/verify_email_bloc.dart';
 import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/app_text_field.dart';
 import 'package:gse_base_app/presentation/widgets/utils/custom_appbar.dart';
-import 'package:gse_design_system/gse_design_system.dart';
-import 'package:gse_localization/generated/app_localizations.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
   const VerifyEmailScreen({
