@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jerry-orchestrator"
+version = "0.1.0"
+description = "Model-agnostic orchestrator for the JERRY Agents hub — same standards, any model."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []   # the core (mock pipeline) runs on the stdlib alone
+
+# One optional dep unlocks every real provider (Anthropic, Google, OpenAI, ...).
+[project.optional-dependencies]
+providers = ["litellm>=1.0"]
+dev = ["pytest>=8", "litellm>=1.0"]
+
+# Turn the entry points into real terminal commands after `pip install -e .`
+[project.scripts]
+jerry-run = "jerry.run:main"
+jerry-pipeline = "jerry.pipeline:main"
+
+[tool.setuptools]
+packages = ["jerry", "jerry.adapters"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

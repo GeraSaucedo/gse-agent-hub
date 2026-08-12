@@ -1,7 +1,9 @@
 # JERRY Agents Hub
 
 Central, reusable hub of AI-agent **roles**, **skills**, and **workflows** for software
-development. Multi-stack: shared assets at the top, stack-specific manuals under each stack.
+development. **Focused on Flutter today, architected for multi-stack:** shared assets
+(roles, workflows, cross-stack skills) at the top, stack-specific manuals under each stack —
+adding a new stack reuses the shared parts without touching them.
 
 > Operational files are in English (models follow instructions better in English and the
 > ecosystem standard is English). This human README can stay bilingual.
@@ -57,4 +59,8 @@ improvements, re-copy. **Copy the reusable parts, not the hub's own top-level do
 Then pick a workflow (e.g. `feature-dev.md`) and tune its approval gates.
 
 ## Current stacks
+> **Flutter is the only stack today.** The hub is *designed* for multi-stack (see
+> "Add a new stack"), but that extensibility is intentional design, not yet proven with a
+> second stack. The roles and workflows are already stack-agnostic and ready to reuse.
+
 - `flutter/` — Dart + Flutter, **GSE architecture** (Clean layer-first, BLoC, go_router, dio, get_it, design_system + gse_localization). Skills: architecture (scaffold), flavors, new-module/new-model/new-repository/new-bloc/new-screen, check-arch, clean-code, testing. Scaffolding via `architecture/generate.mjs` (no VSCode extension needed).
