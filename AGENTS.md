@@ -1,4 +1,4 @@
-# AGENTS.md — JERRY Agents Hub
+# AGENTS.md — GSE Agent Hub
 
 Central, reusable hub of agent **roles**, **skills**, and **workflows** for software
 development. No application code lives here. Assets are stack-agnostic by default and
