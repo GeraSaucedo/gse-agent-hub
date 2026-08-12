@@ -1,9 +1,9 @@
 # JERRY Agents Hub
 
 Central, reusable hub of AI-agent **roles**, **skills**, and **workflows** for software
-development. **Focused on Flutter today, architected for multi-stack:** shared assets
-(roles, workflows, cross-stack skills) at the top, stack-specific manuals under each stack —
-adding a new stack reuses the shared parts without touching them.
+development. **Currently focused on Flutter.** The shared assets (roles, workflows,
+cross-stack skills) live at the top and are stack-agnostic; Flutter-specific manuals live
+under its own folder. Only Flutter exists today — more stacks may be added later.
 
 > Operational files are in English (models follow instructions better in English and the
 > ecosystem standard is English). This human README can stay bilingual.
@@ -58,9 +58,38 @@ improvements, re-copy. **Copy the reusable parts, not the hub's own top-level do
 
 Then pick a workflow (e.g. `feature-dev.md`) and tune its approval gates.
 
+## Usage — how an agent picks up the hub
+Each CLI auto-reads a different root file. `AGENTS.md` is the emerging universal standard
+(Linux Foundation; read natively by Codex, Cursor, and Windsurf), but Claude Code and Gemini
+CLI each need a small one-time nudge:
+
+| Tool | Auto-reads by default | To use this hub |
+|---|---|---|
+| Codex · Cursor · Windsurf | `AGENTS.md` | Works out of the box. |
+| Claude Code | `CLAUDE.md` | Keep the root `CLAUDE.md` bridge pointing to `AGENTS.md`. |
+| Gemini CLI | `GEMINI.md` | Keep the root `GEMINI.md` bridge pointing to `AGENTS.md`. |
+
+Both `CLAUDE.md` and `GEMINI.md` are one-line bridges to `AGENTS.md`, so Claude Code and
+Gemini CLI pick up the hub out of the box — no per-user setup.
+
+Only the **root file is auto-loaded** — it's the switch that turns on the rest. The deeper
+files (`roles/`, `skills/`, `workflows/`) load **on demand**, when the bridge or your prompt
+points to them.
+
+### Two ways it kicks in
+- **Ambient (automatic):** the auto-loaded root file makes the agent apply the conventions by
+  default — you don't have to ask.
+- **On-demand (you invoke):** point at a workflow or skill in your prompt, e.g.
+  *"Follow `.agents/workflows/feature-dev.md` to add a login screen, per the Flutter conventions."*
+
+### Quickstart (in your project)
+1. Copy `.agents/` into your project root.
+2. Keep the root bridge for your tool (see the table above).
+3. Code as usual — conventions apply automatically; invoke a workflow when you want the full flow.
+
 ## Current stacks
-> **Flutter is the only stack today.** The hub is *designed* for multi-stack (see
-> "Add a new stack"), but that extensibility is intentional design, not yet proven with a
-> second stack. The roles and workflows are already stack-agnostic and ready to reuse.
+> **Flutter only, for now.** The roles and workflows are already stack-agnostic, so more
+> stacks may possibly be added in the future — but none are promised. Flutter is the only
+> supported stack today.
 
 - `flutter/` — Dart + Flutter, **GSE architecture** (Clean layer-first, BLoC, go_router, dio, get_it, design_system + gse_localization). Skills: architecture (scaffold), flavors, new-module/new-model/new-repository/new-bloc/new-screen, check-arch, clean-code, testing. Scaffolding via `architecture/generate.mjs` (no VSCode extension needed).
