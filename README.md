@@ -1,4 +1,7 @@
-# JERRY Agents Hub
+# GSE Agent Hub
+
+> Model-agnostic standards for AI coding agents — write your roles, skills & workflows once,
+> run them on Claude Code, Gemini CLI, or Codex. Flutter-first.
 
 Central, reusable hub of AI-agent **roles**, **skills**, and **workflows** for software
 development. **Currently focused on Flutter.** The shared assets (roles, workflows,
