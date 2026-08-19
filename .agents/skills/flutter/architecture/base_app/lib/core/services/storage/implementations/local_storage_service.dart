@@ -1,11 +1,10 @@
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gse_base_app/core/services/storage/contract/storage_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageService extends StorageService {
-  LocalStorageService({required SharedPreferences storage})
-    : _storage = storage;
+  LocalStorageService({required this._storage});
 
   final SharedPreferences _storage;
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gse_design_system/gse_design_system.dart';
-import 'package:gse_localization/gse_localization.dart';
 import 'package:gse_base_app/presentation/blocs/app/app_bloc.dart';
 import 'package:gse_base_app/presentation/widgets/buttons/app_logout_button.dart';
 import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/gse_localization.dart';
 
 class ErrorInitialDataScreen extends StatelessWidget {
   const ErrorInitialDataScreen({

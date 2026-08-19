@@ -13,12 +13,10 @@ part 'verify_email_state.dart';
 
 class VerifyEmailBloc extends Bloc<VerifyEmailEvent, VerifyEmailState> {
   VerifyEmailBloc({
-    required VerifyEmailRepository repository,
-    required AuthRepository authRepository,
+    required this._repository,
+    required this._authRepository,
     this.autoLoginPassword,
-  }) : _repository = repository,
-       _authRepository = authRepository,
-       super(const VerifyEmailState()) {
+  }) : super(const VerifyEmailState()) {
     on<InitRequested>(_onInitRequested, transformer: droppable());
     on<EmailSet>(_onEmailSet);
     on<CodeChanged>(_onCodeChanged);

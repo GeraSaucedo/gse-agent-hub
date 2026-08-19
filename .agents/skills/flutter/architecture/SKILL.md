@@ -13,28 +13,41 @@ Starting a new Flutter project, or laying down the base architecture into an emp
 
 ## What gets generated
 The full-setup base: `lib/{core,domain,data,presentation}`, the `design_system` and
-`gse_localization` local packages, `tools/setup_flavors.dart`, Android/iOS config, assets,
-and the project's `.claude/skills/` (the feature-generation commands). See `base_app/` for
-the exact contents and `check-arch` for the full inventory.
+`gse_localization` local packages, `tools/setup_flavors.dart`, the customized Android config,
+assets, and the project's `.claude/skills/` (the feature-generation commands). See `base_app/`
+for the exact contents and `check-arch` for the full inventory.
+
+## Prerequisite — native scaffolding
+`base_app/` is a **code + config overlay**: it ships the GSE `lib/`, packages, and the
+*customized* `android/app/` files, but **not** the full native platform (no `ios/`, no
+`android/settings.gradle.kts` / `MainActivity` / `res/` / gradle wrapper). Create those first
+with the target Flutter version, then overlay:
+```bash
+# pin the Flutter version you want to stay current on, then create the native shell
+flutter create --empty --org <org> --project-name <name> <targetDir>
+cd <targetDir> && fvm use <version>    # e.g. 3.47.0 — writes .fvmrc
+```
+The generator's Android files (compileSdk, flavors, signing) assume the native shell was made
+by that same Flutter version — mismatched versions break the Gradle build.
 
 ## Steps
-1. **Run the generator** (headless, no VSCode needed):
+1. **Run the generator** over the created project (headless, no VSCode needed):
    ```bash
-   node .agents/skills/flutter/architecture/generate.mjs <targetDir> [packageName] [androidNamespace]
+   node <hub>/.agents/skills/flutter/architecture/generate.mjs <targetDir> [packageName] [androidNamespace]
    ```
    - `packageName` defaults to a sanitized `<targetDir>` basename; `androidNamespace` to `com.example.<packageName>`.
-   - It copies `base_app/` and swaps `gse_base_app` → your package and `com.example.gse_base_app` → your namespace.
-2. **Install deps & generate flavors** (the generator prints these):
+     **Pass an `androidNamespace` that matches the `--org` you used** so the overlaid `build.gradle.kts` and the native `MainActivity` line up.
+   - It copies `base_app/` (swapping `gse_base_app` → your package / namespace) **and then runs
+     `flutter pub get` followed by `dart fix --apply` automatically** — the latter re-sorts imports
+     for your package name (uses FVM when `.fvmrc` is present; falls back to PATH, or prints the
+     commands if the toolchain isn't found).
+2. **Generate flavors** and run codegen (the generator prints these):
    ```bash
    cd <targetDir>
-   flutter pub get
-   dart run tools/setup_flavors.dart      # dev / stg / prod  (see the flavors skill)
-   ```
-3. **Run codegen** for freezed models:
-   ```bash
+   dart run tools/setup_flavors.dart                       # dev / stg / prod  (see the flavors skill)
    dart run build_runner build --delete-conflicting-outputs
    ```
-4. **Verify** with the `check-arch` skill — it reports any missing/incomplete files.
+3. **Verify** with the `check-arch` skill — it reports any missing/incomplete files.
 
 ## Evolving the architecture
 `base_app/` is a **real, editable Flutter project** and the single source of truth. To change
@@ -42,8 +55,9 @@ the base for all future projects, edit `base_app/` directly (open it, `flutter a
 then commit. Never hand-edit generated projects and back-port — change the template.
 
 ## Definition of done
-- Generator ran without errors; `flutter pub get`, flavor setup, and codegen succeeded.
-- `check-arch` reports the architecture COMPLETE.
+- Native shell created for the target Flutter version; generator ran without errors
+  (`flutter pub get` + `dart fix` auto-ran), flavor setup and codegen succeeded.
+- `flutter analyze` is clean and `check-arch` reports the architecture COMPLETE.
 
 ## Anti-patterns
 - Recreating the base file-by-file by hand instead of running the generator (slow, drifts).

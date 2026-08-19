@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gse_localization/generated/app_localizations.dart';
 import 'package:gse_base_app/data/repositories/recovery_code/recovery_code_failures.dart';
 import 'package:gse_base_app/presentation/blocs/forgot_password/forgot_password_bloc.dart';
 import 'package:gse_base_app/presentation/widgets/overlays/loading_overlay.dart';
 import 'package:gse_base_app/presentation/widgets/utils/app_snackbar.dart';
+import 'package:gse_localization/generated/app_localizations.dart';
 
 class ForgotPasswordBlocListener extends StatelessWidget {
   const ForgotPasswordBlocListener({required this.child, super.key});

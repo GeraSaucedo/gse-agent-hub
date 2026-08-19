@@ -3,9 +3,8 @@ import 'package:gse_base_app/core/services/storage/contract/storage_service.dart
 
 /// Service for saving confidential things as ApiKeys, Tokens, etc
 class SecureStorageService extends StorageService {
-  SecureStorageService({required FlutterSecureStorage secureStorage})
-    : _secureStorage = secureStorage,
-      super();
+  SecureStorageService({required this._secureStorage})
+    : super();
 
   final FlutterSecureStorage _secureStorage;
 

@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gse_design_system/gse_design_system.dart';
-import 'package:gse_localization/generated/app_localizations.dart';
 import 'package:gse_base_app/presentation/blocs/forgot_password/forgot_password_bloc.dart';
 import 'package:gse_base_app/presentation/screens/forgot_password/forgot_password_code.dart';
 import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/email/email_text_field.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/email/field_email.dart';
 import 'package:gse_base_app/presentation/widgets/utils/custom_appbar.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/generated/app_localizations.dart';
 
 class ForgotPasswordUsername extends StatefulWidget {
   const ForgotPasswordUsername({

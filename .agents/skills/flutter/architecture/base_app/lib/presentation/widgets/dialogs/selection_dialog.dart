@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
+import 'package:gse_design_system/gse_design_system.dart';
 
 class SelectionDialog<T> extends StatefulWidget {
   const SelectionDialog({

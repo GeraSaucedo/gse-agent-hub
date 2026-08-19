@@ -10,8 +10,8 @@ import 'package:gse_base_app/data/repositories/recovery_code/recovery_code_failu
 
 class RecoveryCodeRepository {
   RecoveryCodeRepository({
-    required ApiClient apiClient,
-  }) : _apiClient = apiClient;
+    required this._apiClient,
+  });
 
   final ApiClient _apiClient;
 

@@ -14,6 +14,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const SRC = path.join(HERE, 'base_app');
@@ -78,7 +79,49 @@ for (const name of PROJECT_SKILLS) {
 
 console.log(`Generated "${packageName}" (namespace ${androidNamespace})`);
 console.log(`  ${text} source files + ${bin} assets + ${skills} skills → ${targetDir}`);
+
+// Bootstrap: resolve deps and normalize imports for the new package name.
+// `directives_ordering` sorts package: imports alphabetically, so renaming the
+// package shifts the app's own imports — `dart fix` re-sorts them. These run
+// SYNCHRONOUSLY and in order: `dart fix` needs the package_config that
+// `pub get` writes, so it must not start until pub get has finished.
+const bootstrapped = bootstrap(targetDir);
+
 console.log('\nNext:');
 console.log(`  cd "${targetDir}"`);
-console.log('  flutter pub get');
-console.log('  dart run tools/setup_flavors.dart   # generates dev/stg/prod flavors');
+if (!bootstrapped) {
+  console.log('  flutter pub get');
+  console.log('  dart fix --apply                          # sort imports for the new package name');
+}
+console.log('  dart run tools/setup_flavors.dart          # generates dev/stg/prod flavors');
+console.log('  dart run build_runner build --delete-conflicting-outputs');
+
+/**
+ * Runs `pub get` then `dart fix --apply` in the generated project, in order.
+ * Uses FVM when the project pins a version (.fvmrc) and fvm is available;
+ * otherwise falls back to flutter/dart on PATH. Non-fatal: if the toolchain
+ * isn't found the manual steps are printed instead.
+ */
+function bootstrap(dir) {
+  const useFvm = fs.existsSync(path.join(dir, '.fvmrc')) && cmdExists('fvm');
+  const flutter = useFvm ? { bin: 'fvm', pre: ['flutter'] } : { bin: 'flutter', pre: [] };
+  const dart = useFvm ? { bin: 'fvm', pre: ['dart'] } : { bin: 'dart', pre: [] };
+  const steps = [
+    ['flutter pub get', flutter.bin, [...flutter.pre, 'pub', 'get']],
+    ['dart fix --apply', dart.bin, [...dart.pre, 'fix', '--apply']],
+  ];
+  for (const [label, cmd, cmdArgs] of steps) {
+    console.log(`\n> ${label}${useFvm ? ' (fvm)' : ''}`);
+    const r = spawnSync(cmd, cmdArgs, { cwd: dir, stdio: 'inherit' }); // sync: waits for completion
+    if (r.error || r.status !== 0) {
+      const why = r.error ? r.error.code : `exit ${r.status}`;
+      console.warn(`  ! could not run "${label}" automatically (${why}) — run it manually (see Next).`);
+      return false;
+    }
+  }
+  return true;
+}
+
+function cmdExists(cmd) {
+  return !spawnSync(cmd, ['--version'], { stdio: 'ignore' }).error;
+}

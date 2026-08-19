@@ -10,8 +10,8 @@ import 'package:gse_base_app/data/repositories/verify_email/verify_email_failure
 
 class VerifyEmailRepository {
   VerifyEmailRepository({
-    required ApiClient apiClient,
-  }) : _apiClient = apiClient;
+    required this._apiClient,
+  });
 
   final ApiClient _apiClient;
 

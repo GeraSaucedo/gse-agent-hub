@@ -6,16 +6,11 @@ part 'pagination_state.dart';
 
 class PaginationCubit<T> extends Cubit<PaginationState<T>> {
   PaginationCubit({
-    required Future<List<T>> Function(
-      int page,
-      int pageSize,
-      PaginationParams params,
-    ) fetchPage,
+    required this._fetchPage,
     this.pageSize = 20,
     this.firstPage = 0,
     bool Function(List<T> newItems, int pageSize)? getHasMore,
-  }) : _fetchPage = fetchPage,
-       _getHasMore = getHasMore ?? _defaultHasMore,
+  }) : _getHasMore = getHasMore ?? _defaultHasMore,
        super(
          PaginationState<T>(
            items: const [],

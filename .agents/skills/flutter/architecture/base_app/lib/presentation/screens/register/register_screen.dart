@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gse_design_system/gse_design_system.dart';
-import 'package:gse_localization/generated/app_localizations.dart';
 import 'package:gse_base_app/presentation/blocs/register/register_bloc.dart';
 import 'package:gse_base_app/presentation/screens/register/register_bloc_listener.dart';
 import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
@@ -13,6 +11,8 @@ import 'package:gse_base_app/presentation/widgets/inputs/password/password_text_
 import 'package:gse_base_app/presentation/widgets/utils/app_logo.dart';
 import 'package:gse_base_app/presentation/widgets/utils/custom_appbar.dart';
 import 'package:gse_base_app/presentation/widgets/utils/unfocus_on_tap.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/generated/app_localizations.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});

@@ -1,6 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
 
-val appName = "Test Agent Hub"
+val appName = "Gse Base App"
 
 configure<ApplicationExtension> {
     flavorDimensions += "environment"
@@ -10,19 +10,19 @@ configure<ApplicationExtension> {
             dimension = "environment"
             applicationIdSuffix = ".dev"
             versionNameSuffix = ".dev"
-            resValue("string", "app_name", "[DEV] $appName")
+            manifestPlaceholders["appName"] = "[DEV] $appName"
         }
 
         create("stg") {
             dimension = "environment"
             applicationIdSuffix = ".stg"
             versionNameSuffix = ".stg"
-            resValue("string", "app_name", "[STG] $appName")
+            manifestPlaceholders["appName"] = "[STG] $appName"
         }
 
         create("prod") {
             dimension = "environment"
-            resValue("string", "app_name", appName)
+            manifestPlaceholders["appName"] = appName
         }
 
     }

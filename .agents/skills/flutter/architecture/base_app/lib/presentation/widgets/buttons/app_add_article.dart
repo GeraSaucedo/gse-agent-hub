@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
-import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
 
 class AddArticleBtn extends StatelessWidget {
   const AddArticleBtn({super.key, this.onPressed});

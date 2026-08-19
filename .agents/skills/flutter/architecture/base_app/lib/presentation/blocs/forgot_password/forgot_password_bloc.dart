@@ -16,10 +16,8 @@ part 'forgot_password_state.dart';
 class ForgotPasswordBloc
     extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
   ForgotPasswordBloc({
-    required RecoveryCodeRepository repository,
-  }) : _repository = repository,
-
-       super(const ForgotPasswordState()) {
+    required this._repository,
+  }) : super(const ForgotPasswordState()) {
     on<EmailChanged>(_onEmailChanged);
     on<PasswordChanged>(_onPasswordChanged);
     on<ConfirmPasswordChanged>(_onConfirmPasswordChanged);

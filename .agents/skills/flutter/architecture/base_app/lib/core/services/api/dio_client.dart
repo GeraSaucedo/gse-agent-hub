@@ -12,13 +12,13 @@ import 'package:gse_base_app/core/services/storage/utils/token_manager.dart';
 class ApiClient {
   /// Creates an [ApiClient] instance.
   ///
-  /// [dio] and [tokenManager] are required and allow for dependency injection.
+  /// [_dio] and [tokenManager] are required and allow for dependency injection.
   /// [onRefreshFailed] is called when token refresh fails (e.g. force logout).
   ApiClient({
-    required Dio dio,
+    required this._dio,
     required TokenManager tokenManager,
     required VoidCallback onRefreshFailed,
-  }) : _dio = dio {
+  }) {
     _dio.options
       ..connectTimeout = const Duration(seconds: 30)
       ..sendTimeout = const Duration(minutes: 5)

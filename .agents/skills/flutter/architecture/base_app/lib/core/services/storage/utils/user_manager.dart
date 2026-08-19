@@ -4,7 +4,7 @@ import 'package:gse_base_app/core/services/storage/implementations/local_storage
 import 'package:gse_base_app/domain/models/user.dart';
 
 class UserManager {
-  UserManager({required LocalStorageService storage}) : _storage = storage;
+  UserManager({required this._storage});
 
   static const _userKey = 'user_data';
   final LocalStorageService _storage;

@@ -15,10 +15,9 @@ enum AuthStatus { authenticated, unauthenticated, unknown }
 
 class AuthRepository {
   AuthRepository({
-    required ApiClient apiClient,
-    required TokenManager tokenManager,
-  }) : _apiClient = apiClient,
-       _tokenManager = tokenManager;
+    required this._apiClient,
+    required this._tokenManager,
+  });
 
   final ApiClient _apiClient;
   final TokenManager _tokenManager;

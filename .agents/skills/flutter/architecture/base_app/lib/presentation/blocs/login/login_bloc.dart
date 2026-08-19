@@ -14,9 +14,8 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({
-    required AuthRepository repository,
-  }) : _repository = repository,
-       super(const LoginState()) {
+    required this._repository,
+  }) : super(const LoginState()) {
     on<EmailChanged>(_onEmailChanged);
     on<PasswordChanged>(_onPasswordChanged);
     on<FormSubmitted>(_onFormSubmitted, transformer: droppable());

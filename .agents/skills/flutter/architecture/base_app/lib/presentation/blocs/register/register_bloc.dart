@@ -14,9 +14,8 @@ part 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   RegisterBloc({
-    required RegisterRepository repository,
-  }) : _repository = repository,
-       super(const RegisterState()) {
+    required this._repository,
+  }) : super(const RegisterState()) {
     on<EmailChanged>(_onEmailChanged);
     on<NameChanged>(_onNameChanged);
     on<PasswordChanged>(_onPasswordChanged);

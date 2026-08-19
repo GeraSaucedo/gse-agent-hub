@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gse_base_app/core/services/api/dio_client.dart';
 import 'package:gse_base_app/core/services/logger/app_logger.dart';
 import 'package:gse_base_app/core/services/storage/implementations/local_storage_service.dart';
@@ -11,6 +10,7 @@ import 'package:gse_base_app/core/services/storage/utils/token_manager.dart';
 import 'package:gse_base_app/core/services/storage/utils/user_manager.dart';
 import 'package:gse_base_app/data/repositories/auth/auth_repository.dart';
 import 'package:gse_base_app/main_injector.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Services that can be used in the app,
 ///

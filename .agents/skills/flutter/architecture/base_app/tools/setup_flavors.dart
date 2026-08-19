@@ -162,11 +162,9 @@ void _generateAndroidFlavors(String root, _ProjectConfig config) {
       buffer.writeln('            applicationIdSuffix = "$suffix"');
       buffer.writeln('            versionNameSuffix = "$suffix"');
     }
-    final displayName = prefix.isNotEmpty ? '$prefix\$appName' : 'appName';
+    final placeholderValue = prefix.isNotEmpty ? '"$prefix\$appName"' : 'appName';
     buffer
-      ..writeln(
-        '            resValue("string", "app_name", ${prefix.isNotEmpty ? '"$displayName"' : 'appName'})',
-      )
+      ..writeln('            manifestPlaceholders["appName"] = $placeholderValue')
       ..writeln('        }')
       ..writeln();
   }
@@ -343,7 +341,7 @@ String _projectLevelConfig(String id, String name, String buildType) {
     ..writeln('\t\t\t\tGCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;')
     ..writeln('\t\t\t\tGCC_WARN_UNUSED_FUNCTION = YES;')
     ..writeln('\t\t\t\tGCC_WARN_UNUSED_VARIABLE = YES;')
-    ..writeln('\t\t\t\tIPHONEOS_DEPLOYMENT_TARGET = 13.0;');
+    ..writeln('\t\t\t\tIPHONEOS_DEPLOYMENT_TARGET = 15.0;');
 
   if (isDebug) {
     buffer

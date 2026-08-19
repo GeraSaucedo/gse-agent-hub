@@ -9,11 +9,8 @@ part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
-    required ConfigRepository configRepository,
-  }) : _configRepository = configRepository,
-
-       // Bloc events
-       super(const AppState()) {
+    required this._configRepository,
+  }) : super(const AppState()) {
     on<GetAppConfig>(_onGetAppConfig);
     on<CleanState>(_onCleanState);
     on<CleanError>(_onCleanError);

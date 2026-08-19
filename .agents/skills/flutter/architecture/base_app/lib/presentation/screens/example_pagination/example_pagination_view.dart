@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_base_app/data/repositories/example/example_repository.dart';
 import 'package:gse_base_app/domain/models/example_model.dart';
 import 'package:gse_base_app/main_injector.dart';
 import 'package:gse_base_app/presentation/blocs/pagination/pagination_cubit.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/app_searchbar.dart';
 import 'package:gse_base_app/presentation/widgets/lists/paginated_list.dart';
+import 'package:gse_design_system/gse_design_system.dart';
 
 class ExamplePaginationView extends StatefulWidget {
   const ExamplePaginationView({super.key});

@@ -9,10 +9,9 @@ class ConfirmedPasswordInput
         super.pure('');
 
   const ConfirmedPasswordInput.dirty({
-    required String password,
+    required this._password,
     required String value,
-  })  : _password = password,
-        super.dirty(value);
+  })  : super.dirty(value);
 
   final String _password;
 
