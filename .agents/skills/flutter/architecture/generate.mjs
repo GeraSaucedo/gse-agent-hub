@@ -19,6 +19,7 @@ import { spawnSync } from 'node:child_process';
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const SRC = path.join(HERE, 'base_app');
 const FLUTTER_SKILLS = path.join(HERE, '..'); // .agents/skills/flutter
+const AUTH_VARIANTS = path.join(HERE, 'auth_variants'); // <variant>/ overlays
 
 const SOURCE_PACKAGE = 'gse_base_app';
 const SOURCE_NAMESPACE = 'com.example.gse_base_app';
@@ -31,8 +32,21 @@ const BINARY_EXT = new Set(['.ttf', '.png', '.jpg', '.jpeg', '.gif', '.ico', '.o
 
 function fail(msg) { console.error(`Error: ${msg}`); process.exit(1); }
 
-const [, , targetArg, pkgArg, nsArg] = process.argv;
-if (!targetArg) fail('missing <targetDir>. Usage: node generate.mjs <targetDir> [packageName] [androidNamespace]');
+// Parse `--auth <variant>` (default jwt) out of argv; keep the rest positional.
+const rawArgs = process.argv.slice(2);
+let authVariant = 'jwt';
+const positional = [];
+for (let i = 0; i < rawArgs.length; i++) {
+  const a = rawArgs[i];
+  if (a === '--auth') { authVariant = (rawArgs[++i] || '').toLowerCase(); }
+  else if (a.startsWith('--auth=')) { authVariant = a.slice('--auth='.length).toLowerCase(); }
+  else positional.push(a);
+}
+const [targetArg, pkgArg, nsArg] = positional;
+if (authVariant !== 'jwt' && authVariant !== 'amplify') {
+  fail(`unknown --auth "${authVariant}". Use "jwt" (default) or "amplify".`);
+}
+if (!targetArg) fail('missing <targetDir>. Usage: node generate.mjs <targetDir> [packageName] [androidNamespace] [--auth jwt|amplify]');
 if (!fs.existsSync(SRC)) fail(`base_app template not found at ${SRC}`);
 
 const targetDir = path.resolve(targetArg);
@@ -67,6 +81,45 @@ function walk(dir) {
 fs.mkdirSync(targetDir, { recursive: true });
 walk(SRC);
 
+// Apply the auth variant overlay on top of the JWT base (see auth_variants/<v>/).
+// Overlay files are whole-file replacements (same package transform as the base);
+// `_delete.txt` lists JWT-only files the variant removes.
+let overlaid = 0, removed = 0;
+if (authVariant !== 'jwt') {
+  const overlayDir = path.join(AUTH_VARIANTS, authVariant);
+  if (!fs.existsSync(overlayDir)) fail(`auth variant "${authVariant}" not found at ${overlayDir}`);
+  const applyOverlay = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const from = path.join(dir, entry.name);
+      const rel = path.relative(overlayDir, from);
+      if (entry.isDirectory()) { applyOverlay(from); continue; }
+      if (entry.name === '_delete.txt') continue; // control file, not copied
+      const to = path.join(targetDir, rel);
+      fs.mkdirSync(path.dirname(to), { recursive: true });
+      if (BINARY_EXT.has(path.extname(entry.name).toLowerCase())) {
+        fs.copyFileSync(from, to);
+      } else {
+        let content = transform(fs.readFileSync(from, 'utf-8'));
+        if (rel === 'pubspec.yaml') content = content.replace(/^name:\s*\S+/m, `name: ${packageName}`);
+        fs.writeFileSync(to, content, 'utf-8');
+      }
+      overlaid++;
+    }
+  };
+  applyOverlay(overlayDir);
+
+  const deleteList = path.join(overlayDir, '_delete.txt');
+  if (fs.existsSync(deleteList)) {
+    for (const line of fs.readFileSync(deleteList, 'utf-8').split('\n')) {
+      const rel = line.trim();
+      if (!rel || rel.startsWith('#')) continue;
+      const target = path.join(targetDir, rel);
+      if (fs.existsSync(target)) { fs.rmSync(target); removed++; }
+    }
+  }
+  console.log(`Applied auth variant "${authVariant}": ${overlaid} files overlaid, ${removed} removed.`);
+}
+
 // Distribute the feature-generation skills into the project's .claude/skills/.
 let skills = 0;
 const skillsDir = path.join(targetDir, '.claude', 'skills');
@@ -77,7 +130,7 @@ for (const name of PROJECT_SKILLS) {
   fs.writeFileSync(path.join(skillsDir, `${name}.md`), fs.readFileSync(from, 'utf-8')); skills++;
 }
 
-console.log(`Generated "${packageName}" (namespace ${androidNamespace})`);
+console.log(`Generated "${packageName}" (namespace ${androidNamespace}, auth: ${authVariant})`);
 console.log(`  ${text} source files + ${bin} assets + ${skills} skills → ${targetDir}`);
 
 // Bootstrap: resolve deps and normalize imports for the new package name.

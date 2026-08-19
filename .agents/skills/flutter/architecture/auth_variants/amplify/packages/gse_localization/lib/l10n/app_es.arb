@@ -1,0 +1,472 @@
+{
+  "@@locale": "es",
+  "appName": "GSE App",
+  "@appName": {
+    "description": "Nombre de la aplicación"
+  },
+  "title": "Bienvenido",
+  "@title": {
+    "description": "Título principal"
+  },
+  "subtitle": "Inicia sesión para continuar",
+  "@subtitle": {
+    "description": "Subtítulo principal"
+  },
+  "greeting": "Hola {name}",
+  "@greeting": {
+    "description": "Saludo con nombre del usuario",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "itemCount": "{count, plural, =0{Sin elementos} =1{1 elemento} other{{count} elementos}}",
+  "@itemCount": {
+    "description": "Cantidad de elementos con plural",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "loginScreenForgotPassword": "¿Olvidaste tu contraseña?",
+  "@loginScreenForgotPassword": {
+    "description": "Título pantalla olvidé contraseña"
+  },
+  "loginScreenUsernameHint": "Usuario",
+  "@loginScreenUsernameHint": {
+    "description": "Hint del campo usuario"
+  },
+  "loginScreenPasswordHint": "Contraseña",
+  "@loginScreenPasswordHint": {
+    "description": "Hint del campo contraseña"
+  },
+  "forgotPasswordUsernameSubtitle": "Ingresa tu usuario para recuperar tu contraseña",
+  "@forgotPasswordUsernameSubtitle": {
+    "description": "Subtítulo de la pantalla de usuario"
+  },
+  "forgotPasswordEmailSubtitle": "Ingresa tu correo para recuperar tu contraseña",
+  "@forgotPasswordEmailSubtitle": {
+    "description": "Subtítulo de la pantalla de correo"
+  },
+  "forgotPasswordSendButton": "Enviar código",
+  "@forgotPasswordSendButton": {
+    "description": "Botón para enviar código de recuperación"
+  },
+  "forgotPasswordCheckEmailTitle": "Revisa tu correo",
+  "@forgotPasswordCheckEmailTitle": {
+    "description": "Título pantalla de código"
+  },
+  "forgotPasswordCheckEmailSubtitle": "Ingresa el código de verificación enviado a tu correo",
+  "@forgotPasswordCheckEmailSubtitle": {
+    "description": "Subtítulo pantalla de código"
+  },
+  "forgotPasswordCodeHint": "Código de verificación",
+  "@forgotPasswordCodeHint": {
+    "description": "Hint del campo de código"
+  },
+  "forgotPasswordContinueButton": "Continuar",
+  "@forgotPasswordContinueButton": {
+    "description": "Botón continuar"
+  },
+  "forgotPasswordDidNotReceiveCode": "¿No recibiste el código? ",
+  "@forgotPasswordDidNotReceiveCode": {
+    "description": "Texto antes del botón de reenviar"
+  },
+  "forgotPasswordResendIn": "Reenviar en {seconds}s",
+  "@forgotPasswordResendIn": {
+    "description": "Texto de espera para reenviar",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "forgotPasswordResendEmail": "Reenviar",
+  "@forgotPasswordResendEmail": {
+    "description": "Botón para reenviar el código"
+  },
+  "forgotPasswordChangeTitle": "Cambiar contraseña",
+  "@forgotPasswordChangeTitle": {
+    "description": "Título pantalla de nueva contraseña"
+  },
+  "forgotPasswordChangeSubtitle": "Ingresa tu nueva contraseña",
+  "@forgotPasswordChangeSubtitle": {
+    "description": "Subtítulo pantalla de nueva contraseña"
+  },
+  "forgotPasswordNewPasswordHint": "Nueva contraseña",
+  "@forgotPasswordNewPasswordHint": {
+    "description": "Hint del campo nueva contraseña"
+  },
+  "forgotPasswordConfirmPasswordHint": "Confirmar contraseña",
+  "@forgotPasswordConfirmPasswordHint": {
+    "description": "Hint del campo confirmar contraseña"
+  },
+  "forgotPasswordRequirements": "La contraseña debe tener al menos 8 caracteres, mayúscula, minúscula, número y carácter especial",
+  "@forgotPasswordRequirements": {
+    "description": "Requisitos de la contraseña"
+  },
+  "forgotPasswordUpdateButton": "Actualizar contraseña",
+  "@forgotPasswordUpdateButton": {
+    "description": "Botón actualizar contraseña"
+  },
+  "forgotPasswordUpdateSuccess": "Contraseña actualizada correctamente",
+  "@forgotPasswordUpdateSuccess": {
+    "description": "Mensaje de éxito al actualizar contraseña"
+  },
+  "forgotPasswordInvalidForm": "Por favor completa el formulario correctamente",
+  "@forgotPasswordInvalidForm": {
+    "description": "Error de formulario inválido"
+  },
+  "forgotPasswordEmptyUsername": "Por favor ingresa tu usuario",
+  "@forgotPasswordEmptyUsername": {
+    "description": "Error de usuario vacío en recuperación de contraseña"
+  },
+  "loginFailureInvalidCredentials": "Correo o contraseña incorrectos",
+  "@loginFailureInvalidCredentials": {
+    "description": "Error de credenciales inválidas en login"
+  },
+  "loginFailureInvalidForm": "Por favor ingresa tu correo y contraseña",
+  "@loginFailureInvalidForm": {
+    "description": "Error de formulario incompleto en login"
+  },
+  "loginFailureConnectionTimeout": "La conexión tardó demasiado. Intenta de nuevo",
+  "@loginFailureConnectionTimeout": {
+    "description": "Error de timeout en login"
+  },
+  "loginFailureUserNotFound": "Usuario no encontrado",
+  "@loginFailureUserNotFound": {
+    "description": "Error usuario no encontrado"
+  },
+  "genericServerFailureError": "Error del servidor. Intenta de nuevo",
+  "@genericServerFailureError": {
+    "description": "Error genérico de servidor"
+  },
+  "genericNetworkFailureError": "Sin conexión a internet",
+  "@genericNetworkFailureError": {
+    "description": "Error de red"
+  },
+  "genericUnknownFailureError": "Error desconocido. Intenta de nuevo",
+  "@genericUnknownFailureError": {
+    "description": "Error desconocido"
+  },
+  "verifyEmailTitle": "Verifica tu correo",
+  "@verifyEmailTitle": {
+    "description": "Título de la pantalla de verificación de correo"
+  },
+  "verifyEmailSubtitle": "Ingresa el código de verificación enviado a tu correo electrónico",
+  "@verifyEmailSubtitle": {
+    "description": "Subtítulo de la pantalla de verificación de correo"
+  },
+  "verifyEmailCodeHint": "Código de verificación",
+  "@verifyEmailCodeHint": {
+    "description": "Hint del campo de código de verificación"
+  },
+  "verifyEmailVerifyButton": "Verificar",
+  "@verifyEmailVerifyButton": {
+    "description": "Botón para verificar el código"
+  },
+  "verifyEmailDidNotReceiveCode": "¿No recibiste el código? ",
+  "@verifyEmailDidNotReceiveCode": {
+    "description": "Texto antes del botón de reenviar en verificación de correo"
+  },
+  "verifyEmailResendIn": "Reenviar en {seconds}s",
+  "@verifyEmailResendIn": {
+    "description": "Texto de espera para reenviar en verificación de correo",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "verifyEmailResendEmail": "Reenviar correo",
+  "@verifyEmailResendEmail": {
+    "description": "Botón para reenviar el correo de verificación"
+  },
+  "verifyEmailInvalidCode": "Código incorrecto o expirado",
+  "@verifyEmailInvalidCode": {
+    "description": "Error de código inválido en verificación de correo"
+  },
+  "loginRegisterButton": "Regístrate",
+  "@loginRegisterButton": {
+    "description": "Botón de registro en la pantalla de login"
+  },
+  "loginOrDivider": "o",
+  "@loginOrDivider": {
+    "description": "Separador entre login con correo y proveedores sociales"
+  },
+  "loginContinueWithGoogle": "Continuar con Google",
+  "@loginContinueWithGoogle": {
+    "description": "Botón para iniciar sesión con Google"
+  },
+  "loginContinueWithApple": "Continuar con Apple",
+  "@loginContinueWithApple": {
+    "description": "Botón para iniciar sesión con Apple"
+  },
+  "registerTitle": "Crear cuenta",
+  "@registerTitle": {
+    "description": "Título de la pantalla de registro"
+  },
+  "registerSubtitle": "Ingresa tus datos para crear tu cuenta",
+  "@registerSubtitle": {
+    "description": "Subtítulo de la pantalla de registro"
+  },
+  "registerNameHint": "Nombre completo",
+  "@registerNameHint": {
+    "description": "Hint del campo nombre en registro"
+  },
+  "registerButton": "Registrarse",
+  "@registerButton": {
+    "description": "Botón para registrarse"
+  },
+  "registerAlreadyHaveAccount": "¿Ya tienes cuenta? ",
+  "@registerAlreadyHaveAccount": {
+    "description": "Texto antes del enlace de inicio de sesión en registro"
+  },
+  "registerLoginLink": "Inicia sesión",
+  "@registerLoginLink": {
+    "description": "Enlace para ir a iniciar sesión desde registro"
+  },
+  "registerFailureEmailAlreadyExists": "Este correo ya está registrado",
+  "@registerFailureEmailAlreadyExists": {
+    "description": "Error cuando el correo ya existe en registro"
+  },
+  "registerFailureInvalidData": "Datos inválidos. Verifica tu información",
+  "@registerFailureInvalidData": {
+    "description": "Error de datos inválidos en registro"
+  },
+
+  "loginScreenTitle": "Inicio de sesión",
+  "@loginScreenTitle": {
+    "description": "Título de la pantalla de login"
+  },
+  "loginScreenSubtitle": "Es necesario que tengas una cuenta de colaborador.",
+  "@loginScreenSubtitle": {
+    "description": "Subtítulo de la pantalla de login"
+  },
+  "loginScreenLoginButton": "Ingresar",
+  "@loginScreenLoginButton": {
+    "description": "Botón de inicio de sesión"
+  },
+  "dialogCancelButton": "Cancelar",
+  "@dialogCancelButton": {
+    "description": "Botón cancelar en diálogos"
+  },
+  "dialogAcceptButton": "Aceptar",
+  "@dialogAcceptButton": {
+    "description": "Botón aceptar en diálogos"
+  },
+  "logoutButton": "Cerrar sesión",
+  "@logoutButton": {
+    "description": "Botón de cerrar sesión"
+  },
+  "emailHint": "Correo electrónico",
+  "@emailHint": {
+    "description": "Hint del campo de correo electrónico"
+  },
+  "emptyStateMessage": "No se encontraron elementos",
+  "@emptyStateMessage": {
+    "description": "Mensaje cuando no hay elementos"
+  },
+  "retryButton": "Reintentar",
+  "@retryButton": {
+    "description": "Botón de reintentar"
+  },
+  "errorLoadingElementsMessage": "No se pudieron\nobtener los elementos",
+  "@errorLoadingElementsMessage": {
+    "description": "Error al obtener elementos"
+  },
+  "errorServerConnectionMessage": "No fue posible\nconectar con el servidor",
+  "@errorServerConnectionMessage": {
+    "description": "Error de conexión con el servidor"
+  },
+  "errorLoadingNewItemsMessage": "Ocurrió un error al cargar nuevos elementos",
+  "@errorLoadingNewItemsMessage": {
+    "description": "Error al cargar nuevos elementos en lista paginada"
+  },
+  "selectElementTitle": "Seleccionar elemento",
+  "@selectElementTitle": {
+    "description": "Título por defecto de selector"
+  },
+  "searchHint": "Buscar...",
+  "@searchHint": {
+    "description": "Hint del campo de búsqueda"
+  },
+  "addArticleButton": "Añadir artículo",
+  "@addArticleButton": {
+    "description": "Botón de añadir artículo"
+  },
+  "classificationSelectionTitle": "Selección de clasificación",
+  "@classificationSelectionTitle": {
+    "description": "Título del selector de clasificación"
+  },
+  "imageLoadError": "Error al cargar la imagen",
+  "@imageLoadError": {
+    "description": "Error al cargar imagen de red"
+  },
+  "serverConnectionError": "Error al conectar con el servidor",
+  "@serverConnectionError": {
+    "description": "Error de conexión con el servidor"
+  },
+  "selectorErrorMessage": "Ocurrió un error al obtener los datos, inténtelo de nuevo",
+  "@selectorErrorMessage": {
+    "description": "Error en selectores al obtener datos"
+  },
+  "navigationPlaceholder": "Navegación 3",
+  "@navigationPlaceholder": {
+    "description": "Placeholder de navegación en drawer"
+  },
+
+  "dsTitle": "Design System",
+  "@dsTitle": {
+    "description": "Título de la pantalla del design system"
+  },
+  "dsTypography": "Tipografía",
+  "@dsTypography": {
+    "description": "Sección de tipografía"
+  },
+  "dsWeights": "Pesos",
+  "@dsWeights": {
+    "description": "Sección de pesos tipográficos"
+  },
+  "dsTextStyles": "Estilos de texto",
+  "@dsTextStyles": {
+    "description": "Sección de estilos de texto"
+  },
+  "dsColors": "Colores",
+  "@dsColors": {
+    "description": "Sección de colores"
+  },
+  "dsOpacity": "Opacidad",
+  "@dsOpacity": {
+    "description": "Sección de opacidad"
+  },
+  "dsSpacing": "Espaciado",
+  "@dsSpacing": {
+    "description": "Sección de espaciado"
+  },
+  "dsBorderRadius": "Border Radius",
+  "@dsBorderRadius": {
+    "description": "Sección de border radius"
+  },
+  "dsComponents": "Componentes",
+  "@dsComponents": {
+    "description": "Sección de componentes"
+  },
+  "dsExampleText": "Ejemplo de texto",
+  "@dsExampleText": {
+    "description": "Texto de ejemplo en tipografía"
+  },
+  "dsWeightLabel": "Peso {name}",
+  "@dsWeightLabel": {
+    "description": "Etiqueta de peso tipográfico",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dsItalicText": "Texto en itálica",
+  "@dsItalicText": {
+    "description": "Texto de ejemplo en itálica"
+  },
+  "dsUnderlineText": "Texto subrayado",
+  "@dsUnderlineText": {
+    "description": "Texto de ejemplo subrayado"
+  },
+  "dsStrikethroughText": "Texto tachado",
+  "@dsStrikethroughText": {
+    "description": "Texto de ejemplo tachado"
+  },
+  "dsCombinations": "Combinaciones",
+  "@dsCombinations": {
+    "description": "Sección de combinaciones de estilos"
+  },
+  "dsSurfaces": "Superficies",
+  "@dsSurfaces": {
+    "description": "Grupo de colores de superficies"
+  },
+  "dsTextGroup": "Texto",
+  "@dsTextGroup": {
+    "description": "Grupo de colores de texto"
+  },
+  "dsBrand": "Marca",
+  "@dsBrand": {
+    "description": "Grupo de colores de marca"
+  },
+  "dsStateGroup": "Estado",
+  "@dsStateGroup": {
+    "description": "Grupo de colores de estado"
+  },
+  "dsSemantic": "Semántico",
+  "@dsSemantic": {
+    "description": "Grupo de colores semánticos"
+  },
+  "dsCardDescription": "Superficie para agrupar contenido relacionado.",
+  "@dsCardDescription": {
+    "description": "Descripción del componente Card"
+  },
+  "dsTextFieldHint": "Ingresa texto...",
+  "@dsTextFieldHint": {
+    "description": "Hint del TextField en demo"
+  },
+  "dsActiveState": "estado activo",
+  "@dsActiveState": {
+    "description": "Texto de ejemplo de estado activo"
+  },
+
+  "languageScreenTitle": "Idioma",
+  "@languageScreenTitle": {
+    "description": "Título de la pantalla de selección de idioma"
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Nombre del idioma español"
+  },
+  "languageEnglish": "Inglés",
+  "@languageEnglish": {
+    "description": "Nombre del idioma inglés"
+  },
+
+  "onboardingSkip": "Omitir",
+  "@onboardingSkip": {
+    "description": "Botón para omitir el onboarding"
+  },
+  "onboardingNext": "Siguiente",
+  "@onboardingNext": {
+    "description": "Botón siguiente en onboarding"
+  },
+  "onboardingBack": "Regresar",
+  "@onboardingBack": {
+    "description": "Botón regresar en onboarding"
+  },
+  "onboardingStart": "Comenzar",
+  "@onboardingStart": {
+    "description": "Botón comenzar en la última página del onboarding"
+  },
+  "onboardingTitle1": "Bienvenido",
+  "@onboardingTitle1": {
+    "description": "Título de la primera página del onboarding"
+  },
+  "onboardingDescription1": "Descubre todo lo que esta aplicación tiene para ofrecerte.",
+  "@onboardingDescription1": {
+    "description": "Descripción de la primera página del onboarding"
+  },
+  "onboardingTitle2": "Seguro y confiable",
+  "@onboardingTitle2": {
+    "description": "Título de la segunda página del onboarding"
+  },
+  "onboardingDescription2": "Tu información está protegida con los más altos estándares de seguridad.",
+  "@onboardingDescription2": {
+    "description": "Descripción de la segunda página del onboarding"
+  },
+  "onboardingTitle3": "Todo listo",
+  "@onboardingTitle3": {
+    "description": "Título de la tercera página del onboarding"
+  },
+  "onboardingDescription3": "Estás a un paso de comenzar. ¡Crea tu cuenta o inicia sesión!",
+  "@onboardingDescription3": {
+    "description": "Descripción de la tercera página del onboarding"
+  }
+}

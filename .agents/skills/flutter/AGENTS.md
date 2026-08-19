@@ -34,9 +34,10 @@ tools/setup_flavors.dart    # generates dev/stg/prod flavor config
 - **List + mutation** (create/update/delete): mutate `state.items` locally on success; do NOT re-fetch the list (see `new-bloc` / `new-module`).
 
 ## Skills in this folder
-- **architecture** — scaffold a new project (the base). · **flavors** — generate dev/stg/prod.
+- **architecture** — scaffold a new project (the base); `--auth jwt|amplify` picks the auth variant. · **flavors** — generate dev/stg/prod.
 - **new-module** — full feature across all 4 layers (calls the four below). · **new-model** · **new-repository** · **new-bloc** · **new-screen**.
 - **check-arch** — verify the base is complete. · **clean-code** — quality pass. · **testing** — BLoC/widget tests.
+- **auth-cognito** — retrofit an existing project's auth from custom JWT to AWS Amplify + Cognito (email/Google/Apple).
 
 ## Testing
 - `flutter test`; mirror `lib/` under `test/`. BLoCs/Cubits tested with `bloc_test`; repositories with mocked `dio`. See the `testing` skill.

@@ -1,0 +1,5 @@
+# Files present in the JWT base_app that the Amplify variant removes.
+# Paths are relative to the generated project root. Lines starting with # are ignored.
+lib/data/repositories/auth/jwt_utils.dart
+lib/core/services/storage/utils/token_manager.dart
+lib/core/services/api/interceptors/refresh_token_interceptor.dart
