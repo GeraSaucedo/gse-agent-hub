@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_base_app/data/repositories/example/example_repository.dart';
+import 'package:gse_base_app/core/utils/result.dart';
 import 'package:gse_base_app/domain/models/example_model.dart';
 import 'package:gse_base_app/main_injector.dart';
 import 'package:gse_base_app/presentation/blocs/pagination/pagination_cubit.dart';
@@ -26,12 +27,18 @@ class _ExamplePaginationViewState extends State<ExamplePaginationView> {
   void initState() {
     super.initState();
     _cubit = PaginationCubit<ExampleModel>(
-      fetchPage: (page, pageSize, params) =>
-          sl<ExampleRepository>().getProducts(
-            page: page,
-            pageSize: pageSize,
-            searchQuery: params.searchQuery,
-          ),
+      fetchPage: (page, pageSize, params) async {
+        final result = await sl<ExampleRepository>().getProducts(
+          page: page,
+          pageSize: pageSize,
+          searchQuery: params.searchQuery,
+        );
+        // PaginationCubit reports thrown errors as its error state.
+        return switch (result) {
+          Success(:final value) => value,
+          Failure(:final exception) => throw exception,
+        };
+      },
     );
   }
 

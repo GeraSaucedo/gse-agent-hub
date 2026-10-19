@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gse_base_app/core/services/api/error_mapping.dart';
@@ -13,24 +15,34 @@ class ApiClient {
   /// Creates an [ApiClient] instance.
   ///
   /// [dio] and [tokenManager] are required and allow for dependency injection.
-  /// [onRefreshFailed] is called when token refresh fails (e.g. force logout).
+  /// [refreshClient] overrides the client used to refresh tokens (tests).
+  /// When the refresh token is rejected, [sessionExpired] emits (listeners,
+  /// e.g. `AuthRepository`, decide what to do).
   ApiClient({
     required Dio dio,
     required TokenManager tokenManager,
-    required VoidCallback onRefreshFailed,
+    Dio? refreshClient,
   }) : _dio = dio {
     _dio.options
       ..connectTimeout = const Duration(seconds: 30)
       ..sendTimeout = const Duration(minutes: 5)
       ..receiveTimeout = const Duration(minutes: 3);
     _dio.interceptors.add(
-      RefreshTokenInterceptor(tokenManager, onRefreshFailed: onRefreshFailed),
+      RefreshTokenInterceptor(
+        tokenManager,
+        onRefreshFailed: () => _sessionExpired.add(null),
+        refreshClient: refreshClient,
+      ),
     );
     _dio.interceptors.add(BearerTokenInterceptor(tokenManager));
     if (kDebugMode) _dio.interceptors.add(LoggerInterceptor());
   }
 
   final Dio _dio;
+  final _sessionExpired = StreamController<void>.broadcast();
+
+  /// Emits when the session can no longer be renewed (refresh token rejected).
+  Stream<void> get sessionExpired => _sessionExpired.stream;
 
   Future<T> _request<T>({
     required HttpMethod method,

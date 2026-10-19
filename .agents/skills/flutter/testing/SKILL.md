@@ -24,8 +24,10 @@ Writing tests for a change, or verifying a change works before review.
 1. **Test BLoCs/Cubits with `bloc_test`.** Inject mocked repositories. For each event, assert the
    emitted state sequence (e.g. loading → success/failure) and the resulting state fields. Cover the
    happy path and every failure case in the repository's `<Domain>Failure` enum.
-2. **Test repositories with a mocked `dio`.** Stub responses and errors; assert the repository maps
-   them to the correct `Result` / `<Domain>Failure` (via `error_mapping.dart`). Don't hit the network.
+2. **Test repositories through a real `ApiClient` over a fake `HttpClientAdapter`.** Stub status
+   codes and connection errors; assert the repository returns the correct `Result` / `<Domain>Failure`
+   (via `api_failure_mapper.dart`). Don't hit the network. Copy the pattern from
+   `test/data/repositories/register/register_repository_test.dart` (it needs no extra dependency).
 3. **Widget-test screens.** Use `testWidgets` + `WidgetTester`; provide the BLoC via a mocked instance
    (or `BlocProvider` with a fake) and drive states. Find by keys/semantics over raw text.
 4. **Test behavior, not internals.** Assert emitted states / what the user sees — never private calls.

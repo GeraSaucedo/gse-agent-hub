@@ -20,11 +20,16 @@ class AuthRepository {
     required ApiClient apiClient,
     required TokenManager tokenManager,
   }) : _apiClient = apiClient,
-       _tokenManager = tokenManager;
+       _tokenManager = tokenManager {
+    _sessionExpiredSub = _apiClient.sessionExpired.listen(
+      (_) => unawaited(forceLogout()),
+    );
+  }
 
   final ApiClient _apiClient;
   final TokenManager _tokenManager;
 
+  late final StreamSubscription<void> _sessionExpiredSub;
   final _authStatusController = StreamController<AuthStatus>.broadcast();
 
   AuthStatus _currentStatus = AuthStatus.unknown;
@@ -42,7 +47,7 @@ class AuthRepository {
     _authStatusController.add(status);
   }
 
-  /// Llamar desde el interceptor de refresh token cuando ambos tokens expiran.
+  /// Se invoca cuando `ApiClient.sessionExpired` emite (tokens expirados).
   /// Limpia los tokens y emite [AuthStatus.sessionExpired].
   Future<void> forceLogout() async {
     if (_currentStatus != AuthStatus.authenticated) return;
@@ -50,7 +55,10 @@ class AuthRepository {
     _emitStatus(AuthStatus.sessionExpired);
   }
 
-  void dispose() => _authStatusController.close();
+  void dispose() {
+    unawaited(_sessionExpiredSub.cancel());
+    unawaited(_authStatusController.close());
+  }
 
   Future<Result<void, AuthFailure>> loginWithEmailAndPassword({
     required String email,
@@ -111,9 +119,7 @@ class AuthRepository {
     if (EnvConfig.useMockAuth) {
       final token = await _tokenManager.getAccessToken();
       _emitStatus(
-        token != null
-            ? AuthStatus.authenticated
-            : AuthStatus.unauthenticated,
+        token != null ? AuthStatus.authenticated : AuthStatus.unauthenticated,
       );
       return;
     }
