@@ -65,7 +65,7 @@ Where `<snake_name>` = resource name converted to snake_case (e.g. `CallGroup` �
 Before generating any code:
 1. Read `lib/data/repositories/repositories_injector.dart` to see current registrations
 2. Read `lib/core/utils/result.dart` to confirm the Result type
-3. Read `lib/core/utils/dio_exception_mapper.dart` to confirm mapper signature
+3. Read `lib/core/utils/api_failure_mapper.dart` to confirm mapper signature
 4. Read `lib/core/environments/env_config.dart` to confirm apiUrl usage
 
 Never guess — read the actual files.
@@ -110,9 +110,8 @@ enum <ResourceName>Failure implements Exception {
 - All methods return `Future<Result<ReturnType, <ResourceName>Failure>>`
 - Use `${EnvConfig.apiUrl}<api_path>` for base URL
 - Use a general `catch (e, stack)` — never `on DioException catch`
-- Inside catch: always call `AppLogger.e(...)`, then check `if (e is DioException)` to call `mapDioToFailure`
-- Use `statusOverrides` in `mapDioToFailure` for specific HTTP codes (e.g. `409`, `404`)
-- Always fall through to `return const Failure(<ResourceName>Failure.unknownError)` at the end of catch
+- Inside catch: always call `AppLogger.e(...)`, then `return mapApiErrorToFailure(e, ...)`. `ApiClient` already turns every `DioException` into an `ApiException`, so **never** check `e is DioException` (it is always false and every error would end up as `unknownError`)
+- Use `statusOverrides` in `mapApiErrorToFailure` for specific HTTP codes (e.g. `409`, `404`); network/timeout errors map to `networkError`, 5xx to `serverError`, anything else to `unknownError`
 - No cache, no local reads, no Drift, no SharedPreferences
 
 **Standard operation signatures:**
@@ -127,11 +126,10 @@ enum <ResourceName>Failure implements Exception {
 
 **Template:**
 ```dart
-import 'package:dio/dio.dart';
 import 'package:gse_base_app/core/environments/env_config.dart';
 import 'package:gse_base_app/core/services/api/dio_client.dart';
 import 'package:gse_base_app/core/services/logger/app_logger.dart';
-import 'package:gse_base_app/core/utils/dio_exception_mapper.dart';
+import 'package:gse_base_app/core/utils/api_failure_mapper.dart';
 import 'package:gse_base_app/core/utils/result.dart';
 import '<snake_name>_failures.dart';
 
@@ -165,16 +163,13 @@ Future<Result<List<ResourceModel>, <ResourceName>Failure>> getAll() async {
     return Success(items);
   } catch (e, stack) {
     AppLogger.e('$_repositoryName.getAll', error: e, stackTrace: stack);
-    if (e is DioException) {
-      return mapDioToFailure(
-        e,
-        networkError: <ResourceName>Failure.networkError,
-        serverError: <ResourceName>Failure.serverError,
-        unknownError: <ResourceName>Failure.unknownError,
-        // statusOverrides: {404: <ResourceName>Failure.notFound},
-      );
-    }
-    return const Failure(<ResourceName>Failure.unknownError);
+    return mapApiErrorToFailure(
+      e,
+      networkError: <ResourceName>Failure.networkError,
+      serverError: <ResourceName>Failure.serverError,
+      unknownError: <ResourceName>Failure.unknownError,
+      // statusOverrides: {404: <ResourceName>Failure.notFound},
+    );
   }
 }
 ```

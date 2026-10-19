@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:gse_base_app/core/environments/env_config.dart';
 import 'package:gse_base_app/core/services/api/dio_client.dart';
 import 'package:gse_base_app/core/services/logger/app_logger.dart';
-import 'package:gse_base_app/core/utils/dio_exception_mapper.dart';
+import 'package:gse_base_app/core/utils/api_failure_mapper.dart';
 import 'package:gse_base_app/core/utils/result.dart';
 import 'package:gse_base_app/data/repositories/recovery_code/recovery_code_failures.dart';
 
@@ -30,19 +29,15 @@ class RecoveryCodeRepository {
     } catch (e, stack) {
       AppLogger.e('RecoveryCodeRepository error', error: e, stackTrace: stack);
 
-      if (e is DioException) {
-        return mapDioToFailure(
-          e,
-          networkError: RecoveryCodeFailure.networkError,
-          serverError: RecoveryCodeFailure.serverError,
-          unknownError: RecoveryCodeFailure.unknownError,
-          statusOverrides: {
-            404: RecoveryCodeFailure.userNotFound,
-          },
-        );
-      }
-
-      return const Failure(RecoveryCodeFailure.unknownError);
+      return mapApiErrorToFailure(
+        e,
+        networkError: RecoveryCodeFailure.networkError,
+        serverError: RecoveryCodeFailure.serverError,
+        unknownError: RecoveryCodeFailure.unknownError,
+        statusOverrides: {
+          404: RecoveryCodeFailure.userNotFound,
+        },
+      );
     }
   }
 
@@ -67,19 +62,15 @@ class RecoveryCodeRepository {
     } catch (e, stack) {
       AppLogger.e('RecoveryCodeRepository error', error: e, stackTrace: stack);
 
-      if (e is DioException) {
-        return mapDioToFailure(
-          e,
-          networkError: RecoveryCodeFailure.networkError,
-          serverError: RecoveryCodeFailure.serverError,
-          unknownError: RecoveryCodeFailure.unknownError,
-          statusOverrides: {
-            404: RecoveryCodeFailure.userNotFound,
-          },
-        );
-      }
-
-      return const Failure(RecoveryCodeFailure.unknownError);
+      return mapApiErrorToFailure(
+        e,
+        networkError: RecoveryCodeFailure.networkError,
+        serverError: RecoveryCodeFailure.serverError,
+        unknownError: RecoveryCodeFailure.unknownError,
+        statusOverrides: {
+          404: RecoveryCodeFailure.userNotFound,
+        },
+      );
     }
   }
 }

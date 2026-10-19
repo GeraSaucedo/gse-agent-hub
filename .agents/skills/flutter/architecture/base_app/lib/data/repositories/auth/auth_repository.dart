@@ -92,7 +92,7 @@ class AuthRepository {
           BadRequestException() => AuthFailure.client,
           ServerException() => AuthFailure.server,
           NoInternetException() => AuthFailure.network,
-          TimeoutException() => AuthFailure.timeout,
+          ApiTimeoutException() => AuthFailure.timeout,
           _ => AuthFailure.unknown,
         },
       );

@@ -16,7 +16,7 @@ ApiException mapDioError(DioException e) {
     case DioExceptionType.sendTimeout:
     case DioExceptionType.receiveTimeout:
     case DioExceptionType.transformTimeout:
-      return const TimeoutException();
+      return const ApiTimeoutException();
     case DioExceptionType.connectionError:
       return const NoInternetException();
     case DioExceptionType.badResponse:
@@ -27,7 +27,7 @@ ApiException mapDioError(DioException e) {
         404 => NotFoundException(message),
         409 => ConflictException(message),
         final code? when code >= 500 => ServerException(message),
-        _ => UnknownException(message),
+        _ => UnknownException(message, statusCode),
       };
     case DioExceptionType.badCertificate:
     case DioExceptionType.cancel:
@@ -78,7 +78,10 @@ class ServerException extends ApiException {
 }
 
 class UnknownException extends ApiException {
-  const UnknownException([super.message = 'Unknown error occurred']);
+  const UnknownException([
+    super.message = 'Unknown error occurred',
+    super.statusCode,
+  ]);
 }
 
 class NoInternetException extends ApiException {
@@ -88,8 +91,8 @@ class NoInternetException extends ApiException {
   ]) : super(message, null, 'NO_INTERNET');
 }
 
-class TimeoutException extends ApiException {
-  const TimeoutException([String message = 'La conexión ha expirado'])
+class ApiTimeoutException extends ApiException {
+  const ApiTimeoutException([String message = 'La conexión ha expirado'])
     : super(message, null, 'TIMEOUT');
 }
 
