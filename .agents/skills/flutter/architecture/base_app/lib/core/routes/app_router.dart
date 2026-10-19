@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gse_base_app/core/routes/app_auth_redirect.dart';
@@ -24,7 +25,12 @@ import 'package:gse_base_app/presentation/screens/splash/splash_screen.dart';
 import 'package:gse_base_app/presentation/screens/verify_email/verify_email_bloc_listener.dart';
 import 'package:gse_base_app/presentation/screens/verify_email/verify_email_screen.dart';
 
+/// Root navigator key, used to show app-level dialogs (e.g. session expired)
+/// from outside the widget tree.
+final rootNavigatorKey = GlobalKey<NavigatorState>();
+
 final appRouter = GoRouter(
+  navigatorKey: rootNavigatorKey,
   initialLocation: SplashScreen.route,
   refreshListenable: GoRouterRefreshStream(
     sl<AuthRepository>().authStatusStream,

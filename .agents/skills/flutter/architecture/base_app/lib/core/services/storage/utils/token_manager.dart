@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
 import 'package:gse_base_app/core/services/storage/implementations/secure_storage_service.dart';
 
 /// Manages the storage and retrieval of authentication tokens
@@ -21,17 +18,17 @@ class TokenManager {
 
   /// Retrieves the access token from secure storage.
   /// Returns the token as a String if it exists, or null if not.
-  Future<String?> getAccessToken() async {
+  Future<String?> getAccessToken() {
     return _storageService.read(key: _accessTokenKey);
   }
 
   /// Retrieves the refresh token from secure storage.
   /// Returns the token as a String if it exists, or null if not.
-  Future<String?> getRefreshToken() async {
+  Future<String?> getRefreshToken() {
     return _storageService.read(key: _refreshTokenKey);
   }
 
-  Future<String?> getUserSub() async {
+  Future<String?> getUserSub() {
     return _storageService.read(key: _userSub);
   }
 
@@ -39,7 +36,6 @@ class TokenManager {
   ///
   /// If the provided token is empty, it does not perform any action.
   Future<void> saveAccessToken(String token) async {
-    if (kDebugMode) log('ACCESS TOKEN $token');
     if (token.isEmpty) return; // Prevent saving empty tokens
     await _storageService.write<String>(key: _accessTokenKey, value: token);
   }
@@ -48,13 +44,11 @@ class TokenManager {
   ///
   /// If the provided token is empty, it does not perform any action.
   Future<void> saveRefreshToken(String token) async {
-    if (kDebugMode) log('REFRESH TOKEN $token');
     if (token.isEmpty) return; // Prevent saving empty tokens
     await _storageService.write<String>(key: _refreshTokenKey, value: token);
   }
 
   Future<void> saveUserSub(String value) async {
-    if (kDebugMode) log('user sub $value');
     if (value.isEmpty) return; // Prevent saving empty tokens
     await _storageService.write<String>(key: _userSub, value: value);
   }

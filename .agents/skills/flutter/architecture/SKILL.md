@@ -13,8 +13,9 @@ Starting a new Flutter project, or laying down the base architecture into an emp
 
 ## What gets generated
 The full-setup base: `lib/{core,domain,data,presentation}`, the `design_system` and
-`gse_localization` local packages, `tools/setup_flavors.dart`, Android/iOS config, assets,
-and the project's `.claude/skills/` (the feature-generation commands). See `base_app/` for
+`gse_localization` local packages, `tools/setup_flavors.dart`, Android flavor config, assets,
+and the project's `.claude/skills/` (the feature-generation commands). Native scaffolding
+(Gradle wrappers, `ios/`) comes from `flutter create .`, which keeps the files the generator wrote. See `base_app/` for
 the exact contents and `check-arch` for the full inventory.
 
 ## Steps
@@ -24,9 +25,11 @@ the exact contents and `check-arch` for the full inventory.
    ```
    - `packageName` defaults to a sanitized `<targetDir>` basename; `androidNamespace` to `com.example.<packageName>`.
    - It copies `base_app/` and swaps `gse_base_app` → your package and `com.example.gse_base_app` → your namespace.
-2. **Install deps & generate flavors** (the generator prints these):
+2. **Add native scaffolding, install deps & generate flavors** (the generator prints these):
    ```bash
    cd <targetDir>
+   flutter create . --project-name <packageName> --org <org> --platforms=android,ios
+   rm test/widget_test.dart               # default test references MyApp
    flutter pub get
    dart run tools/setup_flavors.dart      # dev / stg / prod  (see the flavors skill)
    ```

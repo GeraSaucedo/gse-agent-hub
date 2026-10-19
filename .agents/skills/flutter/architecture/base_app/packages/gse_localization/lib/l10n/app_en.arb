@@ -130,5 +130,8 @@
   "onboardingTitle2": "Safe and reliable",
   "onboardingDescription2": "Your information is protected with the highest security standards.",
   "onboardingTitle3": "All set",
-  "onboardingDescription3": "You're one step away from getting started. Create your account or sign in!"
+  "onboardingDescription3": "You're one step away from getting started. Create your account or sign in!",
+  "sessionExpiredTitle": "Session expired",
+  "sessionExpiredMessage": "Your session has expired. Please sign in again to continue.",
+  "sessionExpiredAction": "Sign in"
 }

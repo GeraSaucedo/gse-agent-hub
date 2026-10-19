@@ -36,7 +36,7 @@ FutureOr<String?> authRedirect(
     AuthStatus.unknown => null,
     // If going to a public route that is not splash, stay.
     // Otherwise, go to login.
-    AuthStatus.unauthenticated =>
+    AuthStatus.unauthenticated || AuthStatus.sessionExpired =>
       (_publicRoutes.contains(isGoingTo) && !isGoingToSplash)
           ? null
           : LoginScreen.route,

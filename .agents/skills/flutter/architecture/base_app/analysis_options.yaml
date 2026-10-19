@@ -18,6 +18,8 @@ linter:
   rules:
     public_member_api_docs: false
     comment_references: false
+    # Order of own-package imports depends on the generated package name.
+    directives_ordering: false
     avoid_catches_without_on_clauses: false
     # == Uncoment this for modify rules
     #use_setters_to_change_properties: false

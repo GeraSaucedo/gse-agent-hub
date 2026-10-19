@@ -456,5 +456,17 @@
   "onboardingDescription3": "Estás a un paso de comenzar. ¡Crea tu cuenta o inicia sesión!",
   "@onboardingDescription3": {
     "description": "Descripción de la tercera página del onboarding"
+  },
+  "sessionExpiredTitle": "Sesión expirada",
+  "@sessionExpiredTitle": {
+    "description": "Título del diálogo cuando la sesión caduca"
+  },
+  "sessionExpiredMessage": "Tu sesión ha expirado. Inicia sesión nuevamente para continuar.",
+  "@sessionExpiredMessage": {
+    "description": "Mensaje del diálogo cuando la sesión caduca"
+  },
+  "sessionExpiredAction": "Iniciar sesión",
+  "@sessionExpiredAction": {
+    "description": "Botón del diálogo de sesión expirada"
   }
 }

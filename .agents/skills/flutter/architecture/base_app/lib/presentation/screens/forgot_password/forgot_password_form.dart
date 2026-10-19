@@ -31,7 +31,6 @@ class ForgotPasswordForm extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: context.w(4)),
                 child: FadeIn(
-                  duration: const Duration(milliseconds: 300),
                   child: Column(
                     children: [
                       SizedBox(height: context.h(4)),

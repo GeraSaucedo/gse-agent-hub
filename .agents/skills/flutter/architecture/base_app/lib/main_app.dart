@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
 import 'package:gse_base_app/core/routes/app_router.dart';
+import 'package:gse_base_app/data/repositories/auth/auth_repository.dart';
+import 'package:gse_base_app/main_injector.dart';
+import 'package:gse_base_app/presentation/widgets/dialogs/session_expired_dialog.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({required this.dsController, super.key});
@@ -14,13 +19,24 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  StreamSubscription<AuthStatus>? _authSub;
+
   @override
   void initState() {
     super.initState();
+    _authSub = sl<AuthRepository>().authStatusStream.listen((status) {
+      if (status != AuthStatus.sessionExpired) return;
+      if (!mounted) return;
+      final navContext = rootNavigatorKey.currentContext;
+      // The context comes from the root navigator key, not a stale widget.
+      // ignore: use_build_context_synchronously
+      if (navContext != null) unawaited(SessionExpiredDialog.show(navContext));
+    });
   }
 
   @override
   void dispose() {
+    unawaited(_authSub?.cancel());
     super.dispose();
   }
 

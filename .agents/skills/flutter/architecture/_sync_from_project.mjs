@@ -34,7 +34,8 @@ const proj = path.resolve(projArg);
 function reverse(content, rel) {
   let out = content
     .replaceAll(`package:${pkgArg}/`, `package:${TPL_PACKAGE}/`)
-    .replaceAll(nsArg, TPL_NAMESPACE);
+    .replaceAll(nsArg, TPL_NAMESPACE)
+    .replace(/android:label="[^"]*"/, `android:label="${TPL_PACKAGE}"`);
   if (rel === 'pubspec.yaml') out = out.replace(/^name:\s*\S+/m, `name: ${TPL_PACKAGE}`);
   return out;
 }

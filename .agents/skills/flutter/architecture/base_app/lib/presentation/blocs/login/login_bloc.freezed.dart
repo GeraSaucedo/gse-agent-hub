@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'login_bloc.dart';
@@ -9,6 +9,7 @@ part of 'login_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$LoginEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'LoginEvent()';
+    return 'LoginEvent()';
 }
 
 
@@ -208,16 +209,18 @@ $EmailChangedCopyWith<EmailChanged> get copyWith => _$EmailChangedCopyWithImpl<E
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EmailChanged&&(identical(other.email, email) || other.email == email));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is EmailChanged&&(identical(other.email, email) || other.email == email));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,email);
+int get hashCode {
+    return Object.hash(runtimeType,email);
+}
 
 @override
 String toString() {
-  return 'LoginEvent.emailChanged(email: $email)';
+    return 'LoginEvent.emailChanged(email: $email)';
 }
 
 
@@ -274,16 +277,18 @@ $PasswordChangedCopyWith<PasswordChanged> get copyWith => _$PasswordChangedCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PasswordChanged&&(identical(other.password, password) || other.password == password));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is PasswordChanged&&(identical(other.password, password) || other.password == password));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,password);
+int get hashCode {
+    return Object.hash(runtimeType,password);
+}
 
 @override
 String toString() {
-  return 'LoginEvent.passwordChanged(password: $password)';
+    return 'LoginEvent.passwordChanged(password: $password)';
 }
 
 
@@ -335,7 +340,7 @@ class FormSubmitted implements LoginEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FormSubmitted);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is FormSubmitted);
 }
 
 
@@ -344,7 +349,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'LoginEvent.formSubmitted()';
+    return 'LoginEvent.formSubmitted()';
 }
 
 
@@ -367,7 +372,7 @@ class CleanState implements LoginEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanState);
 }
 
 
@@ -376,7 +381,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'LoginEvent.cleanState()';
+    return 'LoginEvent.cleanState()';
 }
 
 
@@ -399,16 +404,21 @@ $LoginStateCopyWith<LoginState> get copyWith => _$LoginStateCopyWithImpl<LoginSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginState&&(identical(other.status, status) || other.status == status)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.failure, failure) || other.failure == failure)&&(identical(other.unverifiedEmail, unverifiedEmail) || other.unverifiedEmail == unverifiedEmail));
+  final _this = this as LoginState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginState&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.password, _this.password) || other.password == _this.password)&&(identical(other.failure, _this.failure) || other.failure == _this.failure)&&(identical(other.unverifiedEmail, _this.unverifiedEmail) || other.unverifiedEmail == _this.unverifiedEmail));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,email,password,failure,unverifiedEmail);
+int get hashCode {
+  final _this = this as LoginState;
+  return Object.hash(runtimeType,_this.status,_this.email,_this.password,_this.failure,_this.unverifiedEmail);
+}
 
 @override
 String toString() {
-  return 'LoginState(status: $status, email: $email, password: $password, failure: $failure, unverifiedEmail: $unverifiedEmail)';
+  final _this = this as LoginState;
+  return 'LoginState(status: ${_this.status}, email: ${_this.email}, password: ${_this.password}, failure: ${_this.failure}, unverifiedEmail: ${_this.unverifiedEmail})';
 }
 
 
@@ -437,7 +447,7 @@ class _$LoginStateCopyWithImpl<$Res>
 /// Create a copy of LoginState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? email = null,Object? password = null,Object? failure = freezed,Object? unverifiedEmail = null,}) {
-  return _then(_self.copyWith(
+  return _then(LoginState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as EmailInput,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
@@ -603,16 +613,18 @@ _$LoginStateCopyWith<_LoginState> get copyWith => __$LoginStateCopyWithImpl<_Log
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginState&&(identical(other.status, status) || other.status == status)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.failure, failure) || other.failure == failure)&&(identical(other.unverifiedEmail, unverifiedEmail) || other.unverifiedEmail == unverifiedEmail));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginState&&(identical(other.status, status) || other.status == status)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.failure, failure) || other.failure == failure)&&(identical(other.unverifiedEmail, unverifiedEmail) || other.unverifiedEmail == unverifiedEmail));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,email,password,failure,unverifiedEmail);
+int get hashCode {
+    return Object.hash(runtimeType,status,email,password,failure,unverifiedEmail);
+}
 
 @override
 String toString() {
-  return 'LoginState(status: $status, email: $email, password: $password, failure: $failure, unverifiedEmail: $unverifiedEmail)';
+    return 'LoginState(status: $status, email: $email, password: $password, failure: $failure, unverifiedEmail: $unverifiedEmail)';
 }
 
 

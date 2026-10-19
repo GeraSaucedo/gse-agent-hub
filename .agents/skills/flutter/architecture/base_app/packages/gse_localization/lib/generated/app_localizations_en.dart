@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -358,4 +359,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get onboardingDescription3 =>
       'You\'re one step away from getting started. Create your account or sign in!';
+
+  @override
+  String get sessionExpiredTitle => 'Session expired';
+
+  @override
+  String get sessionExpiredMessage =>
+      'Your session has expired. Please sign in again to continue.';
+
+  @override
+  String get sessionExpiredAction => 'Sign in';
 }

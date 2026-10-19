@@ -30,7 +30,7 @@ class SecureStorageService extends StorageService {
 
   /// Deletes all keys with associated values.
   @override
-  Future<void> clear() async => _secureStorage.deleteAll();
+  Future<void> clear() => _secureStorage.deleteAll();
 
   /// Deletes associated value for the given [key].
   ///

@@ -10,7 +10,7 @@
 //   packageName       Dart package name (default: sanitized basename of targetDir)
 //   androidNamespace  Android namespace  (default: com.example.<packageName>)
 //
-// After it runs:  cd <targetDir> && flutter pub get && dart run tools/setup_flavors.dart
+// After it runs:  see the "Next" steps it prints (flutter create, pub get, flavors, build_runner).
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -24,7 +24,7 @@ const SOURCE_NAMESPACE = 'com.example.gse_base_app';
 
 // Feature-generation skills distributed into each project's .claude/skills/ (single source =
 // the hub). They cross-reference each other via .claude/skills/<name>.md, so ship them together.
-const PROJECT_SKILLS = ['check-arch', 'clean-code', 'new-bloc', 'new-model', 'new-module', 'new-repository', 'new-screen'];
+const PROJECT_SKILLS = ['check-arch', 'clean-code', 'flavors', 'new-bloc', 'new-model', 'new-module', 'new-repository', 'new-screen', 'testing'];
 
 const BINARY_EXT = new Set(['.ttf', '.png', '.jpg', '.jpeg', '.gif', '.ico', '.otf', '.woff', '.woff2']);
 
@@ -39,9 +39,14 @@ const packageName = (pkgArg || path.basename(targetDir))
   .toLowerCase().replace(/[^a-z0-9_]/g, '_').replace(/^_+|_+$/g, '') || 'app';
 const androidNamespace = nsArg || `com.example.${packageName}`;
 
+// Human-readable app name for the launcher label: my_app -> My App.
+const appLabel = packageName.split('_').filter(Boolean)
+  .map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
+
 function transform(content) {
   return content
     .replaceAll(`package:${SOURCE_PACKAGE}/`, `package:${packageName}/`)
+    .replaceAll(`android:label="${SOURCE_PACKAGE}"`, `android:label="${appLabel}"`)
     .replaceAll(SOURCE_NAMESPACE, androidNamespace);
 }
 
@@ -80,5 +85,8 @@ console.log(`Generated "${packageName}" (namespace ${androidNamespace})`);
 console.log(`  ${text} source files + ${bin} assets + ${skills} skills → ${targetDir}`);
 console.log('\nNext:');
 console.log(`  cd "${targetDir}"`);
+console.log(`  flutter create . --project-name ${packageName} --org ${androidNamespace.split('.').slice(0, -1).join('.')} --platforms=android,ios   # adds native scaffolding; keeps existing files`);
+console.log('  rm test/widget_test.dart            # default template test references MyApp');
 console.log('  flutter pub get');
 console.log('  dart run tools/setup_flavors.dart   # generates dev/stg/prod flavors');
+console.log('  dart run build_runner build --delete-conflicting-outputs');

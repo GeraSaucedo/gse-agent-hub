@@ -222,7 +222,7 @@ Verify that files exist in each of these subdirectories:
 Key widget files to verify by name:
 - `app_primary_button.dart`, `app_logout_button.dart`
 - `email_text_field.dart`, `password_text_field.dart`, `app_searchbar.dart`
-- `info_dialog.dart`, `confirm_dialog.dart`
+- `info_dialog.dart`, `confirm_dialog.dart`, `session_expired_dialog.dart`
 - `selection_bottom_sheet.dart`
 - `paginated_list.dart`
 - `loading_overlay.dart`

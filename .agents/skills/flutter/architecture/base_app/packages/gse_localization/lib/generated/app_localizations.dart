@@ -739,6 +739,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Estás a un paso de comenzar. ¡Crea tu cuenta o inicia sesión!'**
   String get onboardingDescription3;
+
+  /// Título del diálogo cuando la sesión caduca
+  ///
+  /// In es, this message translates to:
+  /// **'Sesión expirada'**
+  String get sessionExpiredTitle;
+
+  /// Mensaje del diálogo cuando la sesión caduca
+  ///
+  /// In es, this message translates to:
+  /// **'Tu sesión ha expirado. Inicia sesión nuevamente para continuar.'**
+  String get sessionExpiredMessage;
+
+  /// Botón del diálogo de sesión expirada
+  ///
+  /// In es, this message translates to:
+  /// **'Iniciar sesión'**
+  String get sessionExpiredAction;
 }
 
 class _AppLocalizationsDelegate

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gse_base_app/core/services/storage/contract/storage_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageService extends StorageService {
   LocalStorageService({required SharedPreferences storage})
@@ -54,7 +54,7 @@ class LocalStorageService extends StorageService {
   /// [key] is the key to delete.
   /// Returns true if the value was successfully deleted, false otherwise.
   @override
-  Future<bool> delete({required String key}) async {
+  Future<bool> delete({required String key}) {
     _validateKey(key);
     return _storage.remove(key);
   }

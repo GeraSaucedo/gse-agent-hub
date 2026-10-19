@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'app_bloc.dart';
@@ -9,6 +9,7 @@ part of 'app_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$AppEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is AppEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppEvent()';
+    return 'AppEvent()';
 }
 
 
@@ -197,7 +198,7 @@ class GetAppConfig implements AppEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetAppConfig);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is GetAppConfig);
 }
 
 
@@ -206,7 +207,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppEvent.getAppConfig()';
+    return 'AppEvent.getAppConfig()';
 }
 
 
@@ -229,7 +230,7 @@ class CleanState implements AppEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanState);
 }
 
 
@@ -238,7 +239,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppEvent.cleanState()';
+    return 'AppEvent.cleanState()';
 }
 
 
@@ -261,7 +262,7 @@ class CleanError implements AppEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanError);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanError);
 }
 
 
@@ -270,7 +271,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppEvent.cleanError()';
+    return 'AppEvent.cleanError()';
 }
 
 
@@ -293,16 +294,21 @@ $AppStateCopyWith<AppState> get copyWith => _$AppStateCopyWithImpl<AppState>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.dataLoaded, dataLoaded) || other.dataLoaded == dataLoaded));
+  final _this = this as AppState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.errorMessage, _this.errorMessage) || other.errorMessage == _this.errorMessage)&&(identical(other.isLoading, _this.isLoading) || other.isLoading == _this.isLoading)&&(identical(other.dataLoaded, _this.dataLoaded) || other.dataLoaded == _this.dataLoaded));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,errorMessage,isLoading,dataLoaded);
+int get hashCode {
+  final _this = this as AppState;
+  return Object.hash(runtimeType,_this.errorMessage,_this.isLoading,_this.dataLoaded);
+}
 
 @override
 String toString() {
-  return 'AppState(errorMessage: $errorMessage, isLoading: $isLoading, dataLoaded: $dataLoaded)';
+  final _this = this as AppState;
+  return 'AppState(errorMessage: ${_this.errorMessage}, isLoading: ${_this.isLoading}, dataLoaded: ${_this.dataLoaded})';
 }
 
 
@@ -331,7 +337,7 @@ class _$AppStateCopyWithImpl<$Res>
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? errorMessage = null,Object? isLoading = null,Object? dataLoaded = null,}) {
-  return _then(_self.copyWith(
+  return _then(AppState(
 errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,dataLoaded: null == dataLoaded ? _self.dataLoaded : dataLoaded // ignore: cast_nullable_to_non_nullable
@@ -493,16 +499,18 @@ _$AppStateCopyWith<_AppState> get copyWith => __$AppStateCopyWithImpl<_AppState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.dataLoaded, dataLoaded) || other.dataLoaded == dataLoaded));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.dataLoaded, dataLoaded) || other.dataLoaded == dataLoaded));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,errorMessage,isLoading,dataLoaded);
+int get hashCode {
+    return Object.hash(runtimeType,errorMessage,isLoading,dataLoaded);
+}
 
 @override
 String toString() {
-  return 'AppState(errorMessage: $errorMessage, isLoading: $isLoading, dataLoaded: $dataLoaded)';
+    return 'AppState(errorMessage: $errorMessage, isLoading: $isLoading, dataLoaded: $dataLoaded)';
 }
 
 

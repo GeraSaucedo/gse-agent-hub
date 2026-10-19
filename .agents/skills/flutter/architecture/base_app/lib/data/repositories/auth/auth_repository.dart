@@ -11,7 +11,9 @@ import 'package:gse_base_app/data/repositories/auth/jwt_utils.dart';
 
 const String _repositoryName = 'AuthRepository';
 
-enum AuthStatus { authenticated, unauthenticated, unknown }
+/// [sessionExpired] is emitted when the refresh token was rejected; the UI
+/// shows a dialog and the router treats it like [unauthenticated].
+enum AuthStatus { authenticated, unauthenticated, sessionExpired, unknown }
 
 class AuthRepository {
   AuthRepository({
@@ -41,7 +43,12 @@ class AuthRepository {
   }
 
   /// Llamar desde el interceptor de refresh token cuando ambos tokens expiran.
-  void forceLogout() => _emitStatus(AuthStatus.unauthenticated);
+  /// Limpia los tokens y emite [AuthStatus.sessionExpired].
+  Future<void> forceLogout() async {
+    if (_currentStatus != AuthStatus.authenticated) return;
+    await _tokenManager.clearTokens();
+    _emitStatus(AuthStatus.sessionExpired);
+  }
 
   void dispose() => _authStatusController.close();
 
