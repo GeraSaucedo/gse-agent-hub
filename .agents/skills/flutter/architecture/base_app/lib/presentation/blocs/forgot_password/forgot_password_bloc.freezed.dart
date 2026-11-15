@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'forgot_password_bloc.dart';
@@ -9,6 +9,7 @@ part of 'forgot_password_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$ForgotPasswordEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPasswordEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPasswordEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ForgotPasswordEvent()';
+    return 'ForgotPasswordEvent()';
 }
 
 
@@ -226,16 +227,18 @@ $EmailChangedCopyWith<EmailChanged> get copyWith => _$EmailChangedCopyWithImpl<E
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EmailChanged&&(identical(other.email, email) || other.email == email));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is EmailChanged&&(identical(other.email, email) || other.email == email));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,email);
+int get hashCode {
+    return Object.hash(runtimeType,email);
+}
 
 @override
 String toString() {
-  return 'ForgotPasswordEvent.emailChanged(email: $email)';
+    return 'ForgotPasswordEvent.emailChanged(email: $email)';
 }
 
 
@@ -292,16 +295,18 @@ $PasswordChangedCopyWith<PasswordChanged> get copyWith => _$PasswordChangedCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PasswordChanged&&(identical(other.password, password) || other.password == password));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is PasswordChanged&&(identical(other.password, password) || other.password == password));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,password);
+int get hashCode {
+    return Object.hash(runtimeType,password);
+}
 
 @override
 String toString() {
-  return 'ForgotPasswordEvent.passwordChanged(password: $password)';
+    return 'ForgotPasswordEvent.passwordChanged(password: $password)';
 }
 
 
@@ -358,16 +363,18 @@ $ConfirmPasswordChangedCopyWith<ConfirmPasswordChanged> get copyWith => _$Confir
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfirmPasswordChanged&&(identical(other.password, password) || other.password == password));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfirmPasswordChanged&&(identical(other.password, password) || other.password == password));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,password);
+int get hashCode {
+    return Object.hash(runtimeType,password);
+}
 
 @override
 String toString() {
-  return 'ForgotPasswordEvent.confirmPasswordChanged(password: $password)';
+    return 'ForgotPasswordEvent.confirmPasswordChanged(password: $password)';
 }
 
 
@@ -424,16 +431,18 @@ $CodeChangedCopyWith<CodeChanged> get copyWith => _$CodeChangedCopyWithImpl<Code
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeChanged&&(identical(other.code, code) || other.code == code));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeChanged&&(identical(other.code, code) || other.code == code));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,code);
+int get hashCode {
+    return Object.hash(runtimeType,code);
+}
 
 @override
 String toString() {
-  return 'ForgotPasswordEvent.codeChanged(code: $code)';
+    return 'ForgotPasswordEvent.codeChanged(code: $code)';
 }
 
 
@@ -485,7 +494,7 @@ class FormSubmitted implements ForgotPasswordEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FormSubmitted);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is FormSubmitted);
 }
 
 
@@ -494,7 +503,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ForgotPasswordEvent.formSubmitted()';
+    return 'ForgotPasswordEvent.formSubmitted()';
 }
 
 
@@ -517,7 +526,7 @@ class CodeRequested implements ForgotPasswordEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeRequested);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeRequested);
 }
 
 
@@ -526,7 +535,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ForgotPasswordEvent.codeRequested()';
+    return 'ForgotPasswordEvent.codeRequested()';
 }
 
 
@@ -549,7 +558,7 @@ class CleanState implements ForgotPasswordEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanState);
 }
 
 
@@ -558,7 +567,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ForgotPasswordEvent.cleanState()';
+    return 'ForgotPasswordEvent.cleanState()';
 }
 
 
@@ -570,7 +579,9 @@ String toString() {
 /// @nodoc
 mixin _$ForgotPasswordState {
 
- FormzSubmissionStatus get status; EmailInput get email; PasswordInput get newPassword; ConfirmedPasswordInput get confirmedNewPassword; String get code; RecoveryCodeFailure? get failure;
+ FormzSubmissionStatus get status; EmailInput get email; PasswordInput get newPassword; ConfirmedPasswordInput get confirmedNewPassword; String get code; RecoveryCodeFailure? get failure;/// A recovery-code request is in flight (step 1 and "resend").
+ bool get requestingCode;/// Bumped on every code sent successfully: step 1 moves on only then.
+ int get codesSent;
 /// Create a copy of ForgotPasswordState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -581,16 +592,21 @@ $ForgotPasswordStateCopyWith<ForgotPasswordState> get copyWith => _$ForgotPasswo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPasswordState&&(identical(other.status, status) || other.status == status)&&(identical(other.email, email) || other.email == email)&&(identical(other.newPassword, newPassword) || other.newPassword == newPassword)&&(identical(other.confirmedNewPassword, confirmedNewPassword) || other.confirmedNewPassword == confirmedNewPassword)&&(identical(other.code, code) || other.code == code)&&(identical(other.failure, failure) || other.failure == failure));
+  final _this = this as ForgotPasswordState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPasswordState&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.newPassword, _this.newPassword) || other.newPassword == _this.newPassword)&&(identical(other.confirmedNewPassword, _this.confirmedNewPassword) || other.confirmedNewPassword == _this.confirmedNewPassword)&&(identical(other.code, _this.code) || other.code == _this.code)&&(identical(other.failure, _this.failure) || other.failure == _this.failure)&&(identical(other.requestingCode, _this.requestingCode) || other.requestingCode == _this.requestingCode)&&(identical(other.codesSent, _this.codesSent) || other.codesSent == _this.codesSent));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,email,newPassword,confirmedNewPassword,code,failure);
+int get hashCode {
+  final _this = this as ForgotPasswordState;
+  return Object.hash(runtimeType,_this.status,_this.email,_this.newPassword,_this.confirmedNewPassword,_this.code,_this.failure,_this.requestingCode,_this.codesSent);
+}
 
 @override
 String toString() {
-  return 'ForgotPasswordState(status: $status, email: $email, newPassword: $newPassword, confirmedNewPassword: $confirmedNewPassword, code: $code, failure: $failure)';
+  final _this = this as ForgotPasswordState;
+  return 'ForgotPasswordState(status: ${_this.status}, email: ${_this.email}, newPassword: ${_this.newPassword}, confirmedNewPassword: ${_this.confirmedNewPassword}, code: ${_this.code}, failure: ${_this.failure}, requestingCode: ${_this.requestingCode}, codesSent: ${_this.codesSent})';
 }
 
 
@@ -601,7 +617,7 @@ abstract mixin class $ForgotPasswordStateCopyWith<$Res>  {
   factory $ForgotPasswordStateCopyWith(ForgotPasswordState value, $Res Function(ForgotPasswordState) _then) = _$ForgotPasswordStateCopyWithImpl;
 @useResult
 $Res call({
- FormzSubmissionStatus status, EmailInput email, PasswordInput newPassword, ConfirmedPasswordInput confirmedNewPassword, String code, RecoveryCodeFailure? failure
+ FormzSubmissionStatus status, EmailInput email, PasswordInput newPassword, ConfirmedPasswordInput confirmedNewPassword, String code, RecoveryCodeFailure? failure, bool requestingCode, int codesSent
 });
 
 
@@ -618,15 +634,17 @@ class _$ForgotPasswordStateCopyWithImpl<$Res>
 
 /// Create a copy of ForgotPasswordState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? email = null,Object? newPassword = null,Object? confirmedNewPassword = null,Object? code = null,Object? failure = freezed,}) {
-  return _then(_self.copyWith(
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? email = null,Object? newPassword = null,Object? confirmedNewPassword = null,Object? code = null,Object? failure = freezed,Object? requestingCode = null,Object? codesSent = null,}) {
+  return _then(ForgotPasswordState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as EmailInput,newPassword: null == newPassword ? _self.newPassword : newPassword // ignore: cast_nullable_to_non_nullable
 as PasswordInput,confirmedNewPassword: null == confirmedNewPassword ? _self.confirmedNewPassword : confirmedNewPassword // ignore: cast_nullable_to_non_nullable
 as ConfirmedPasswordInput,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as String,failure: freezed == failure ? _self.failure : failure // ignore: cast_nullable_to_non_nullable
-as RecoveryCodeFailure?,
+as RecoveryCodeFailure?,requestingCode: null == requestingCode ? _self.requestingCode : requestingCode // ignore: cast_nullable_to_non_nullable
+as bool,codesSent: null == codesSent ? _self.codesSent : codesSent // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -711,10 +729,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FormzSubmissionStatus status,  EmailInput email,  PasswordInput newPassword,  ConfirmedPasswordInput confirmedNewPassword,  String code,  RecoveryCodeFailure? failure)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FormzSubmissionStatus status,  EmailInput email,  PasswordInput newPassword,  ConfirmedPasswordInput confirmedNewPassword,  String code,  RecoveryCodeFailure? failure,  bool requestingCode,  int codesSent)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ForgotPasswordState() when $default != null:
-return $default(_that.status,_that.email,_that.newPassword,_that.confirmedNewPassword,_that.code,_that.failure);case _:
+return $default(_that.status,_that.email,_that.newPassword,_that.confirmedNewPassword,_that.code,_that.failure,_that.requestingCode,_that.codesSent);case _:
   return orElse();
 
 }
@@ -732,10 +750,10 @@ return $default(_that.status,_that.email,_that.newPassword,_that.confirmedNewPas
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FormzSubmissionStatus status,  EmailInput email,  PasswordInput newPassword,  ConfirmedPasswordInput confirmedNewPassword,  String code,  RecoveryCodeFailure? failure)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FormzSubmissionStatus status,  EmailInput email,  PasswordInput newPassword,  ConfirmedPasswordInput confirmedNewPassword,  String code,  RecoveryCodeFailure? failure,  bool requestingCode,  int codesSent)  $default,) {final _that = this;
 switch (_that) {
 case _ForgotPasswordState():
-return $default(_that.status,_that.email,_that.newPassword,_that.confirmedNewPassword,_that.code,_that.failure);case _:
+return $default(_that.status,_that.email,_that.newPassword,_that.confirmedNewPassword,_that.code,_that.failure,_that.requestingCode,_that.codesSent);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -752,10 +770,10 @@ return $default(_that.status,_that.email,_that.newPassword,_that.confirmedNewPas
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FormzSubmissionStatus status,  EmailInput email,  PasswordInput newPassword,  ConfirmedPasswordInput confirmedNewPassword,  String code,  RecoveryCodeFailure? failure)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FormzSubmissionStatus status,  EmailInput email,  PasswordInput newPassword,  ConfirmedPasswordInput confirmedNewPassword,  String code,  RecoveryCodeFailure? failure,  bool requestingCode,  int codesSent)?  $default,) {final _that = this;
 switch (_that) {
 case _ForgotPasswordState() when $default != null:
-return $default(_that.status,_that.email,_that.newPassword,_that.confirmedNewPassword,_that.code,_that.failure);case _:
+return $default(_that.status,_that.email,_that.newPassword,_that.confirmedNewPassword,_that.code,_that.failure,_that.requestingCode,_that.codesSent);case _:
   return null;
 
 }
@@ -767,7 +785,7 @@ return $default(_that.status,_that.email,_that.newPassword,_that.confirmedNewPas
 
 
 class _ForgotPasswordState implements ForgotPasswordState {
-  const _ForgotPasswordState({this.status = FormzSubmissionStatus.initial, this.email = const EmailInput.pure(), this.newPassword = const PasswordInput.pure(), this.confirmedNewPassword = const ConfirmedPasswordInput.pure(), this.code = '', this.failure});
+  const _ForgotPasswordState({this.status = FormzSubmissionStatus.initial, this.email = const EmailInput.pure(), this.newPassword = const PasswordInput.pure(), this.confirmedNewPassword = const ConfirmedPasswordInput.pure(), this.code = '', this.failure, this.requestingCode = false, this.codesSent = 0});
   
 
 @override@JsonKey() final  FormzSubmissionStatus status;
@@ -776,6 +794,10 @@ class _ForgotPasswordState implements ForgotPasswordState {
 @override@JsonKey() final  ConfirmedPasswordInput confirmedNewPassword;
 @override@JsonKey() final  String code;
 @override final  RecoveryCodeFailure? failure;
+/// A recovery-code request is in flight (step 1 and "resend").
+@override@JsonKey() final  bool requestingCode;
+/// Bumped on every code sent successfully: step 1 moves on only then.
+@override@JsonKey() final  int codesSent;
 
 /// Create a copy of ForgotPasswordState
 /// with the given fields replaced by the non-null parameter values.
@@ -787,16 +809,18 @@ _$ForgotPasswordStateCopyWith<_ForgotPasswordState> get copyWith => __$ForgotPas
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ForgotPasswordState&&(identical(other.status, status) || other.status == status)&&(identical(other.email, email) || other.email == email)&&(identical(other.newPassword, newPassword) || other.newPassword == newPassword)&&(identical(other.confirmedNewPassword, confirmedNewPassword) || other.confirmedNewPassword == confirmedNewPassword)&&(identical(other.code, code) || other.code == code)&&(identical(other.failure, failure) || other.failure == failure));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ForgotPasswordState&&(identical(other.status, status) || other.status == status)&&(identical(other.email, email) || other.email == email)&&(identical(other.newPassword, newPassword) || other.newPassword == newPassword)&&(identical(other.confirmedNewPassword, confirmedNewPassword) || other.confirmedNewPassword == confirmedNewPassword)&&(identical(other.code, code) || other.code == code)&&(identical(other.failure, failure) || other.failure == failure)&&(identical(other.requestingCode, requestingCode) || other.requestingCode == requestingCode)&&(identical(other.codesSent, codesSent) || other.codesSent == codesSent));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,email,newPassword,confirmedNewPassword,code,failure);
+int get hashCode {
+    return Object.hash(runtimeType,status,email,newPassword,confirmedNewPassword,code,failure,requestingCode,codesSent);
+}
 
 @override
 String toString() {
-  return 'ForgotPasswordState(status: $status, email: $email, newPassword: $newPassword, confirmedNewPassword: $confirmedNewPassword, code: $code, failure: $failure)';
+    return 'ForgotPasswordState(status: $status, email: $email, newPassword: $newPassword, confirmedNewPassword: $confirmedNewPassword, code: $code, failure: $failure, requestingCode: $requestingCode, codesSent: $codesSent)';
 }
 
 
@@ -807,7 +831,7 @@ abstract mixin class _$ForgotPasswordStateCopyWith<$Res> implements $ForgotPassw
   factory _$ForgotPasswordStateCopyWith(_ForgotPasswordState value, $Res Function(_ForgotPasswordState) _then) = __$ForgotPasswordStateCopyWithImpl;
 @override @useResult
 $Res call({
- FormzSubmissionStatus status, EmailInput email, PasswordInput newPassword, ConfirmedPasswordInput confirmedNewPassword, String code, RecoveryCodeFailure? failure
+ FormzSubmissionStatus status, EmailInput email, PasswordInput newPassword, ConfirmedPasswordInput confirmedNewPassword, String code, RecoveryCodeFailure? failure, bool requestingCode, int codesSent
 });
 
 
@@ -824,7 +848,7 @@ class __$ForgotPasswordStateCopyWithImpl<$Res>
 
 /// Create a copy of ForgotPasswordState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? email = null,Object? newPassword = null,Object? confirmedNewPassword = null,Object? code = null,Object? failure = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? email = null,Object? newPassword = null,Object? confirmedNewPassword = null,Object? code = null,Object? failure = freezed,Object? requestingCode = null,Object? codesSent = null,}) {
   return _then(_ForgotPasswordState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
@@ -832,7 +856,9 @@ as EmailInput,newPassword: null == newPassword ? _self.newPassword : newPassword
 as PasswordInput,confirmedNewPassword: null == confirmedNewPassword ? _self.confirmedNewPassword : confirmedNewPassword // ignore: cast_nullable_to_non_nullable
 as ConfirmedPasswordInput,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as String,failure: freezed == failure ? _self.failure : failure // ignore: cast_nullable_to_non_nullable
-as RecoveryCodeFailure?,
+as RecoveryCodeFailure?,requestingCode: null == requestingCode ? _self.requestingCode : requestingCode // ignore: cast_nullable_to_non_nullable
+as bool,codesSent: null == codesSent ? _self.codesSent : codesSent // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 

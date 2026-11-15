@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppSelectionTile extends StatelessWidget {
-  const AppSelectionTile({
+  const new({
     required this.fieldName,
     required this.value,
     this.onPressed,

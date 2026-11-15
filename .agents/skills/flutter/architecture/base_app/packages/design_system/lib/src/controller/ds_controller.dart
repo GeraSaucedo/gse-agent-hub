@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/src/styles/app_theme.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const _kThemeModeKey = 'gse_ds_theme_mode';
@@ -25,14 +25,14 @@ class DSController extends ValueNotifier<ThemeMode> {
   ///
   /// Loads saved preference asynchronously (may produce a brief flash).
   /// For flash-free pre-loading, use [preload].
-  DSController({ThemeMode defaultTheme = ThemeMode.dark})
-      : super(defaultTheme) {
+  new({ThemeMode defaultTheme = ThemeMode.dark})
+    : super(defaultTheme) {
     unawaited(_load());
   }
 
   /// Internal constructor that does not trigger [_load] automatically.
-  DSController._internal({ThemeMode defaultTheme = ThemeMode.dark})
-      : super(defaultTheme);
+  new _internal({ThemeMode defaultTheme = ThemeMode.dark})
+    : super(defaultTheme);
 
   SharedPreferences? _prefs;
 

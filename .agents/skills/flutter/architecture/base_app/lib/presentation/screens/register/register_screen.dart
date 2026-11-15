@@ -1,37 +1,33 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gse_design_system/gse_design_system.dart';
-import 'package:gse_localization/generated/app_localizations.dart';
 import 'package:gse_base_app/presentation/blocs/register/register_bloc.dart';
 import 'package:gse_base_app/presentation/screens/register/register_bloc_listener.dart';
 import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/app_text_field.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/email/email_text_field.dart';
+import 'package:gse_base_app/presentation/widgets/inputs/input_errors_l10n.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/password/password_text_field.dart';
 import 'package:gse_base_app/presentation/widgets/utils/app_logo.dart';
 import 'package:gse_base_app/presentation/widgets/utils/custom_appbar.dart';
 import 'package:gse_base_app/presentation/widgets/utils/unfocus_on_tap.dart';
+import 'package:formz/formz.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/generated/app_localizations.dart';
+import 'package:material_ui/material_ui.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+  const new({super.key});
 
   static const name = 'register-screen';
   static const route = '/register';
 
   @override
   Widget build(BuildContext context) {
-    return RegisterBlocListener(
+    return const RegisterBlocListener(
       child: UnfocusOnTap(
         child: Scaffold(
-          appBar: const CustomAppBar(title: ''),
-          body: SingleChildScrollView(
-            child: SizedBox(
-              height: context.h(100),
-              child: const _RegisterView(),
-            ),
-          ),
+          appBar: CustomAppBar(title: ''),
+          body: SingleChildScrollView(child: _RegisterView()),
         ),
       ),
     );
@@ -39,7 +35,7 @@ class RegisterScreen extends StatelessWidget {
 }
 
 class _RegisterView extends StatelessWidget {
-  const _RegisterView();
+  const new();
 
   @override
   Widget build(BuildContext context) {
@@ -85,13 +81,13 @@ class _RegisterView extends StatelessWidget {
                     SizedBox(height: context.h(2)),
                     EmailTextField(
                       onChanged: (value) => bloc.add(EmailChanged(value)),
-                      errorText: state.email.errorMessage,
+                      errorText: state.email.errorText(l10n),
                       showErrors: state.status == FormzSubmissionStatus.failure,
                     ),
                     SizedBox(height: context.h(2)),
                     PasswordTextField(
                       onChanged: (value) => bloc.add(PasswordChanged(value)),
-                      errorText: state.password.errorMessage,
+                      errorText: state.password.errorText(l10n),
                       showErrors: state.status == FormzSubmissionStatus.failure,
                     ),
                   ],

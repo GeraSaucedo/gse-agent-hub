@@ -1,22 +1,19 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gse_base_app/presentation/blocs/auth/auth_cubit.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
-import 'package:gse_base_app/presentation/blocs/app/app_bloc.dart';
-import 'package:gse_base_app/presentation/blocs/auth/auth_cubit.dart';
+import 'package:material_ui/material_ui.dart';
 
 class LogoutButton extends StatelessWidget {
-  const LogoutButton({
+  const new({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: () async {
-        context.read<AppBloc>().add(const CleanState());
-        await context.read<AuthCubit>().logout();
-      },
+      // AppBloc resets itself when the session ends.
+      onPressed: () => context.read<AuthCubit>().logout(),
       style: OutlinedButton.styleFrom(
         foregroundColor: Theme.of(context).colorScheme.primary,
         side: BorderSide(color: Theme.of(context).colorScheme.primary),

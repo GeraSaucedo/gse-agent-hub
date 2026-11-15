@@ -1,10 +1,17 @@
 enum AuthFailure implements Exception {
-  unauthorized, // 401
-  forbidden, // 403 — cuenta no verificada
-  client, // 400
-  server, // 500
+  /// 401: wrong credentials.
+  unauthorized,
+
+  /// 403: account not verified.
+  forbidden,
+
+  /// 400: invalid request.
+  client,
+  server,
   network,
   timeout,
   unknown,
-  invalidForm, // validación client-side fallida
+
+  /// Client-side form validation failed.
+  invalidForm,
 }

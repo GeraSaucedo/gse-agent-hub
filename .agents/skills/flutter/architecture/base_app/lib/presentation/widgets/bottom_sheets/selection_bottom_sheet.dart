@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SelectionBottomSheet<T> extends StatefulWidget {
-  const SelectionBottomSheet({
+  const new({
     required this.items,
     required this.onSelectItem,
     required this.itemBuilder,
@@ -155,8 +155,8 @@ class _SelectionBottomSheetState<T> extends State<SelectionBottomSheet<T>> {
         onChanged: _filterItems,
         style: context.textStyles.titleMed,
         decoration: InputDecoration(
-          hintText: widget.searchHint ??
-              AppLocalizations.of(context)!.searchHint,
+          hintText:
+              widget.searchHint ?? AppLocalizations.of(context)!.searchHint,
           prefixIcon: const Icon(Icons.search),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

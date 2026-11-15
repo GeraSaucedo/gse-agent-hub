@@ -3,7 +3,7 @@ import 'package:gse_base_app/core/services/logger/app_logger.dart';
 import 'package:gse_base_app/core/services/storage/utils/token_manager.dart';
 
 class BearerTokenInterceptor extends Interceptor {
-  BearerTokenInterceptor(this._tokenManager);
+  new(this._tokenManager);
 
   final TokenManager _tokenManager;
 

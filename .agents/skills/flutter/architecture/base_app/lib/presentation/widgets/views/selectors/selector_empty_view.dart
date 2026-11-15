@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SelectorEmptyView extends StatelessWidget {
-  const SelectorEmptyView({
+  const new({
     super.key,
     this.text,
   });

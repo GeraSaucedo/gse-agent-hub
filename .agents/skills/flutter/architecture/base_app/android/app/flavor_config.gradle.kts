@@ -1,6 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
 
-val appName = "Test Agent Hub"
+val appName = "Flutter Gse Base Cleanarch"
 
 configure<ApplicationExtension> {
     flavorDimensions += "environment"

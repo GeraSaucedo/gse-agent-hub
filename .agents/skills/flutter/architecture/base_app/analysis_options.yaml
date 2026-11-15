@@ -3,6 +3,9 @@ include: package:very_good_analysis/analysis_options.yaml
 analyzer:
   exclude:
     - tools/**
+    - build/**
+    - android/**
+    - ios/**
   errors:
     switch_on_type: ignore
     # == Uncoment this for modify rules

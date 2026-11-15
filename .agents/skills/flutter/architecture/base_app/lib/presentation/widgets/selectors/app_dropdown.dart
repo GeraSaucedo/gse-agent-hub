@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppDropdown<T> extends StatelessWidget {
-  const AppDropdown({
+  const new({
     required this.items,
     required this.value,
     required this.labelBuilder,

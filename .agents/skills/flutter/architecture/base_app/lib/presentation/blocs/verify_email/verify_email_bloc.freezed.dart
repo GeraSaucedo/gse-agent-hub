@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'verify_email_bloc.dart';
@@ -9,6 +9,7 @@ part of 'verify_email_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$VerifyEmailEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifyEmailEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifyEmailEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'VerifyEmailEvent()';
+    return 'VerifyEmailEvent()';
 }
 
 
@@ -220,16 +221,18 @@ $InitRequestedCopyWith<InitRequested> get copyWith => _$InitRequestedCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InitRequested&&(identical(other.email, email) || other.email == email));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is InitRequested&&(identical(other.email, email) || other.email == email));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,email);
+int get hashCode {
+    return Object.hash(runtimeType,email);
+}
 
 @override
 String toString() {
-  return 'VerifyEmailEvent.initRequested(email: $email)';
+    return 'VerifyEmailEvent.initRequested(email: $email)';
 }
 
 
@@ -286,16 +289,18 @@ $EmailSetCopyWith<EmailSet> get copyWith => _$EmailSetCopyWithImpl<EmailSet>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EmailSet&&(identical(other.email, email) || other.email == email));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is EmailSet&&(identical(other.email, email) || other.email == email));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,email);
+int get hashCode {
+    return Object.hash(runtimeType,email);
+}
 
 @override
 String toString() {
-  return 'VerifyEmailEvent.emailSet(email: $email)';
+    return 'VerifyEmailEvent.emailSet(email: $email)';
 }
 
 
@@ -352,16 +357,18 @@ $CodeChangedCopyWith<CodeChanged> get copyWith => _$CodeChangedCopyWithImpl<Code
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeChanged&&(identical(other.code, code) || other.code == code));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeChanged&&(identical(other.code, code) || other.code == code));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,code);
+int get hashCode {
+    return Object.hash(runtimeType,code);
+}
 
 @override
 String toString() {
-  return 'VerifyEmailEvent.codeChanged(code: $code)';
+    return 'VerifyEmailEvent.codeChanged(code: $code)';
 }
 
 
@@ -413,7 +420,7 @@ class ResendRequested implements VerifyEmailEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResendRequested);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ResendRequested);
 }
 
 
@@ -422,7 +429,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'VerifyEmailEvent.resendRequested()';
+    return 'VerifyEmailEvent.resendRequested()';
 }
 
 
@@ -445,7 +452,7 @@ class FormSubmitted implements VerifyEmailEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FormSubmitted);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is FormSubmitted);
 }
 
 
@@ -454,7 +461,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'VerifyEmailEvent.formSubmitted()';
+    return 'VerifyEmailEvent.formSubmitted()';
 }
 
 
@@ -477,7 +484,7 @@ class CleanState implements VerifyEmailEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanState);
 }
 
 
@@ -486,7 +493,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'VerifyEmailEvent.cleanState()';
+    return 'VerifyEmailEvent.cleanState()';
 }
 
 
@@ -509,16 +516,21 @@ $VerifyEmailStateCopyWith<VerifyEmailState> get copyWith => _$VerifyEmailStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifyEmailState&&(identical(other.status, status) || other.status == status)&&(identical(other.email, email) || other.email == email)&&(identical(other.code, code) || other.code == code)&&(identical(other.failure, failure) || other.failure == failure));
+  final _this = this as VerifyEmailState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifyEmailState&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.code, _this.code) || other.code == _this.code)&&(identical(other.failure, _this.failure) || other.failure == _this.failure));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,email,code,failure);
+int get hashCode {
+  final _this = this as VerifyEmailState;
+  return Object.hash(runtimeType,_this.status,_this.email,_this.code,_this.failure);
+}
 
 @override
 String toString() {
-  return 'VerifyEmailState(status: $status, email: $email, code: $code, failure: $failure)';
+  final _this = this as VerifyEmailState;
+  return 'VerifyEmailState(status: ${_this.status}, email: ${_this.email}, code: ${_this.code}, failure: ${_this.failure})';
 }
 
 
@@ -547,7 +559,7 @@ class _$VerifyEmailStateCopyWithImpl<$Res>
 /// Create a copy of VerifyEmailState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? email = null,Object? code = null,Object? failure = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(VerifyEmailState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
@@ -711,16 +723,18 @@ _$VerifyEmailStateCopyWith<_VerifyEmailState> get copyWith => __$VerifyEmailStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VerifyEmailState&&(identical(other.status, status) || other.status == status)&&(identical(other.email, email) || other.email == email)&&(identical(other.code, code) || other.code == code)&&(identical(other.failure, failure) || other.failure == failure));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _VerifyEmailState&&(identical(other.status, status) || other.status == status)&&(identical(other.email, email) || other.email == email)&&(identical(other.code, code) || other.code == code)&&(identical(other.failure, failure) || other.failure == failure));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,email,code,failure);
+int get hashCode {
+    return Object.hash(runtimeType,status,email,code,failure);
+}
 
 @override
 String toString() {
-  return 'VerifyEmailState(status: $status, email: $email, code: $code, failure: $failure)';
+    return 'VerifyEmailState(status: $status, email: $email, code: $code, failure: $failure)';
 }
 
 

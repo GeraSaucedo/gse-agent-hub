@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gse_design_system/gse_design_system.dart';
+import 'package:material_ui/material_ui.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({
+  const new({
     required this.title,
     super.key,
     this.actions,
@@ -17,6 +18,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    // AppBar only shows "back" when its own navigator can pop. The first page
+    // of a ShellRoute (e.g. the forgot-password flow) lives in a nested
+    // navigator, so ask go_router, which knows the whole stack.
+    final router = GoRouter.maybeOf(context);
+    final canPop =
+        router != null && router.canPop() && !Navigator.of(context).canPop();
     final appbar = AppBar(
       backgroundColor: context.colors.scaffoldBackground,
       scrolledUnderElevation: 0,
@@ -26,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       centerTitle: true,
       actions: actions,
-      leading: leading,
+      leading: leading ?? (canPop ? BackButton(onPressed: router.pop) : null),
     );
 
     return useHero

@@ -1,17 +1,15 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
-import 'package:gse_base_app/core/environments/env_config.dart';
 import 'package:gse_base_app/core/services/api/dio_client.dart';
+import 'package:gse_base_app/core/services/api/error_mapping.dart';
 import 'package:gse_base_app/core/services/logger/app_logger.dart';
-import 'package:gse_base_app/core/utils/dio_exception_mapper.dart';
 import 'package:gse_base_app/core/utils/result.dart';
 import 'package:gse_base_app/data/repositories/verify_email/verify_email_failures.dart';
 
 class VerifyEmailRepository {
-  VerifyEmailRepository({
-    required ApiClient apiClient,
-  }) : _apiClient = apiClient;
+  new({
+    required this._apiClient,
+  });
 
   final ApiClient _apiClient;
 
@@ -20,7 +18,7 @@ class VerifyEmailRepository {
   }) async {
     try {
       await _apiClient.post<void>(
-        '${EnvConfig.apiUrl}/auth/email-recovery-code',
+        '/auth/email-recovery-code',
         data: {'email': email},
       );
 
@@ -32,16 +30,7 @@ class VerifyEmailRepository {
         stackTrace: stack,
       );
 
-      if (e is DioException) {
-        return mapDioToFailure(
-          e,
-          networkError: VerifyEmailFailure.networkError,
-          serverError: VerifyEmailFailure.serverError,
-          unknownError: VerifyEmailFailure.unknownError,
-        );
-      }
-
-      return const Failure(VerifyEmailFailure.unknownError);
+      return Failure(_toFailure(e));
     }
   }
 
@@ -51,7 +40,7 @@ class VerifyEmailRepository {
   }) async {
     try {
       await _apiClient.post<void>(
-        '${EnvConfig.apiUrl}/auth/verify-email',
+        '/auth/verify-email',
         data: {
           'email': email,
           'confirmation_code': code,
@@ -66,19 +55,19 @@ class VerifyEmailRepository {
         stackTrace: stack,
       );
 
-      if (e is DioException) {
-        return mapDioToFailure(
-          e,
-          networkError: VerifyEmailFailure.networkError,
-          serverError: VerifyEmailFailure.serverError,
-          unknownError: VerifyEmailFailure.unknownError,
-          statusOverrides: {
-            400: VerifyEmailFailure.invalidCode,
-          },
-        );
-      }
-
-      return const Failure(VerifyEmailFailure.unknownError);
+      return Failure(
+        switch (e) {
+          ApiHttpException(statusCode: 400) => VerifyEmailFailure.invalidCode,
+          _ => _toFailure(e),
+        },
+      );
     }
   }
+
+  /// Mapping shared by every method; each method adds its own cases first.
+  VerifyEmailFailure _toFailure(Object e) => switch (e) {
+    NetworkException() => VerifyEmailFailure.network,
+    ApiHttpException(statusCode: >= 500) => VerifyEmailFailure.server,
+    _ => VerifyEmailFailure.unknown,
+  };
 }

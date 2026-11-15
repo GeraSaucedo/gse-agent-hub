@@ -2,15 +2,16 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
+/// Logs requests, responses and errors.
+///
+/// Only added in debug mode (see `ApiClient`), so it needs no checks here.
 class LoggerInterceptor extends Interceptor {
   String _formatBody(dynamic data) {
     if (data == null) return 'null';
     try {
       if (data is String && data.startsWith('{')) {
-        return const JsonEncoder.withIndent('|\t\t')
-            .convert(json.decode(data));
+        return const JsonEncoder.withIndent('|\t\t').convert(json.decode(data));
       } else if (data is Map || data is List) {
         return const JsonEncoder.withIndent('|\t\t').convert(data);
       }
@@ -22,18 +23,15 @@ class LoggerInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    if (kDebugMode) {
-      log(
-        '''
+    log(
+      '''
 ┌------------------------------------------------------------------------------
-| URL: ${options.method} - ${options.path}
-| Params: ${options.queryParameters}
+| URL: ${options.method} - ${options.uri}
 | Body:
 |\t${options.data == null ? 'None' : _formatBody(options.data)}
 └------------------------------------------------------------------------------''',
-        name: 'HTTP',
-      );
-    }
+      name: 'HTTP',
+    );
     handler.next(options);
   }
 
@@ -42,32 +40,30 @@ class LoggerInterceptor extends Interceptor {
     Response<dynamic> response,
     ResponseInterceptorHandler handler,
   ) {
-    if (kDebugMode) {
-      log(
-        '''
+    log(
+      '''
 ┌------------------------------------------------------------------------------
-| RESPONSE ${response.statusCode}
+| RESPONSE ${response.statusCode} - ${response.requestOptions.uri}
 | Body:
 |\t${_formatBody(response.data)}
 └------------------------------------------------------------------------------''',
-        name: 'HTTP',
-      );
-    }
+      name: 'HTTP',
+    );
     handler.next(response);
   }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    if (kDebugMode) {
-      log(
-        '''
+    log(
+      '''
 ┌------------------------------------------------------------------------------
-| ERROR: ${err.message}
+| ERROR: ${err.type.name} - ${err.message}
+| URL: ${err.requestOptions.uri}
 | Status: ${err.response?.statusCode}
+| Cause: ${err.error ?? 'None'}
 └------------------------------------------------------------------------------''',
-        name: 'HTTP',
-      );
-    }
+      name: 'HTTP',
+    );
     handler.next(err);
   }
 }

@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/src/controller/ds_controller.dart';
+import 'package:material_ui/material_ui.dart';
 
 class _DSInherited extends InheritedNotifier<DSController> {
-  const _DSInherited({
+  const new({
     required DSController controller,
     required super.child,
   }) : super(notifier: controller);
@@ -34,7 +34,7 @@ class DSProvider extends StatefulWidget {
   /// If a pre-loaded [controller] is provided (via `DSController.preload`),
   /// it is used directly. Otherwise, one is created internally using
   /// [defaultThemeMode] as the initial value.
-  const DSProvider({
+  const new({
     required this.child,
     this.controller,
     this.defaultThemeMode = ThemeMode.dark,
@@ -52,8 +52,8 @@ class DSProvider extends StatefulWidget {
 
   /// Returns the nearest [DSController] in the widget tree.
   static DSController of(BuildContext context) {
-    final inherited =
-        context.dependOnInheritedWidgetOfExactType<_DSInherited>();
+    final inherited = context
+        .dependOnInheritedWidgetOfExactType<_DSInherited>();
     assert(inherited != null, 'No DSProvider found in context');
     return inherited!.notifier!;
   }

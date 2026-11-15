@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gse_base_app/core/icons/app_icon_name.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 /// A widget that displays an SVG icon
 class AppIcon extends StatelessWidget {
-  const AppIcon(
+  const new(
     this.icon, {
     super.key,
     this.size,
@@ -37,7 +37,7 @@ class AppIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      '$_basePath/${icon.name}.svg',
+      '$_basePath/${icon.fileName}.svg',
       width: width ?? size,
       height: height ?? size,
       colorFilter: color != null

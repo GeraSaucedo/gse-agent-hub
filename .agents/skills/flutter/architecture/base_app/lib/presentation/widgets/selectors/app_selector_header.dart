@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gse_design_system/gse_design_system.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SelectorHeader extends StatelessWidget {
-  const SelectorHeader({
+  const new({
     required this.title,
     super.key,
     this.onRefresh,

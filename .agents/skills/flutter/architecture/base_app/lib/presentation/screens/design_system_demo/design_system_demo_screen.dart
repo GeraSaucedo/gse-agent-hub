@@ -1,13 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Pantalla de showcase del Design System.
 class DesignSystemDemoScreen extends StatelessWidget {
-  const DesignSystemDemoScreen({super.key});
+  const new({super.key});
 
   static const name = 'design-system-demo';
-  static const route = '/design-system-demo';
+  static const path = 'design-system-demo';
+  static const route = '/$path';
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,7 @@ class DesignSystemDemoScreen extends StatelessWidget {
 // ── Theme toggle ────────────────────────────────────────────────
 
 class _ThemeToggle extends StatelessWidget {
-  const _ThemeToggle();
+  const new();
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +90,7 @@ class _ThemeToggle extends StatelessWidget {
 // ── Section header ──────────────────────────────────────────────
 
 class _SectionHeader extends StatelessWidget {
-  const _SectionHeader(this.title);
+  const new(this.title);
   final String title;
 
   @override
@@ -107,7 +108,7 @@ class _SectionHeader extends StatelessWidget {
 // ── Typography by role ──────────────────────────────────────────
 
 class _TypographyByRole extends StatelessWidget {
-  const _TypographyByRole();
+  const new();
 
   @override
   Widget build(BuildContext context) {
@@ -217,7 +218,7 @@ class _TypographyByRole extends StatelessWidget {
 // ── Weights showcase ────────────────────────────────────────────
 
 class _WeightsShowcase extends StatelessWidget {
-  const _WeightsShowcase();
+  const new();
 
   @override
   Widget build(BuildContext context) {
@@ -271,7 +272,7 @@ class _WeightsShowcase extends StatelessWidget {
 // ── Styles showcase ─────────────────────────────────────────────
 
 class _StylesShowcase extends StatelessWidget {
-  const _StylesShowcase();
+  const new();
 
   @override
   Widget build(BuildContext context) {
@@ -404,7 +405,7 @@ class _StylesShowcase extends StatelessWidget {
 // ── Colors ──────────────────────────────────────────────────────
 
 class _ColorGrid extends StatelessWidget {
-  const _ColorGrid({required this.colors});
+  const new({required this.colors});
   final AppColorScheme colors;
 
   @override
@@ -495,7 +496,7 @@ class _ColorGrid extends StatelessWidget {
 }
 
 class _ColorSwatch extends StatelessWidget {
-  const _ColorSwatch({required this.name, required this.color});
+  const new({required this.name, required this.color});
   final String name;
   final Color color;
 
@@ -541,7 +542,7 @@ class _ColorSwatch extends StatelessWidget {
 // ── Opacity showcase ────────────────────────────────────────────
 
 class _OpacityShowcase extends StatelessWidget {
-  const _OpacityShowcase();
+  const new();
 
   @override
   Widget build(BuildContext context) {
@@ -599,7 +600,7 @@ class _OpacityShowcase extends StatelessWidget {
 // ── Spacing ─────────────────────────────────────────────────────
 
 class _SpacingShowcase extends StatelessWidget {
-  const _SpacingShowcase();
+  const new();
 
   @override
   Widget build(BuildContext context) {
@@ -657,7 +658,7 @@ class _SpacingShowcase extends StatelessWidget {
 // ── Radius ──────────────────────────────────────────────────────
 
 class _RadiusShowcase extends StatelessWidget {
-  const _RadiusShowcase();
+  const new();
 
   @override
   Widget build(BuildContext context) {
@@ -711,7 +712,7 @@ class _RadiusShowcase extends StatelessWidget {
 // ── Components ──────────────────────────────────────────────────
 
 class _ComponentsShowcase extends StatelessWidget {
-  const _ComponentsShowcase();
+  const new();
 
   @override
   Widget build(BuildContext context) {

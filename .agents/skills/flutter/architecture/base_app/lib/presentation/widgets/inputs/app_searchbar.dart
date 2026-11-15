@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppSearchBar extends StatefulWidget {
-  const AppSearchBar({
+  const new({
     super.key,
     this.onChanged,
     this.onSubmitted,

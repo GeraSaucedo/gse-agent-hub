@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Extensions for fluent Color manipulation.
 /// Intended usage: context.appcolors.surface.o10

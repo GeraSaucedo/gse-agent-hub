@@ -3,16 +3,14 @@ import 'package:gse_localization/generated/app_localizations.dart';
 import 'package:gse_localization/src/locale_controller.dart';
 
 class _LocaleSwitcherInherited extends InheritedNotifier<LocaleController> {
-  const _LocaleSwitcherInherited({
-    required LocaleController controller,
-    required super.child,
-  }) : super(notifier: controller);
+  const new({required LocaleController controller, required super.child})
+    : super(notifier: controller);
 }
 
 /// Provides a [LocaleController] to the widget tree via [InheritedNotifier].
 class LocaleSwitcherProvider extends StatefulWidget {
   /// Creates a [LocaleSwitcherProvider] that wraps [child].
-  const LocaleSwitcherProvider({
+  const new({
     required this.child,
     this.defaultLocale = const Locale('es'),
     super.key,

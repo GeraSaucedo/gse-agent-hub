@@ -1,7 +1,7 @@
 enum RecoveryCodeFailure implements Exception {
-  serverError,
-  networkError,
-  unknownError,
+  server,
+  network,
+  unknown,
   userNotFound,
   emptyUsername,
   invalidForm,

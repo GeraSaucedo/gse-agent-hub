@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -368,4 +369,78 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get onboardingDescription3 =>
       'Estás a un paso de comenzar. ¡Crea tu cuenta o inicia sesión!';
+
+  @override
+  String get validationRequired => 'Este campo es requerido';
+
+  @override
+  String get validationEmailFormat => 'Formato de correo inválido';
+
+  @override
+  String validationPasswordMinLength(int min) {
+    return 'Debe tener al menos $min caracteres';
+  }
+
+  @override
+  String get validationPasswordNumber => 'Debe tener al menos 1 número';
+
+  @override
+  String get validationPasswordLowercase =>
+      'Debe tener al menos 1 letra minúscula';
+
+  @override
+  String get validationPasswordUppercase =>
+      'Debe tener al menos 1 letra mayúscula';
+
+  @override
+  String get validationPasswordSpecialChar =>
+      'Debe tener al menos 1 carácter especial o espacio';
+
+  @override
+  String get validationPasswordMismatch => 'Las contraseñas no coinciden';
+
+  @override
+  String get loginNoAccount => '¿No tienes cuenta? ';
+
+  @override
+  String get homeTitle => 'Inicio';
+
+  @override
+  String get drawerPaginatedList => 'Lista paginada';
+
+  @override
+  String get drawerDesignSystem => 'Design System';
+
+  @override
+  String get paginationTitle => 'Paginación';
+
+  @override
+  String get exampleCreateItem => 'Crear elemento';
+
+  @override
+  String get exampleEditItem => 'Editar elemento';
+
+  @override
+  String get exampleTextHint => 'Texto';
+
+  @override
+  String exampleItemDeleted(String text) {
+    return 'Elemento \"$text\" eliminado';
+  }
+
+  @override
+  String get undoButton => 'Deshacer';
+
+  @override
+  String get editButton => 'Editar';
+
+  @override
+  String get deleteButton => 'Eliminar';
+
+  @override
+  String get addButton => 'Añadir';
+
+  @override
+  String get registerAutoLoginFailed =>
+      'Tu cuenta está lista. Inicia sesión para continuar.';
 }

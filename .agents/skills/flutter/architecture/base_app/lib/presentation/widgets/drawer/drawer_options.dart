@@ -1,17 +1,27 @@
-import 'package:flutter/material.dart';
+import 'package:gse_base_app/presentation/screens/design_system_demo/design_system_demo_screen.dart';
+import 'package:gse_base_app/presentation/screens/example_pagination/example_pagination_screen.dart';
+import 'package:gse_base_app/presentation/screens/language/language_screen.dart';
+import 'package:gse_base_app/presentation/widgets/drawer/drawer_button.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
-import 'package:gse_base_app/presentation/screens/language/language_screen.dart';
-import 'package:gse_base_app/presentation/widgets/drawer/drawer_button.dart';
+import 'package:material_ui/material_ui.dart';
 
 class DrawerOptions extends StatelessWidget {
-  const DrawerOptions({
+  const new({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    // Closes the drawer, then opens [route] on top of home.
+    Future<void> open(String route) async {
+      Navigator.of(context).pop();
+      await context.push(route);
+    }
+
     return Expanded(
       child: ListView(
         children: [
@@ -20,39 +30,27 @@ class DrawerOptions extends StatelessWidget {
             children: [
               const SizedBox.shrink(),
               AppDrawerButton(
-                text: 'Paginated list',
+                text: l10n.drawerPaginatedList,
                 icon: Icons.store_outlined,
-                onPressed: () async {
-                  Navigator.of(context).pop();
-                  await context.push('/pagination-example');
-                },
+                onPressed: () => open(ExamplePaginationScreen.route),
               ),
               AppDrawerButton(
-                text: 'Design System',
+                text: l10n.drawerDesignSystem,
                 icon: Icons.palette_outlined,
-                onPressed: () async {
-                  Navigator.of(context).pop();
-                  await context.push('/design-system-demo');
-                },
+                onPressed: () => open(DesignSystemDemoScreen.route),
               ),
               AppDrawerButton(
-                text: AppLocalizations.of(context)!.languageScreenTitle,
+                text: l10n.languageScreenTitle,
                 icon: Icons.language,
-                onPressed: () async {
-                  Navigator.of(context).pop();
-                  await context.push(LanguageScreen.route);
-                },
+                onPressed: () => open(LanguageScreen.route),
               ),
               AppDrawerButton(
-                text: AppLocalizations.of(context)!.navigationPlaceholder,
+                text: l10n.navigationPlaceholder,
                 icon: Icons.fact_check_outlined,
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: () => Navigator.of(context).pop(),
               ),
             ],
           ),
-
           SizedBox(height: context.h(3)),
         ],
       ),

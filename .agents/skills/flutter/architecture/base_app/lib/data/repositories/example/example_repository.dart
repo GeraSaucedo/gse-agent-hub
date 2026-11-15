@@ -1,9 +1,16 @@
 import 'package:gse_base_app/core/services/api/dio_client.dart';
+import 'package:gse_base_app/core/services/api/error_mapping.dart';
 import 'package:gse_base_app/core/services/logger/app_logger.dart';
+import 'package:gse_base_app/core/utils/result.dart';
+import 'package:gse_base_app/data/repositories/example/example_failures.dart';
 import 'package:gse_base_app/domain/models/example_model.dart';
 
+/// Reference repository: copy this pattern for new features.
+///
+/// - Every public method returns a [Result] and never throws.
+/// - `try/catch` lives only here; blocs/cubits just `switch` on the result.
 class ExampleRepository {
-  ExampleRepository({
+  new({
     required ApiClient apiClient,
   }) : _api = apiClient;
 
@@ -11,7 +18,7 @@ class ExampleRepository {
 
   static const _baseUrl = 'https://dummyjson.com';
 
-  Future<List<ExampleModel>> getProducts({
+  Future<Result<List<ExampleModel>, ExampleFailure>> getProducts({
     int page = 0,
     int pageSize = 20,
     String? searchQuery,
@@ -30,37 +37,35 @@ class ExampleRepository {
 
       final results = data['products'] as List<dynamic>;
 
-      return results
-          .map((e) => ExampleModel.fromJson(e as Map<String, dynamic>))
-          .toList();
-    } catch (e, stack) {
-      AppLogger.e(
-        'getProducts Error',
-        error: e,
-        stackTrace: stack,
+      return Success(
+        results
+            .map((e) => ExampleModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
       );
-      rethrow;
+    } catch (e, stack) {
+      AppLogger.e('ExampleRepository.getProducts', error: e, stackTrace: stack);
+      return Failure(_toFailure(e));
     }
   }
 
-  Future<ExampleModel> getProductById(String id) async {
+  Future<Result<ExampleModel, ExampleFailure>> getProductById(String id) async {
     try {
       final data = await _api.get<Map<String, dynamic>>(
         '$_baseUrl/products/$id',
       );
 
-      return ExampleModel.fromJson(data);
+      return Success(ExampleModel.fromJson(data));
     } catch (e, stack) {
       AppLogger.e(
-        'getProductById Error',
+        'ExampleRepository.getProductById',
         error: e,
         stackTrace: stack,
       );
-      rethrow;
+      return Failure(_toFailure(e));
     }
   }
 
-  Future<ExampleModel> createProduct({
+  Future<Result<ExampleModel, ExampleFailure>> createProduct({
     required String title,
   }) async {
     try {
@@ -69,18 +74,18 @@ class ExampleRepository {
         data: {'title': title},
       );
 
-      return ExampleModel.fromJson(data);
+      return Success(ExampleModel.fromJson(data));
     } catch (e, stack) {
       AppLogger.e(
-        'createProduct Error',
+        'ExampleRepository.createProduct',
         error: e,
         stackTrace: stack,
       );
-      rethrow;
+      return Failure(_toFailure(e));
     }
   }
 
-  Future<ExampleModel> updateProduct({
+  Future<Result<ExampleModel, ExampleFailure>> updateProduct({
     required String id,
     required String title,
   }) async {
@@ -90,31 +95,40 @@ class ExampleRepository {
         data: {'title': title},
       );
 
-      return ExampleModel.fromJson(data);
+      return Success(ExampleModel.fromJson(data));
     } catch (e, stack) {
       AppLogger.e(
-        'updateProduct Error',
+        'ExampleRepository.updateProduct',
         error: e,
         stackTrace: stack,
       );
-      rethrow;
+      return Failure(_toFailure(e));
     }
   }
 
-  Future<ExampleModel> deleteProduct(String id) async {
+  Future<Result<ExampleModel, ExampleFailure>> deleteProduct(String id) async {
     try {
       final data = await _api.delete<Map<String, dynamic>>(
         '$_baseUrl/products/$id',
       );
 
-      return ExampleModel.fromJson(data);
+      return Success(ExampleModel.fromJson(data));
     } catch (e, stack) {
       AppLogger.e(
-        'deleteProduct Error',
+        'ExampleRepository.deleteProduct',
         error: e,
         stackTrace: stack,
       );
-      rethrow;
+      return Failure(_toFailure(e));
     }
   }
+
+  /// When several methods share the same mapping, keep it in one private
+  /// function inside the repository.
+  ExampleFailure _toFailure(Object e) => switch (e) {
+    NetworkException() => ExampleFailure.network,
+    ApiHttpException(statusCode: 404) => ExampleFailure.notFound,
+    ApiHttpException(statusCode: >= 500) => ExampleFailure.server,
+    _ => ExampleFailure.unknown,
+  };
 }

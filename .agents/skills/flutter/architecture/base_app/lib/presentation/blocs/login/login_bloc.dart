@@ -1,22 +1,21 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gse_base_app/core/utils/result.dart';
+import 'package:gse_base_app/data/inputs/field_email.dart';
 import 'package:gse_base_app/data/inputs/field_password.dart';
 import 'package:gse_base_app/data/repositories/auth/auth_failures.dart';
 import 'package:gse_base_app/data/repositories/auth/auth_repository.dart';
-import 'package:gse_base_app/presentation/widgets/inputs/email/field_email.dart';
+import 'package:formz/formz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_bloc.freezed.dart';
 part 'login_events.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc({
-    required AuthRepository repository,
-  }) : _repository = repository,
-       super(const LoginState()) {
+  new({
+    required this._repository,
+  }) : super(const LoginState()) {
     on<EmailChanged>(_onEmailChanged);
     on<PasswordChanged>(_onPasswordChanged);
     on<FormSubmitted>(_onFormSubmitted, transformer: droppable());
@@ -29,16 +28,23 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     FormSubmitted event,
     Emitter<LoginState> emit,
   ) async {
-    emit(state.copyWith(
-      status: FormzSubmissionStatus.inProgress,
-      failure: null,
-    ));
+    // Reset `unverifiedEmail` too: if the account is still unverified, it is
+    // set again and the listener reopens VerifyEmail on every attempt.
+    emit(
+      state.copyWith(
+        status: FormzSubmissionStatus.inProgress,
+        failure: null,
+        unverifiedEmail: '',
+      ),
+    );
 
     if (!_isFormDataValid()) {
-      emit(state.copyWith(
-        status: FormzSubmissionStatus.failure,
-        failure: AuthFailure.invalidForm,
-      ));
+      emit(
+        state.copyWith(
+          status: FormzSubmissionStatus.failure,
+          failure: AuthFailure.invalidForm,
+        ),
+      );
       return;
     }
 
@@ -52,16 +58,20 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(state.copyWith(status: FormzSubmissionStatus.success));
       case Failure(:final exception):
         if (exception == AuthFailure.forbidden) {
-          emit(state.copyWith(
-            status: FormzSubmissionStatus.failure,
-            unverifiedEmail: state.email.value,
-          ));
+          emit(
+            state.copyWith(
+              status: FormzSubmissionStatus.failure,
+              unverifiedEmail: state.email.value,
+            ),
+          );
           return;
         }
-        emit(state.copyWith(
-          status: FormzSubmissionStatus.failure,
-          failure: exception,
-        ));
+        emit(
+          state.copyWith(
+            status: FormzSubmissionStatus.failure,
+            failure: exception,
+          ),
+        );
     }
   }
 
@@ -90,7 +100,4 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   void _onCleanState(CleanState event, Emitter<LoginState> emit) {
     emit(const LoginState());
   }
-
-  bool get isLoading => state.status == FormzSubmissionStatus.inProgress;
-  bool get formSubmitted => state.status != FormzSubmissionStatus.initial;
 }

@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
-import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ErrorView extends StatelessWidget {
-  const ErrorView({
+  const new({
     super.key,
     this.text,
     this.onReintent,
@@ -49,8 +49,7 @@ class ErrorView extends StatelessWidget {
                 SizedBox(height: context.h(5)),
                 Text(
                   text ??
-                      AppLocalizations.of(context)!
-                          .errorLoadingElementsMessage,
+                      AppLocalizations.of(context)!.errorLoadingElementsMessage,
                   textAlign: TextAlign.center,
                   style: context.textStyles.titleMed,
                 ),

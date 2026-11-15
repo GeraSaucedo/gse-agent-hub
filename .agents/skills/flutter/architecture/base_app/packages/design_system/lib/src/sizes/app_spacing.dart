@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/src/sizes/app_dimensions.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Adaptive spacing tokens for the Design System.
 /// Automatically scale ×1.25 on tablet.
 class AppSpacing {
   /// Creates an [AppSpacing] with the given [BuildContext].
-  const AppSpacing(this._context);
+  const new(this._context);
 
   final BuildContext _context;
 

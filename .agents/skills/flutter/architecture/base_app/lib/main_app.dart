@@ -1,34 +1,19 @@
-import 'package:flutter/material.dart';
+import 'package:gse_base_app/presentation/routes/app_router.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
-import 'package:gse_base_app/core/routes/app_router.dart';
+import 'package:material_ui/material_ui.dart';
 
-class MainApp extends StatefulWidget {
-  const MainApp({required this.dsController, super.key});
+class MainApp extends StatelessWidget {
+  const new({required this.dsController, super.key});
 
   /// Controlador pre-cargado desde [main] para evitar flash de tema.
   final DSController dsController;
 
   @override
-  State<MainApp> createState() => _MainAppState();
-}
-
-class _MainAppState extends State<MainApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return LocaleSwitcherProvider(
       child: DSProvider(
-        controller: widget.dsController,
+        controller: dsController,
         child: Builder(
           builder: (context) {
             final ds = DSProvider.of(context);
@@ -39,7 +24,7 @@ class _MainAppState extends State<MainApp> {
               theme: ds.lightTheme,
               darkTheme: ds.darkTheme,
               themeMode: ds.themeMode,
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              localizationsDelegates: appLocalizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               locale: localeCtrl.locale,
             );

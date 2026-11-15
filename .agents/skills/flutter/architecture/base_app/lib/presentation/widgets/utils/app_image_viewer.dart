@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppImageViewer extends StatefulWidget {
-  const AppImageViewer({
+  const new({
     required this.imageFile,
     super.key,
   });

@@ -65,7 +65,6 @@
   "registerLoginLink": "Sign in",
   "registerFailureEmailAlreadyExists": "This email is already registered",
   "registerFailureInvalidData": "Invalid data. Please check your information",
-
   "loginScreenTitle": "Sign in",
   "loginScreenSubtitle": "You must have a collaborator account.",
   "loginScreenLoginButton": "Sign in",
@@ -86,7 +85,6 @@
   "serverConnectionError": "Error connecting to server",
   "selectorErrorMessage": "An error occurred getting data, please try again",
   "navigationPlaceholder": "Navigation 3",
-
   "dsTitle": "Design System",
   "dsTypography": "Typography",
   "dsWeights": "Weights",
@@ -120,7 +118,6 @@
   "languageScreenTitle": "Language",
   "languageSpanish": "Spanish",
   "languageEnglish": "English",
-
   "onboardingSkip": "Skip",
   "onboardingNext": "Next",
   "onboardingBack": "Back",
@@ -130,5 +127,27 @@
   "onboardingTitle2": "Safe and reliable",
   "onboardingDescription2": "Your information is protected with the highest security standards.",
   "onboardingTitle3": "All set",
-  "onboardingDescription3": "You're one step away from getting started. Create your account or sign in!"
+  "onboardingDescription3": "You're one step away from getting started. Create your account or sign in!",
+  "validationRequired": "This field is required",
+  "validationEmailFormat": "Invalid email format",
+  "validationPasswordMinLength": "Must be at least {min} characters",
+  "validationPasswordNumber": "Must contain at least 1 number",
+  "validationPasswordLowercase": "Must contain at least 1 lowercase letter",
+  "validationPasswordUppercase": "Must contain at least 1 uppercase letter",
+  "validationPasswordSpecialChar": "Must contain at least 1 special character or space",
+  "validationPasswordMismatch": "Passwords do not match",
+  "loginNoAccount": "Don't have an account? ",
+  "homeTitle": "Home",
+  "drawerPaginatedList": "Paginated list",
+  "drawerDesignSystem": "Design System",
+  "paginationTitle": "Pagination",
+  "exampleCreateItem": "Create item",
+  "exampleEditItem": "Edit item",
+  "exampleTextHint": "Text",
+  "exampleItemDeleted": "Item \"{text}\" deleted",
+  "undoButton": "Undo",
+  "editButton": "Edit",
+  "deleteButton": "Delete",
+  "addButton": "Add",
+  "registerAutoLoginFailed": "Your account is ready. Log in to continue."
 }

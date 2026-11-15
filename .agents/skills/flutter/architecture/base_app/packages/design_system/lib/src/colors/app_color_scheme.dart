@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Semantic color scheme for the Design System.
 /// Injected as a ThemeExtension and accessed via `context.colors`.
@@ -21,7 +21,7 @@ import 'package:flutter/material.dart';
 @immutable
 class AppColorScheme extends ThemeExtension<AppColorScheme> {
   /// Creates an [AppColorScheme] with all required color tokens.
-  const AppColorScheme({
+  const new({
     // --- SURFACES ---
     required this.scaffoldBackground,
     required this.surface,

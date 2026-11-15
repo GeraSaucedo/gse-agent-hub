@@ -1,42 +1,24 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:gse_base_app/core/services/storage/contract/storage_service.dart';
 
-/// Service for saving confidential things as ApiKeys, Tokens, etc
-class SecureStorageService extends StorageService {
-  SecureStorageService({required FlutterSecureStorage secureStorage})
-    : _secureStorage = secureStorage,
-      super();
+/// Encrypted storage for sensitive values (tokens, API keys).
+///
+/// Only stores [String]. Managers depend on this class, never on
+/// [FlutterSecureStorage] directly, which also makes it easy to fake in tests.
+class SecureStorageService {
+  new({required this._secureStorage});
 
   final FlutterSecureStorage _secureStorage;
 
-  /// Encrypts and saves the [key] with the given [value].
-  ///
-  /// If the key was already in the storage, its associated value is changed.
-  /// If the value is null, deletes associated value for the given [key].
-  @override
-  Future<void> write<T>({required String key, required T value}) async {
-    await _secureStorage.write(key: key, value: value as String);
-  }
+  /// Returns the value for [key], or `null` if it does not exist.
+  Future<String?> read(String key) => _secureStorage.read(key: key);
 
-  /// Decrypts and returns the value for the given [key] or
-  /// null if [key] is not in the storage.
-  ///
-  /// [key] shouldn't be null.
-  @override
-  Future<T?> read<T>({required String key}) async {
-    final dynamic result = await _secureStorage.read(key: key);
-    return result as T?;
-  }
+  /// Saves [value] under [key], replacing any previous value.
+  Future<void> write(String key, String value) =>
+      _secureStorage.write(key: key, value: value);
 
-  /// Deletes all keys with associated values.
-  @override
-  Future<void> clear() async => _secureStorage.deleteAll();
+  /// Deletes [key]. Does nothing if it does not exist.
+  Future<void> delete(String key) => _secureStorage.delete(key: key);
 
-  /// Deletes associated value for the given [key].
-  ///
-  /// If the given [key] does not exist, nothing will happen.
-  @override
-  Future<void> delete({required String key}) async {
-    await _secureStorage.delete(key: key);
-  }
+  /// Deletes every stored value.
+  Future<void> clear() => _secureStorage.deleteAll();
 }

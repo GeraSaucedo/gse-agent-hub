@@ -5,24 +5,10 @@ class MyBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
     super.onEvent(bloc, event);
+    // Only the event type: freezed's toString includes every field, which
+    // would log passwords and codes (e.g. PasswordChanged(password: ...)).
     AppLogger.i(
-      'Bloc: ${bloc.runtimeType}, Event: $event - ${DateTime.now()}',
-      logName: 'BlocObserver',
-    );
-  }
-
-  /*  @override
-  void onTransition(Bloc bloc, Transition transition) {
-    super.onTransition(bloc, transition);
-    AppLogger.i(
-        '${transition.currentState} -> ${transition.nextState}');
-  } */
-
-  @override
-  void onClose(BlocBase<dynamic> bloc) {
-    super.onClose(bloc);
-    AppLogger.i(
-      '========= Bloc: ${bloc.runtimeType} CERRADO ==========',
+      'Bloc: ${bloc.runtimeType}, Event: ${event.runtimeType}',
       logName: 'BlocObserver',
     );
   }
@@ -30,9 +16,12 @@ class MyBlocObserver extends BlocObserver {
   @override
   void onCreate(BlocBase<dynamic> bloc) {
     super.onCreate(bloc);
-    AppLogger.i(
-      '========= Bloc: ${bloc.runtimeType}, CREADO =====',
-      logName: 'BlocObserver',
-    );
+    AppLogger.i('Bloc created: ${bloc.runtimeType}', logName: 'BlocObserver');
+  }
+
+  @override
+  void onClose(BlocBase<dynamic> bloc) {
+    super.onClose(bloc);
+    AppLogger.i('Bloc closed: ${bloc.runtimeType}', logName: 'BlocObserver');
   }
 }

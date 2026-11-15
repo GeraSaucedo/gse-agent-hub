@@ -1,43 +1,44 @@
-import 'package:flutter/material.dart';
+import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gse_design_system/gse_design_system.dart';
-import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
+import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SelectionDialog<T> extends StatefulWidget {
-  const SelectionDialog({
+  const new({
     required this.items,
     required this.itemBuilder,
     this.onSelectItem,
-    this.title = 'Seleccionar elemento',
+    this.title,
     this.subtitle,
-    this.searchHint = 'Buscar',
+    this.searchHint,
     this.filterFunction,
     this.onPressedOption,
-    this.optionBtnText = 'Añadir',
+    this.optionBtnText,
     super.key,
   });
 
   final List<T> items;
   final void Function(T)? onSelectItem;
-  final String title;
+  final String? title;
   final String? subtitle;
-  final String searchHint;
+  final String? searchHint;
 
   final Widget Function(BuildContext, T) itemBuilder;
   final bool Function(T item, String query)? filterFunction;
   final VoidCallback? onPressedOption;
-  final String optionBtnText;
+  final String? optionBtnText;
 
   static Future<void> show<T>({
     required BuildContext context,
     required List<T> items,
     required Widget Function(BuildContext, T) itemBuilder,
     void Function(T)? onSelectItem,
-    String title = 'Seleccionar elemento',
-    String optionBtnText = 'Añadir',
+    String? title,
+    String? optionBtnText,
     VoidCallback? onPressedOption,
     String? subtitle,
-    String searchHint = 'Buscar',
+    String? searchHint,
     bool Function(T item, String query)? filterFunction,
   }) {
     return showDialog(
@@ -119,7 +120,7 @@ class _SelectionDialogState<T> extends State<SelectionDialog<T>> {
                   return Column(
                     children: [
                       SizedBox(height: context.h(4)),
-                      const Text('No se encontraron elementos'),
+                      Text(AppLocalizations.of(context)!.emptyStateMessage),
                     ],
                   );
                 }
@@ -138,7 +139,8 @@ class _SelectionDialogState<T> extends State<SelectionDialog<T>> {
                 child: AppPrimaryButton(
                   onPressed: widget.onPressedOption,
                   child: Text(
-                    widget.optionBtnText,
+                    widget.optionBtnText ??
+                        AppLocalizations.of(context)!.addButton,
                     style: context.textStyles.titleMed.semibold,
                   ),
                 ),
@@ -171,7 +173,8 @@ class _SelectionDialogState<T> extends State<SelectionDialog<T>> {
               ),
               Align(
                 child: Text(
-                  widget.title,
+                  widget.title ??
+                      AppLocalizations.of(context)!.selectElementTitle,
                   style: context.textStyles.titleSmall,
                 ),
               ),
@@ -204,7 +207,8 @@ class _SelectionDialogState<T> extends State<SelectionDialog<T>> {
         onChanged: _filterItems,
         style: context.textStyles.titleMed,
         decoration: InputDecoration(
-          hintText: widget.searchHint,
+          hintText:
+              widget.searchHint ?? AppLocalizations.of(context)!.searchHint,
           prefixIcon: const Icon(Icons.search),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

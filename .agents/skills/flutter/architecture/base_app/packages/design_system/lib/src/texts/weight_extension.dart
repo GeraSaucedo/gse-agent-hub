@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Fluent extensions for [TextStyle] manipulation.
 ///
@@ -89,8 +89,7 @@ extension TextStyleFluentX on TextStyle {
   TextStyle get italic => copyWith(fontStyle: FontStyle.italic);
 
   /// Underline decoration.
-  TextStyle get underline =>
-      copyWith(decoration: TextDecoration.underline);
+  TextStyle get underline => copyWith(decoration: TextDecoration.underline);
 
   /// Strikethrough decoration.
   TextStyle get strikethrough =>

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/src/colors/app_color_scheme.dart';
 import 'package:gse_design_system/src/config/ds_config.dart';
+import 'package:material_ui/material_ui.dart';
 
 // Radius tokens for component themes (no context available here).
 // In widgets, use context.radius.lg, etc.

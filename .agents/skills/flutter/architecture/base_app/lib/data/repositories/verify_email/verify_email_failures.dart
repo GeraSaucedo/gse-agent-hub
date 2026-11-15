@@ -1,6 +1,6 @@
 enum VerifyEmailFailure implements Exception {
-  serverError,
-  networkError,
-  unknownError,
+  server,
+  network,
+  unknown,
   invalidCode,
 }

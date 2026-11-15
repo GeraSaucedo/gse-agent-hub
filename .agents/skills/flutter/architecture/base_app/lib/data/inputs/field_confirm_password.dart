@@ -2,30 +2,18 @@ import 'package:formz/formz.dart';
 
 enum ConfirmedPasswordValidationError { empty, mismatch }
 
+/// Confirmation field: must match the password. Only validates; the UI turns
+/// [displayError] into text via l10n.
 class ConfirmedPasswordInput
     extends FormzInput<String, ConfirmedPasswordValidationError> {
-  const ConfirmedPasswordInput.pure()
-      : _password = '',
-        super.pure('');
+  const new pure() : _password = '', super.pure('');
 
-  const ConfirmedPasswordInput.dirty({
-    required String password,
+  const new dirty({
+    required this._password,
     required String value,
-  })  : _password = password,
-        super.dirty(value);
+  }) : super.dirty(value);
 
   final String _password;
-
-  String? get errorMessage {
-    if (isValid) return null;
-    if (displayError == ConfirmedPasswordValidationError.empty) {
-      return 'Este campo es requerido';
-    }
-    if (displayError == ConfirmedPasswordValidationError.mismatch) {
-      return 'Las contraseñas no coinciden';
-    }
-    return null;
-  }
 
   @override
   ConfirmedPasswordValidationError? validator(String value) {

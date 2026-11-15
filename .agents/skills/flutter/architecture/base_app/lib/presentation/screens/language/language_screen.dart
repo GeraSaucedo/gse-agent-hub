@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
 class LanguageScreen extends StatelessWidget {
-  const LanguageScreen({super.key});
+  const new({super.key});
 
   static const name = 'language';
-  static const route = '/language';
+  static const path = 'language';
+  static const route = '/$path';
 
   @override
   Widget build(BuildContext context) {

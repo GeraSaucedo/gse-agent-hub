@@ -1,21 +1,22 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gse_design_system/gse_design_system.dart';
-import 'package:gse_localization/gse_localization.dart';
 import 'package:gse_base_app/core/constants/app_constants.dart';
 import 'package:gse_base_app/presentation/blocs/login/login_bloc.dart';
 import 'package:gse_base_app/presentation/screens/forgot_password/forgot_password_username.dart';
 import 'package:gse_base_app/presentation/screens/register/register_screen.dart';
 import 'package:gse_base_app/presentation/widgets/buttons/app_primary_button.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/email/email_text_field.dart';
+import 'package:gse_base_app/presentation/widgets/inputs/input_errors_l10n.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/password/password_text_field.dart';
 import 'package:gse_base_app/presentation/widgets/utils/app_logo.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,34 +57,36 @@ class LoginView extends StatelessWidget {
                 SizedBox(height: context.h(5)),
                 BlocBuilder<LoginBloc, LoginState>(
                   builder: (context, state) {
-                    final bloc = context.read<LoginBloc>();
+                    final l10n = AppLocalizations.of(context)!;
 
                     return Column(
                       children: [
                         EmailTextField(
-                          enabled: !bloc.isLoading,
+                          enabled: !state.isLoading,
                           onChanged: (value) =>
                               loginBloc.add(EmailChanged(value)),
-                          errorText: state.email.errorMessage,
-                          showErrors: bloc.formSubmitted,
+                          errorText: state.email.errorText(l10n),
+                          showErrors: state.formSubmitted,
                         ),
                         SizedBox(height: context.h(2)),
                         PasswordTextField(
-                          enabled: !bloc.isLoading,
+                          enabled: !state.isLoading,
                           onChanged: (value) =>
                               loginBloc.add(PasswordChanged(value)),
-                          errorText: state.password.errorMessage,
-                          showErrors: bloc.formSubmitted,
+                          errorText: state.password.errorText(l10n),
+                          showErrors: state.formSubmitted,
                         ),
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
                             onPressed: () {
                               final email = state.email.value;
-                              final route = email.isEmpty
-                                  ? ForgotPasswordUsername.route
-                                  : '${ForgotPasswordUsername.route}'
-                                        '?email=$email';
+                              final route = Uri(
+                                path: ForgotPasswordUsername.route,
+                                queryParameters: email.isEmpty
+                                    ? null
+                                    : {'email': email},
+                              ).toString();
                               unawaited(context.push(route));
                             },
                             child: Text(
@@ -117,7 +120,7 @@ class LoginView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.registerAlreadyHaveAccount,
+                      AppLocalizations.of(context)!.loginNoAccount,
                       style: context.textStyles.bodyMed,
                     ),
                     TextButton(

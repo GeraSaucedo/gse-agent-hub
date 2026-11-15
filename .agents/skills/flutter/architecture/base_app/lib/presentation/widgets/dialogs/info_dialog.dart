@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
 class InfoDialog extends StatelessWidget {
-  const InfoDialog({
+  const new({
     required this.text,
     super.key,
   });
@@ -54,7 +55,9 @@ class InfoDialog extends StatelessWidget {
                                 Navigator.of(context).pop();
                               },
                               child: Text(
-                                'Aceptar',
+                                AppLocalizations.of(
+                                  context,
+                                )!.dialogAcceptButton,
                                 style: context.textStyles.labelLarge.c(
                                   context.colors.error,
                                 ),
@@ -74,8 +77,8 @@ class InfoDialog extends StatelessWidget {
     );
   }
 
-  static Future<bool> show(BuildContext context, {required String text}) async {
-    final result = await showDialog<bool>(
+  static Future<void> show(BuildContext context, {required String text}) {
+    return showDialog<void>(
       context: context,
       barrierColor: Colors.black.withValues(alpha: 0.7),
       builder: (context) {
@@ -90,7 +93,5 @@ class InfoDialog extends StatelessWidget {
         );
       },
     );
-
-    return result ?? false;
   }
 }

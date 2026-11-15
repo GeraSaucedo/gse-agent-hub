@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/src/colors/app_color_scheme.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Light color palette for the Design System.
 class LightColors {

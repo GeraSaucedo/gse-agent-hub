@@ -1,15 +1,15 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gse_design_system/gse_design_system.dart';
-import 'package:gse_localization/gse_localization.dart';
 import 'package:gse_base_app/presentation/blocs/pagination/pagination_cubit.dart';
 import 'package:gse_base_app/presentation/widgets/views/empty_view.dart';
 import 'package:gse_base_app/presentation/widgets/views/error_view.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
 class PaginatedList<T> extends StatefulWidget {
-  const PaginatedList({
+  const new({
     required this.cubit,
     required this.itemBuilder,
     this.invisibleItemsThreshold = 3,
@@ -63,7 +63,11 @@ class _PaginatedListState<T> extends State<PaginatedList<T>> {
           itemCount: state.items.length + 1,
           itemBuilder: (ctx, index) {
             if (index < state.items.length) {
+              // Only after a successful page: after `errorMore` the list
+              // rebuilds, and loading here would retry on its own in a
+              // loop. That retry belongs to the footer button.
               if (state.hasMore &&
+                  state.status == PaginationStatus.loaded &&
                   index ==
                       state.items.length - widget.invisibleItemsThreshold) {
                 _triggerLoadMore();

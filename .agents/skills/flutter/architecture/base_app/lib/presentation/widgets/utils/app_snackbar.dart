@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppSnackbar {
   static void show(
@@ -11,27 +11,12 @@ class AppSnackbar {
     bool asOverlay = false,
     SnackbarType type = SnackbarType.error,
   }) {
-    Color backgroundColor;
-    Color textColor;
-    //IconData icon;
-
-    final dsColors = context.colors;
-    final colors = Theme.of(context).colorScheme;
-
-    switch (type) {
-      case SnackbarType.success:
-        backgroundColor = dsColors.success;
-        textColor = dsColors.onSuccess;
-      //icon = Icons.check_circle;
-      case SnackbarType.info:
-        backgroundColor = dsColors.onSurfaceLow;
-        textColor = dsColors.disabled;
-      //icon = Icons.info;
-      case SnackbarType.error:
-        backgroundColor = colors.error;
-        textColor = colors.onError;
-      //icon = Icons.error;
-    }
+    final colors = context.colors;
+    final (backgroundColor, textColor) = switch (type) {
+      SnackbarType.success => (colors.success, colors.onSuccess),
+      SnackbarType.info => (colors.info, colors.onInfo),
+      SnackbarType.error => (colors.error, colors.onError),
+    };
 
     if (asOverlay) {
       final overlay = Overlay.of(context);
@@ -75,7 +60,6 @@ class AppSnackbar {
                           color: textColor,
                           fontSize: 14,
                         ),
-                        //textAlign: TextAlign.center,
                       ),
                     ),
                   ],
@@ -101,8 +85,6 @@ class AppSnackbar {
     final snackbar = SnackBar(
       content: Row(
         children: [
-          //Icon(icon, color: Colors.white),
-          //const SizedBox(width: 8),
           Expanded(
             child: Text(
               message,

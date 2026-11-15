@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppLogo extends StatelessWidget {
-  const AppLogo({
+  const new({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
+    return const Hero(
       tag: 'app-logo',
-      child: Image.asset('assets/imgs/logo.png'),
+      child: FlutterLogo(),
     );
   }
 }

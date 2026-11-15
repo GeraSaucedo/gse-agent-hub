@@ -1,68 +1,69 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
+import 'package:gse_base_app/core/services/storage/implementations/local_storage_service.dart';
 import 'package:gse_base_app/core/services/storage/implementations/secure_storage_service.dart';
 
-/// Manages the storage and retrieval of authentication tokens
-/// using a secure storage service.
-///
-/// This class handles access tokens, refresh tokens, and API keys,
-/// providing methods to get, save, and clear these tokens as needed.
+/// Stores the session values (access token, refresh token and user sub)
+/// in secure storage.
 class TokenManager {
-  /// Constructor that initializes the TokenManager
-  /// with a secure storage service.
-  TokenManager(this._storageService /* , this._localStorage */);
+  new(this._storageService);
 
   final SecureStorageService _storageService;
-  //final LocalStorageService _localStorage;
+
   static const String _accessTokenKey = 'access_token';
   static const String _refreshTokenKey = 'refresh_token';
-  static const String _userSub = 'user_sub';
+  static const String _userSubKey = 'user_sub';
 
-  /// Retrieves the access token from secure storage.
-  /// Returns the token as a String if it exists, or null if not.
-  Future<String?> getAccessToken() async {
-    return _storageService.read(key: _accessTokenKey);
-  }
+  /// Flag in local storage that marks this install as already started.
+  static const String _installedKey = 'app_installed';
 
-  /// Retrieves the refresh token from secure storage.
-  /// Returns the token as a String if it exists, or null if not.
-  Future<String?> getRefreshToken() async {
-    return _storageService.read(key: _refreshTokenKey);
-  }
+  /// Returns the access token, or `null` if there is none.
+  Future<String?> getAccessToken() => _storageService.read(_accessTokenKey);
 
-  Future<String?> getUserSub() async {
-    return _storageService.read(key: _userSub);
-  }
+  /// Returns the refresh token, or `null` if there is none.
+  Future<String?> getRefreshToken() => _storageService.read(_refreshTokenKey);
 
-  /// Saves the access token to secure storage.
-  ///
-  /// If the provided token is empty, it does not perform any action.
+  /// Returns the user sub, or `null` if there is none.
+  Future<String?> getUserSub() => _storageService.read(_userSubKey);
+
+  /// Saves the access token. Empty values are ignored.
   Future<void> saveAccessToken(String token) async {
-    if (kDebugMode) log('ACCESS TOKEN $token');
-    if (token.isEmpty) return; // Prevent saving empty tokens
-    await _storageService.write<String>(key: _accessTokenKey, value: token);
+    if (token.isEmpty) return;
+    await _storageService.write(_accessTokenKey, token);
   }
 
-  /// Saves the refresh token to secure storage.
-  ///
-  /// If the provided token is empty, it does not perform any action.
+  /// Saves the refresh token. Empty values are ignored.
   Future<void> saveRefreshToken(String token) async {
-    if (kDebugMode) log('REFRESH TOKEN $token');
-    if (token.isEmpty) return; // Prevent saving empty tokens
-    await _storageService.write<String>(key: _refreshTokenKey, value: token);
+    if (token.isEmpty) return;
+    await _storageService.write(_refreshTokenKey, token);
   }
 
+  /// Saves the user sub. Empty values are ignored.
   Future<void> saveUserSub(String value) async {
-    if (kDebugMode) log('user sub $value');
-    if (value.isEmpty) return; // Prevent saving empty tokens
-    await _storageService.write<String>(key: _userSub, value: value);
+    if (value.isEmpty) return;
+    await _storageService.write(_userSubKey, value);
   }
 
-  /// Clears all stored tokens from secure storage.
+  /// Removes every session value.
   Future<void> clearTokens() async {
-    await _storageService.delete(key: _accessTokenKey);
-    await _storageService.delete(key: _refreshTokenKey);
-    await _storageService.delete(key: _userSub);
+    await _storageService.delete(_accessTokenKey);
+    await _storageService.delete(_refreshTokenKey);
+    await _storageService.delete(_userSubKey);
+  }
+
+  /// Removes the session left by a previous install. Call it once at startup.
+  ///
+  /// On iOS the Keychain (secure storage) keeps its values after the app is
+  /// uninstalled, while [localStorage] is wiped. Without this, a reinstalled
+  /// app would start logged in with an old session.
+  ///
+  /// Note: the first start after adding this to an existing app also counts
+  /// as a fresh install, so current users log in once more.
+  Future<void> clearTokensIfFreshInstall(
+    LocalStorageService localStorage,
+  ) async {
+    final isFreshInstall = await localStorage.getBool(_installedKey) != true;
+    if (!isFreshInstall) return;
+
+    await clearTokens();
+    await localStorage.setBool(_installedKey, value: true);
   }
 }

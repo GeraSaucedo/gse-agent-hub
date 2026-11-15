@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'app_bloc.dart';
@@ -9,6 +9,7 @@ part of 'app_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$AppEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is AppEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppEvent()';
+    return 'AppEvent()';
 }
 
 
@@ -55,13 +56,12 @@ extension AppEventPatterns on AppEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetAppConfig value)?  getAppConfig,TResult Function( CleanState value)?  cleanState,TResult Function( CleanError value)?  cleanError,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetAppConfig value)?  getAppConfig,TResult Function( CleanState value)?  cleanState,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case GetAppConfig() when getAppConfig != null:
 return getAppConfig(_that);case CleanState() when cleanState != null:
-return cleanState(_that);case CleanError() when cleanError != null:
-return cleanError(_that);case _:
+return cleanState(_that);case _:
   return orElse();
 
 }
@@ -79,13 +79,12 @@ return cleanError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetAppConfig value)  getAppConfig,required TResult Function( CleanState value)  cleanState,required TResult Function( CleanError value)  cleanError,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetAppConfig value)  getAppConfig,required TResult Function( CleanState value)  cleanState,}){
 final _that = this;
 switch (_that) {
 case GetAppConfig():
 return getAppConfig(_that);case CleanState():
-return cleanState(_that);case CleanError():
-return cleanError(_that);case _:
+return cleanState(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -102,13 +101,12 @@ return cleanError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetAppConfig value)?  getAppConfig,TResult? Function( CleanState value)?  cleanState,TResult? Function( CleanError value)?  cleanError,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetAppConfig value)?  getAppConfig,TResult? Function( CleanState value)?  cleanState,}){
 final _that = this;
 switch (_that) {
 case GetAppConfig() when getAppConfig != null:
 return getAppConfig(_that);case CleanState() when cleanState != null:
-return cleanState(_that);case CleanError() when cleanError != null:
-return cleanError(_that);case _:
+return cleanState(_that);case _:
   return null;
 
 }
@@ -125,12 +123,11 @@ return cleanError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getAppConfig,TResult Function()?  cleanState,TResult Function()?  cleanError,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getAppConfig,TResult Function()?  cleanState,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GetAppConfig() when getAppConfig != null:
 return getAppConfig();case CleanState() when cleanState != null:
-return cleanState();case CleanError() when cleanError != null:
-return cleanError();case _:
+return cleanState();case _:
   return orElse();
 
 }
@@ -148,12 +145,11 @@ return cleanError();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getAppConfig,required TResult Function()  cleanState,required TResult Function()  cleanError,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getAppConfig,required TResult Function()  cleanState,}) {final _that = this;
 switch (_that) {
 case GetAppConfig():
 return getAppConfig();case CleanState():
-return cleanState();case CleanError():
-return cleanError();case _:
+return cleanState();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -170,12 +166,11 @@ return cleanError();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getAppConfig,TResult? Function()?  cleanState,TResult? Function()?  cleanError,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getAppConfig,TResult? Function()?  cleanState,}) {final _that = this;
 switch (_that) {
 case GetAppConfig() when getAppConfig != null:
 return getAppConfig();case CleanState() when cleanState != null:
-return cleanState();case CleanError() when cleanError != null:
-return cleanError();case _:
+return cleanState();case _:
   return null;
 
 }
@@ -197,7 +192,7 @@ class GetAppConfig implements AppEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetAppConfig);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is GetAppConfig);
 }
 
 
@@ -206,7 +201,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppEvent.getAppConfig()';
+    return 'AppEvent.getAppConfig()';
 }
 
 
@@ -229,7 +224,7 @@ class CleanState implements AppEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanState);
 }
 
 
@@ -238,39 +233,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppEvent.cleanState()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class CleanError implements AppEvent {
-  const CleanError();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanError);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'AppEvent.cleanError()';
+    return 'AppEvent.cleanState()';
 }
 
 
@@ -282,7 +245,7 @@ String toString() {
 /// @nodoc
 mixin _$AppState {
 
- String get errorMessage; bool get isLoading; bool get dataLoaded;
+ AppStatus get status; ConfigFailure? get failure;
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -293,16 +256,21 @@ $AppStateCopyWith<AppState> get copyWith => _$AppStateCopyWithImpl<AppState>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.dataLoaded, dataLoaded) || other.dataLoaded == dataLoaded));
+  final _this = this as AppState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.failure, _this.failure) || other.failure == _this.failure));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,errorMessage,isLoading,dataLoaded);
+int get hashCode {
+  final _this = this as AppState;
+  return Object.hash(runtimeType,_this.status,_this.failure);
+}
 
 @override
 String toString() {
-  return 'AppState(errorMessage: $errorMessage, isLoading: $isLoading, dataLoaded: $dataLoaded)';
+  final _this = this as AppState;
+  return 'AppState(status: ${_this.status}, failure: ${_this.failure})';
 }
 
 
@@ -313,7 +281,7 @@ abstract mixin class $AppStateCopyWith<$Res>  {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) _then) = _$AppStateCopyWithImpl;
 @useResult
 $Res call({
- String errorMessage, bool isLoading, bool dataLoaded
+ AppStatus status, ConfigFailure? failure
 });
 
 
@@ -330,12 +298,11 @@ class _$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? errorMessage = null,Object? isLoading = null,Object? dataLoaded = null,}) {
-  return _then(_self.copyWith(
-errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
-as String,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,dataLoaded: null == dataLoaded ? _self.dataLoaded : dataLoaded // ignore: cast_nullable_to_non_nullable
-as bool,
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? failure = freezed,}) {
+  return _then(AppState(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as AppStatus,failure: freezed == failure ? _self.failure : failure // ignore: cast_nullable_to_non_nullable
+as ConfigFailure?,
   ));
 }
 
@@ -420,10 +387,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String errorMessage,  bool isLoading,  bool dataLoaded)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AppStatus status,  ConfigFailure? failure)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default(_that.errorMessage,_that.isLoading,_that.dataLoaded);case _:
+return $default(_that.status,_that.failure);case _:
   return orElse();
 
 }
@@ -441,10 +408,10 @@ return $default(_that.errorMessage,_that.isLoading,_that.dataLoaded);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String errorMessage,  bool isLoading,  bool dataLoaded)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AppStatus status,  ConfigFailure? failure)  $default,) {final _that = this;
 switch (_that) {
 case _AppState():
-return $default(_that.errorMessage,_that.isLoading,_that.dataLoaded);case _:
+return $default(_that.status,_that.failure);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -461,10 +428,10 @@ return $default(_that.errorMessage,_that.isLoading,_that.dataLoaded);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String errorMessage,  bool isLoading,  bool dataLoaded)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AppStatus status,  ConfigFailure? failure)?  $default,) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default(_that.errorMessage,_that.isLoading,_that.dataLoaded);case _:
+return $default(_that.status,_that.failure);case _:
   return null;
 
 }
@@ -476,12 +443,11 @@ return $default(_that.errorMessage,_that.isLoading,_that.dataLoaded);case _:
 
 
 class _AppState implements AppState {
-  const _AppState({this.errorMessage = '', this.isLoading = false, this.dataLoaded = false});
+  const _AppState({this.status = AppStatus.loading, this.failure});
   
 
-@override@JsonKey() final  String errorMessage;
-@override@JsonKey() final  bool isLoading;
-@override@JsonKey() final  bool dataLoaded;
+@override@JsonKey() final  AppStatus status;
+@override final  ConfigFailure? failure;
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
@@ -493,16 +459,18 @@ _$AppStateCopyWith<_AppState> get copyWith => __$AppStateCopyWithImpl<_AppState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.dataLoaded, dataLoaded) || other.dataLoaded == dataLoaded));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.status, status) || other.status == status)&&(identical(other.failure, failure) || other.failure == failure));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,errorMessage,isLoading,dataLoaded);
+int get hashCode {
+    return Object.hash(runtimeType,status,failure);
+}
 
 @override
 String toString() {
-  return 'AppState(errorMessage: $errorMessage, isLoading: $isLoading, dataLoaded: $dataLoaded)';
+    return 'AppState(status: $status, failure: $failure)';
 }
 
 
@@ -513,7 +481,7 @@ abstract mixin class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res>
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) _then) = __$AppStateCopyWithImpl;
 @override @useResult
 $Res call({
- String errorMessage, bool isLoading, bool dataLoaded
+ AppStatus status, ConfigFailure? failure
 });
 
 
@@ -530,12 +498,11 @@ class __$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? errorMessage = null,Object? isLoading = null,Object? dataLoaded = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? failure = freezed,}) {
   return _then(_AppState(
-errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
-as String,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,dataLoaded: null == dataLoaded ? _self.dataLoaded : dataLoaded // ignore: cast_nullable_to_non_nullable
-as bool,
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as AppStatus,failure: freezed == failure ? _self.failure : failure // ignore: cast_nullable_to_non_nullable
+as ConfigFailure?,
   ));
 }
 

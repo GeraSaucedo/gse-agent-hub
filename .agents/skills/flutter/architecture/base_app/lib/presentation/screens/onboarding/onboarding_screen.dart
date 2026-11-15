@@ -1,15 +1,15 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gse_design_system/gse_design_system.dart';
-import 'package:gse_localization/gse_localization.dart';
 import 'package:gse_base_app/core/services/storage/utils/onboarding_manager.dart';
 import 'package:gse_base_app/main_injector.dart';
 import 'package:gse_base_app/presentation/screens/login/login_screen.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({super.key});
+  const new({super.key});
 
   static const name = 'onboarding-screen';
   static const route = '/onboarding';
@@ -34,20 +34,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _nextPage() {
-    unawaited(
-      _controller.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      ),
+    _controller.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
     );
   }
 
   void _previousPage() {
-    unawaited(
-      _controller.previousPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      ),
+    _controller.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
     );
   }
 
@@ -90,8 +86,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   onPressed: _completeOnboarding,
                   child: Text(
                     l10n.onboardingSkip,
-                    style: context.textStyles.labelMed
-                        .c(context.colors.textSecondary),
+                    style: context.textStyles.labelMed.c(
+                      context.colors.textSecondary,
+                    ),
                   ),
                 ),
               ),
@@ -101,8 +98,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Expanded(
               child: PageView(
                 controller: _controller,
-                onPageChanged: (index) =>
-                    setState(() => _currentPage = index),
+                onPageChanged: (index) => setState(() => _currentPage = index),
                 children: pages,
               ),
             ),
@@ -166,8 +162,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     child: Text(
                       isLastPage ? l10n.onboardingStart : l10n.onboardingNext,
-                      style: context.textStyles.labelMed
-                          .c(context.colors.onPrimary),
+                      style: context.textStyles.labelMed.c(
+                        context.colors.onPrimary,
+                      ),
                     ),
                   ),
                 ],
@@ -183,7 +180,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 }
 
 class _OnboardingPage extends StatelessWidget {
-  const _OnboardingPage({
+  const new({
     required this.icon,
     required this.title,
     required this.description,

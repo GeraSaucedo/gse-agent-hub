@@ -17,6 +17,7 @@ void blocInjector() {
     ..registerFactory(
       () => AppBloc(
         configRepository: sl(),
+        authRepository: sl(),
       ),
     )
     ..registerFactory(
@@ -27,12 +28,12 @@ void blocInjector() {
     ..registerFactory(
       () => VerifyEmailBloc(
         repository: sl(),
-        authRepository: sl(),
       ),
     )
     ..registerFactory(
       () => RegisterBloc(
         repository: sl(),
+        authRepository: sl(),
       ),
     );
 }

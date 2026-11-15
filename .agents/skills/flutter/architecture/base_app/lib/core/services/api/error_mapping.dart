@@ -2,98 +2,95 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
+/// Converts a [DioException] into an [ApiException].
+///
+/// This is the only place where Dio errors are translated. Repositories
+/// then map [ApiException] to their own feature failure with a `switch`.
 ApiException mapDioError(DioException e) {
   final statusCode = e.response?.statusCode;
-  final responseData = e.response?.data ?? <String, dynamic>{};
-  final body = responseData is String
-      ? responseData
-      : const JsonEncoder.withIndent('  ').convert(responseData);
-  final statusCodeLabel = statusCode != null ? '($statusCode)' : '(No code)';
-  final message = '$statusCodeLabel $body';
+  final message = _describe(e);
 
-  switch (e.type) {
-    case DioExceptionType.connectionTimeout:
-    case DioExceptionType.sendTimeout:
-    case DioExceptionType.receiveTimeout:
-    case DioExceptionType.transformTimeout:
-      return const TimeoutException();
-    case DioExceptionType.connectionError:
-      return const NoInternetException();
-    case DioExceptionType.badResponse:
-      return switch (statusCode) {
-        400 => BadRequestException(message),
-        401 => UnauthorizedException(message),
-        403 => ForbiddenException(message),
-        404 => NotFoundException(message),
-        409 => ConflictException(message),
-        final code? when code >= 500 => ServerException(message),
-        _ => UnknownException(message),
-      };
-    case DioExceptionType.badCertificate:
-    case DioExceptionType.cancel:
-    case DioExceptionType.unknown:
-      return UnknownException(message);
+  return switch (e.type) {
+    DioExceptionType.connectionTimeout ||
+    DioExceptionType.sendTimeout ||
+    DioExceptionType.receiveTimeout ||
+    DioExceptionType.transformTimeout => NetworkException(
+      message,
+      isTimeout: true,
+      cause: e,
+    ),
+    DioExceptionType.connectionError => NetworkException(message, cause: e),
+    DioExceptionType.badResponse when statusCode != null => ApiHttpException(
+      message,
+      statusCode,
+      cause: e,
+    ),
+    _ => UnknownApiException(message, cause: e),
+  };
+}
+
+/// Everything useful for debugging in one string: the Dio error type, the
+/// status and body when the server answered, and the underlying error when
+/// it didn't (e.g. `SocketException: Failed host lookup`), which is the only
+/// clue for network and certificate problems.
+String _describe(DioException e) {
+  final response = e.response;
+  final dioMessage = e.message;
+  final cause = e.error;
+  return [
+    e.type.name,
+    if (response != null)
+      '(${response.statusCode ?? 'No code'}) ${_formatBody(response.data)}',
+    if (dioMessage != null && dioMessage.isNotEmpty) dioMessage,
+    if (cause != null) '$cause',
+  ].join(' | ');
+}
+
+String _formatBody(Object? data) => switch (data) {
+  null => '',
+  final String text => text,
+  _ => const JsonEncoder.withIndent('  ').convert(data),
+};
+
+/// Error thrown by [ApiClient].
+///
+/// [message] is technical (Dio type, status, body and underlying error),
+/// meant for logs only. The text shown to the user belongs in the UI, via
+/// l10n. [cause] keeps the original error (usually the [DioException], with
+/// its request options and stack trace) for the debugger.
+sealed class ApiException implements Exception {
+  const new(this.message, {this.cause});
+
+  final String message;
+  final Object? cause;
+
+  @override
+  String toString() {
+    // Not `runtimeType`: class names are obfuscated in release builds.
+    final name = switch (this) {
+      NetworkException() => 'NetworkException',
+      ApiHttpException() => 'ApiHttpException',
+      UnknownApiException() => 'UnknownApiException',
+    };
+    return '$name: $message';
   }
 }
 
-abstract class ApiException implements Exception {
-  const ApiException(this.message, [this.statusCode, this.code = '']);
+/// The server could not be reached: no connection or timeout.
+final class NetworkException extends ApiException {
+  const new(super.message, {this.isTimeout = false, super.cause});
 
-  final String message;
-  final int? statusCode;
-  final String code;
-
-  @override
-  String toString() => message;
+  final bool isTimeout;
 }
 
-class BadRequestException extends ApiException {
-  const BadRequestException(String message, [String code = ''])
-    : super(message, 400, code);
+/// The server responded with an error status code (4xx, 5xx).
+final class ApiHttpException extends ApiException {
+  const new(super.message, this.statusCode, {super.cause});
+
+  final int statusCode;
 }
 
-class UnauthorizedException extends ApiException {
-  const UnauthorizedException(String message, [String code = ''])
-    : super(message, 401, code);
-}
-
-class ForbiddenException extends ApiException {
-  const ForbiddenException(String message, [String code = ''])
-    : super(message, 403, code);
-}
-
-class NotFoundException extends ApiException {
-  const NotFoundException(String message, [String code = ''])
-    : super(message, 404, code);
-}
-
-class ConflictException extends ApiException {
-  const ConflictException(String message, [String code = ''])
-    : super(message, 409, code);
-}
-
-class ServerException extends ApiException {
-  const ServerException(String message, [String code = ''])
-    : super(message, 500, code);
-}
-
-class UnknownException extends ApiException {
-  const UnknownException([super.message = 'Unknown error occurred']);
-}
-
-class NoInternetException extends ApiException {
-  const NoInternetException([
-    String message =
-        'No fue posible conectar con el servidor No internet error',
-  ]) : super(message, null, 'NO_INTERNET');
-}
-
-class TimeoutException extends ApiException {
-  const TimeoutException([String message = 'La conexión ha expirado'])
-    : super(message, null, 'TIMEOUT');
-}
-
-class NetworkException extends ApiException {
-  const NetworkException([String message = 'Error de red'])
-    : super(message, null, 'NETWORK_ERROR');
+/// Anything else: cancelled request, bad certificate, unexpected error.
+final class UnknownApiException extends ApiException {
+  const new(super.message, {super.cause});
 }

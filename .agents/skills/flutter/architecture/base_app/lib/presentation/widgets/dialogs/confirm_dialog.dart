@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ConfirmDialog extends StatelessWidget {
-  const ConfirmDialog({
+  const new({
     required this.text,
     super.key,
   });
@@ -55,10 +55,11 @@ class ConfirmDialog extends StatelessWidget {
                                 Navigator.of(context).pop(false);
                               },
                               child: Text(
-                                AppLocalizations.of(context)!
-                                    .dialogCancelButton,
+                                AppLocalizations.of(
+                                  context,
+                                )!.dialogCancelButton,
                                 style: context.textStyles.labelLarge.c(
-                                  Colors.white.withValues(alpha: 0.6),
+                                  context.colors.textSecondary,
                                 ),
                               ),
                             ),
@@ -68,8 +69,9 @@ class ConfirmDialog extends StatelessWidget {
                                 Navigator.of(context).pop(true);
                               },
                               child: Text(
-                                AppLocalizations.of(context)!
-                                    .dialogAcceptButton,
+                                AppLocalizations.of(
+                                  context,
+                                )!.dialogAcceptButton,
                                 style: context.textStyles.labelLarge.c(
                                   context.colors.error,
                                 ),

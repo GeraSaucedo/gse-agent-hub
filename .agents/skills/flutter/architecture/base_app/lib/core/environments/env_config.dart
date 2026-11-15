@@ -2,10 +2,7 @@ enum Environment { dev, stg, prod, unknown }
 
 class EnvConfig {
   static const String apiUrl = String.fromEnvironment('API_URL');
-  static const String _env = String.fromEnvironment(
-    'ENVIRONMENT',
-    defaultValue: 'null',
-  );
+  static const String _env = String.fromEnvironment('ENVIRONMENT');
   static const bool useMockAuth = bool.fromEnvironment('USE_MOCK_AUTH');
 
   static Environment get environment => switch (_env) {

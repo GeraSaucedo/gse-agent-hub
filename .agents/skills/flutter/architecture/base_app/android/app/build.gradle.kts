@@ -3,7 +3,6 @@ import java.io.FileInputStream
 
 plugins {
     id("com.android.application")
-    id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
@@ -24,8 +23,9 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+    buildFeatures {
+        // Flavors define the app_name string through resValue.
+        resValues = true
     }
 
     defaultConfig {
@@ -42,14 +42,12 @@ apply(from = "flavor_config.gradle.kts")
 
 android {
     signingConfigs {
-        create("release") {
-            if (keystoreProperties.containsKey("storeFile")) {
+        if (keystoreProperties.containsKey("storeFile")) {
+            create("release") {
                 keyAlias = keystoreProperties["keyAlias"] as String
                 keyPassword = keystoreProperties["keyPassword"] as String
                 storeFile = file(keystoreProperties["storeFile"] as String)
                 storePassword = keystoreProperties["storePassword"] as String
-            } else {
-                throw GradleException("Keystore file not found. Create android/key.properties with storeFile, storePassword, keyAlias, keyPassword.")
             }
         }
     }
@@ -62,13 +60,23 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("release")
+            // Without android/key.properties, release builds fall back to the debug key
+            // (not publishable). Create key.properties with storeFile, storePassword,
+            // keyAlias and keyPassword to sign for release.
+            signingConfig = signingConfigs.findByName("release")
+                ?: signingConfigs.getByName("debug")
         }
 
         debug {
             isMinifyEnabled = false
             isShrinkResources = false
         }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
     }
 }
 

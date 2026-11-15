@@ -2,7 +2,7 @@ part of 'register_bloc.dart';
 
 @freezed
 abstract class RegisterState with _$RegisterState {
-  const factory RegisterState({
+  const factory({
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus status,
     @Default(EmailInput.pure()) EmailInput email,
     @Default('') String name,

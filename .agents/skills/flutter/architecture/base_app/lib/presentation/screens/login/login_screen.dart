@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_base_app/presentation/screens/login/login_bloc_listener.dart';
 import 'package:gse_base_app/presentation/screens/login/login_view.dart';
 import 'package:gse_base_app/presentation/widgets/utils/unfocus_on_tap.dart';
+import 'package:material_ui/material_ui.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  const new({super.key});
 
   static const name = 'login-screen';
   static const route = '/login';
@@ -15,10 +14,15 @@ class LoginScreen extends StatelessWidget {
     return LoginBlocListener(
       child: UnfocusOnTap(
         child: Scaffold(
-          body: SingleChildScrollView(
-            child: SizedBox(
-              height: context.h(100),
-              child: const LoginView(),
+          // At least the screen height (so the view's Spacers center it),
+          // but free to grow and scroll on small screens or with the
+          // keyboard open; a fixed h(100) overflowed there.
+          body: LayoutBuilder(
+            builder: (context, constraints) => SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: const IntrinsicHeight(child: LoginView()),
+              ),
             ),
           ),
         ),

@@ -1,24 +1,22 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gse_base_app/core/utils/result.dart';
-import 'package:gse_base_app/data/repositories/auth/auth_repository.dart';
 import 'package:gse_base_app/data/repositories/verify_email/verify_email_failures.dart';
 import 'package:gse_base_app/data/repositories/verify_email/verify_email_repository.dart';
+import 'package:formz/formz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'verify_email_bloc.freezed.dart';
 part 'verify_email_events.dart';
 part 'verify_email_state.dart';
 
+/// Only verifies the email code. It does not log in: the screen that opened
+/// VerifyEmail (Login or Register) already has the password in its own bloc
+/// and logs in when VerifyEmail returns `true`.
 class VerifyEmailBloc extends Bloc<VerifyEmailEvent, VerifyEmailState> {
-  VerifyEmailBloc({
-    required VerifyEmailRepository repository,
-    required AuthRepository authRepository,
-    this.autoLoginPassword,
-  }) : _repository = repository,
-       _authRepository = authRepository,
-       super(const VerifyEmailState()) {
+  new({
+    required this._repository,
+  }) : super(const VerifyEmailState()) {
     on<InitRequested>(_onInitRequested, transformer: droppable());
     on<EmailSet>(_onEmailSet);
     on<CodeChanged>(_onCodeChanged);
@@ -28,11 +26,6 @@ class VerifyEmailBloc extends Bloc<VerifyEmailEvent, VerifyEmailState> {
   }
 
   final VerifyEmailRepository _repository;
-  final AuthRepository _authRepository;
-  final String? autoLoginPassword;
-
-  bool _autoLoginSucceeded = false;
-  bool get autoLoginSucceeded => _autoLoginSucceeded;
 
   void _onEmailSet(EmailSet event, Emitter<VerifyEmailState> emit) {
     emit(state.copyWith(email: event.email, failure: null));
@@ -79,10 +72,12 @@ class VerifyEmailBloc extends Bloc<VerifyEmailEvent, VerifyEmailState> {
     FormSubmitted event,
     Emitter<VerifyEmailState> emit,
   ) async {
-    emit(state.copyWith(
-      status: FormzSubmissionStatus.inProgress,
-      failure: null,
-    ));
+    emit(
+      state.copyWith(
+        status: FormzSubmissionStatus.inProgress,
+        failure: null,
+      ),
+    );
 
     final result = await _repository.verifyEmail(
       email: state.email,
@@ -91,21 +86,14 @@ class VerifyEmailBloc extends Bloc<VerifyEmailEvent, VerifyEmailState> {
 
     switch (result) {
       case Success():
-        if (autoLoginPassword != null) {
-          final loginResult = await _authRepository.loginWithEmailAndPassword(
-            email: state.email,
-            password: autoLoginPassword!,
-          );
-          if (loginResult case Success()) {
-            _autoLoginSucceeded = true;
-          }
-        }
         emit(state.copyWith(status: FormzSubmissionStatus.success));
       case Failure(:final exception):
-        emit(state.copyWith(
-          status: FormzSubmissionStatus.failure,
-          failure: exception,
-        ));
+        emit(
+          state.copyWith(
+            status: FormzSubmissionStatus.failure,
+            failure: exception,
+          ),
+        );
     }
   }
 

@@ -1,9 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_base_app/core/services/logger/app_logger.dart';
 import 'package:gse_base_app/core/services/storage/utils/onboarding_manager.dart';
 import 'package:gse_base_app/main_injector.dart';
@@ -11,9 +8,12 @@ import 'package:gse_base_app/presentation/blocs/auth/auth_cubit.dart';
 import 'package:gse_base_app/presentation/screens/onboarding/onboarding_screen.dart';
 import 'package:gse_base_app/presentation/widgets/utils/app_loader.dart';
 import 'package:gse_base_app/presentation/widgets/utils/app_logo.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const new({super.key});
 
   static const name = 'splash-screen';
   static const route = '/splash';
@@ -32,8 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _bootstrap() async {
     AppLogger.i('Splash._bootstrap: start');
 
-    final hasSeenOnboarding =
-        await sl<OnboardingManager>().hasSeenOnboarding();
+    final hasSeenOnboarding = await sl<OnboardingManager>().hasSeenOnboarding();
 
     if (!hasSeenOnboarding && mounted) {
       context.go(OnboardingScreen.route);

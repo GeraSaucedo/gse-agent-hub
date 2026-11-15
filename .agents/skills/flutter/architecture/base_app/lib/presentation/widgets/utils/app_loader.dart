@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppLoader extends StatelessWidget {
-  const AppLoader({
+  const new({
     super.key,
     this.color,
   });

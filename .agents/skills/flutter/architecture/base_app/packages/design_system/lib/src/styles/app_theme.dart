@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/src/colors/app_color_scheme.dart';
 import 'package:gse_design_system/src/colors/dark_colors.dart';
 import 'package:gse_design_system/src/colors/light_colors.dart';
 import 'package:gse_design_system/src/config/ds_config.dart';
 import 'package:gse_design_system/src/styles/app_theme_styles.dart';
+import 'package:material_ui/material_ui.dart';
 
 export 'package:gse_design_system/src/colors/extensions/opacity_extension.dart';
 
@@ -11,15 +11,15 @@ export 'package:gse_design_system/src/colors/extensions/opacity_extension.dart';
 class AppTheme {
   /// Light [ThemeData] using the default palette.
   static ThemeData get light => build(
-        colors: LightColors.colors,
-        brightness: Brightness.light,
-      );
+    colors: LightColors.colors,
+    brightness: Brightness.light,
+  );
 
   /// Dark [ThemeData] using the default palette.
   static ThemeData get dark => build(
-        colors: DarkColors.colors,
-        brightness: Brightness.dark,
-      );
+    colors: DarkColors.colors,
+    brightness: Brightness.dark,
+  );
 
   /// Assembles a [ThemeData] with the given color scheme and brightness.
   static ThemeData build({

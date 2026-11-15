@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppPrimaryButton extends StatelessWidget {
-  const AppPrimaryButton({
+  const new({
     super.key,
     this.onPressed,
     this.child,

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Responsive dimension utilities based on screen size.
 class AppDimensions {
   /// Creates an [AppDimensions] with the given [BuildContext].
-  const AppDimensions(this.context);
+  const new(this.context);
 
   /// Build context used to access screen size.
   final BuildContext context;

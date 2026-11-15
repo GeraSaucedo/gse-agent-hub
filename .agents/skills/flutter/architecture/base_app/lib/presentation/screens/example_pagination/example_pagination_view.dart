@@ -1,16 +1,17 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_base_app/data/repositories/example/example_repository.dart';
 import 'package:gse_base_app/domain/models/example_model.dart';
 import 'package:gse_base_app/main_injector.dart';
 import 'package:gse_base_app/presentation/blocs/pagination/pagination_cubit.dart';
 import 'package:gse_base_app/presentation/widgets/inputs/app_searchbar.dart';
 import 'package:gse_base_app/presentation/widgets/lists/paginated_list.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ExamplePaginationView extends StatefulWidget {
-  const ExamplePaginationView({super.key});
+  const new({super.key});
 
   @override
   State<ExamplePaginationView> createState() => _ExamplePaginationViewState();
@@ -42,120 +43,68 @@ class _ExamplePaginationViewState extends State<ExamplePaginationView> {
     super.dispose();
   }
 
-  void _onCreate() {
-    _showTextDialog(
-      title: 'Crear elemento',
-      onConfirm: (text) {
-        final id = DateTime.now().millisecondsSinceEpoch.toString();
-        _cubit.addItem(
-          ExampleModel(id: id, text: text),
-          atStart: true,
-        );
-      },
+  Future<void> _onCreate() async {
+    final text = await _TextInputDialog.show(
+      context,
+      title: AppLocalizations.of(context)!.exampleCreateItem,
     );
+    if (text == null) return;
+    final id = DateTime.now().millisecondsSinceEpoch.toString();
+    _cubit.addItem(ExampleModel(id: id, text: text), atStart: true);
   }
 
-  void _onEdit(ExampleModel item) {
-    _showTextDialog(
-      title: 'Editar elemento',
+  Future<void> _onEdit(ExampleModel item) async {
+    final text = await _TextInputDialog.show(
+      context,
+      title: AppLocalizations.of(context)!.exampleEditItem,
       initialValue: item.text,
-      onConfirm: (text) {
-        _cubit.updateItem(
-          (e) => e.id == item.id,
-          (e) => e.copyWith(text: text),
-        );
-      },
     );
+    if (text == null) return;
+    _cubit.updateItem((e) => e.id == item.id, (e) => e.copyWith(text: text));
   }
 
   void _onDelete(ExampleModel item) {
+    final l10n = AppLocalizations.of(context)!;
     _cubit.removeItem((e) => e.id == item.id);
     ScaffoldMessenger.of(context)
       ..clearSnackBars()
       ..showSnackBar(
         SnackBar(
-          content: Text('Elemento "${item.text}" eliminado'),
+          content: Text(l10n.exampleItemDeleted(item.text)),
           action: SnackBarAction(
-            label: 'Deshacer',
+            label: l10n.undoButton,
             onPressed: () => _cubit.addItem(item, atStart: true),
           ),
         ),
       );
   }
 
-  void _showTextDialog({
-    required String title,
-    required ValueChanged<String> onConfirm,
-    String initialValue = '',
-  }) {
-    final controller = TextEditingController(text: initialValue);
-    unawaited(
-      showDialog<void>(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: Text(title),
-          content: TextField(
-            controller: controller,
-            autofocus: true,
-            decoration: const InputDecoration(hintText: 'Texto'),
-            onSubmitted: (_) {
-              final value = controller.text.trim();
-              if (value.isNotEmpty) {
-                onConfirm(value);
+  void _showItemOptions(ExampleModel item) {
+    final l10n = AppLocalizations.of(context)!;
+    final danger = context.colors.error;
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (ctx) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.edit_outlined),
+              title: Text(l10n.editButton),
+              onTap: () {
                 Navigator.of(ctx).pop();
-              }
-            },
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(ctx).pop(),
-              child: const Text('Cancelar'),
-            ),
-            TextButton(
-              onPressed: () {
-                final value = controller.text.trim();
-                if (value.isNotEmpty) {
-                  onConfirm(value);
-                  Navigator.of(ctx).pop();
-                }
+                unawaited(_onEdit(item));
               },
-              child: const Text('Aceptar'),
+            ),
+            ListTile(
+              leading: Icon(Icons.delete_outline, color: danger),
+              title: Text(l10n.deleteButton, style: TextStyle(color: danger)),
+              onTap: () {
+                Navigator.of(ctx).pop();
+                _onDelete(item);
+              },
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  void _showItemOptions(ExampleModel item) {
-    unawaited(
-      showModalBottomSheet<void>(
-        context: context,
-        builder: (ctx) => SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: const Icon(Icons.edit_outlined),
-                title: const Text('Editar'),
-                onTap: () {
-                  Navigator.of(ctx).pop();
-                  _onEdit(item);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.delete_outline, color: Colors.red),
-                title: const Text(
-                  'Eliminar',
-                  style: TextStyle(color: Colors.red),
-                ),
-                onTap: () {
-                  Navigator.of(ctx).pop();
-                  _onDelete(item);
-                },
-              ),
-            ],
-          ),
         ),
       ),
     );
@@ -201,10 +150,68 @@ class _ExamplePaginationViewState extends State<ExamplePaginationView> {
           right: context.w(4),
           bottom: context.h(2),
           child: FloatingActionButton(
-            onPressed: _onCreate,
+            onPressed: () => unawaited(_onCreate()),
             child: const Icon(Icons.add),
           ),
         ),
+      ],
+    );
+  }
+}
+
+/// Asks for a non-empty text. Owns its controller, so it is disposed with
+/// the dialog (the old inline controller was never disposed).
+class _TextInputDialog extends StatefulWidget {
+  const new({required this.title, required this.initialValue});
+
+  final String title;
+  final String initialValue;
+
+  /// The trimmed text, or `null` if cancelled.
+  static Future<String?> show(
+    BuildContext context, {
+    required String title,
+    String initialValue = '',
+  }) => showDialog<String>(
+    context: context,
+    builder: (_) => _TextInputDialog(title: title, initialValue: initialValue),
+  );
+
+  @override
+  State<_TextInputDialog> createState() => _TextInputDialogState();
+}
+
+class _TextInputDialogState extends State<_TextInputDialog> {
+  late final _controller = TextEditingController(text: widget.initialValue);
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _confirm() {
+    final value = _controller.text.trim();
+    if (value.isNotEmpty) Navigator.of(context).pop(value);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return AlertDialog(
+      title: Text(widget.title),
+      content: TextField(
+        controller: _controller,
+        autofocus: true,
+        decoration: InputDecoration(hintText: l10n.exampleTextHint),
+        onSubmitted: (_) => _confirm(),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(l10n.dialogCancelButton),
+        ),
+        TextButton(onPressed: _confirm, child: Text(l10n.dialogAcceptButton)),
       ],
     );
   }

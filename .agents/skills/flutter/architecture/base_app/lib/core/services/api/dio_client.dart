@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:gse_base_app/core/environments/env_config.dart';
 import 'package:gse_base_app/core/services/api/error_mapping.dart';
 import 'package:gse_base_app/core/services/api/interceptors/bearer_token_interceptor.dart';
 import 'package:gse_base_app/core/services/api/interceptors/logger_interceptor.dart';
@@ -12,19 +13,22 @@ import 'package:gse_base_app/core/services/storage/utils/token_manager.dart';
 class ApiClient {
   /// Creates an [ApiClient] instance.
   ///
-  /// [dio] and [tokenManager] are required and allow for dependency injection.
-  /// [onRefreshFailed] is called when token refresh fails (e.g. force logout).
-  ApiClient({
-    required Dio dio,
+  /// [_dio] and [tokenManager] are required and allow for dependency injection.
+  /// [onSessionExpired] is called when the session can no longer be renewed.
+  new({
+    required this._dio,
     required TokenManager tokenManager,
-    required VoidCallback onRefreshFailed,
-  }) : _dio = dio {
+    required VoidCallback onSessionExpired,
+  }) {
     _dio.options
+      // Repositories use relative paths ('/auth/login'). Absolute URLs
+      // (e.g. a third-party API) ignore this base URL.
+      ..baseUrl = EnvConfig.apiUrl
       ..connectTimeout = const Duration(seconds: 30)
       ..sendTimeout = const Duration(minutes: 5)
       ..receiveTimeout = const Duration(minutes: 3);
     _dio.interceptors.add(
-      RefreshTokenInterceptor(tokenManager, onRefreshFailed: onRefreshFailed),
+      RefreshTokenInterceptor(tokenManager, onSessionExpired: onSessionExpired),
     );
     _dio.interceptors.add(BearerTokenInterceptor(tokenManager));
     if (kDebugMode) _dio.interceptors.add(LoggerInterceptor());
@@ -50,7 +54,13 @@ class ApiClient {
         data: data,
       );
 
-      return response.data as T;
+      // Checked instead of `as T`, so an empty body (e.g. 204) or an
+      // unexpected shape also ends as an ApiException, never a TypeError.
+      final body = response.data;
+      if (body is T) return body;
+      throw UnknownApiException(
+        '(${response.statusCode}) expected $T but got ${body.runtimeType}',
+      );
     } on DioException catch (e) {
       throw mapDioError(e);
     }

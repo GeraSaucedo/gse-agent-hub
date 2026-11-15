@@ -1,60 +1,53 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gse_base_app/core/services/logger/app_logger.dart';
+import 'package:gse_base_app/core/utils/result.dart';
+import 'package:gse_base_app/data/repositories/auth/auth_repository.dart';
+import 'package:gse_base_app/data/repositories/config/config_failures.dart';
 import 'package:gse_base_app/data/repositories/config/config_repository.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_bloc.freezed.dart';
 part 'app_events.dart';
 part 'app_state.dart';
 
+/// Loads the data the app needs after login (see [ConfigRepository]).
 class AppBloc extends Bloc<AppEvent, AppState> {
-  AppBloc({
-    required ConfigRepository configRepository,
-  }) : _configRepository = configRepository,
-
-       // Bloc events
-       super(const AppState()) {
+  new({
+    required this._configRepository,
+    required AuthRepository authRepository,
+  }) : super(const AppState()) {
     on<GetAppConfig>(_onGetAppConfig);
     on<CleanState>(_onCleanState);
-    on<CleanError>(_onCleanError);
+
+    // Reset whenever the session ends (manual or forced logout), so the next
+    // login loads the data again and a stale error isn't shown.
+    _authSubscription = authRepository.authStatusStream
+        .where((status) => status == AuthStatus.unauthenticated)
+        .listen((_) => add(const CleanState()));
   }
 
   final ConfigRepository _configRepository;
+  late final StreamSubscription<AuthStatus> _authSubscription;
+
+  @override
+  Future<void> close() async {
+    await _authSubscription.cancel();
+    await super.close();
+  }
 
   Future<void> _onGetAppConfig(
     GetAppConfig event,
     Emitter<AppState> emit,
   ) async {
-    try {
-      emit(
-        state.copyWith(
-          isLoading: true,
-          dataLoaded: false,
-          errorMessage: '',
-        ),
-      );
-      // get var envs from api
-      await _configRepository.getAppConfig();
+    emit(const AppState());
 
-      emit(
-        state.copyWith(
-          isLoading: false,
-          dataLoaded: true,
-        ),
-      );
-    } catch (e, stack) {
-      AppLogger.e('Error on get app config bloc', error: e, stackTrace: stack);
-      emit(
-        state.copyWith(
-          isLoading: false,
-          errorMessage: 'Error al conectar con el servidor',
-        ),
-      );
+    switch (await _configRepository.getAppConfig()) {
+      case Success():
+        emit(state.copyWith(status: AppStatus.loaded));
+      case Failure(:final exception):
+        emit(state.copyWith(status: AppStatus.failure, failure: exception));
     }
-  }
-
-  void _onCleanError(CleanError event, Emitter<AppState> emit) {
-    emit(state.copyWith(errorMessage: ''));
   }
 
   void _onCleanState(CleanState event, Emitter<AppState> emit) {

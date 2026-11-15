@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'example_model.dart';
@@ -9,32 +9,41 @@ part of 'example_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$ExampleModel {
 
- String get id; String get text;
+@JsonKey(fromJson: idFromJson) String get id;@JsonKey(name: 'title') String get text;
 /// Create a copy of ExampleModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $ExampleModelCopyWith<ExampleModel> get copyWith => _$ExampleModelCopyWithImpl<ExampleModel>(this as ExampleModel, _$identity);
 
+  /// Serializes this ExampleModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExampleModel&&(identical(other.id, id) || other.id == id)&&(identical(other.text, text) || other.text == text));
+  final _this = this as ExampleModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExampleModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.text, _this.text) || other.text == _this.text));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,text);
+int get hashCode {
+  final _this = this as ExampleModel;
+  return Object.hash(runtimeType,_this.id,_this.text);
+}
 
 @override
 String toString() {
-  return 'ExampleModel(id: $id, text: $text)';
+  final _this = this as ExampleModel;
+  return 'ExampleModel(id: ${_this.id}, text: ${_this.text})';
 }
 
 
@@ -45,7 +54,7 @@ abstract mixin class $ExampleModelCopyWith<$Res>  {
   factory $ExampleModelCopyWith(ExampleModel value, $Res Function(ExampleModel) _then) = _$ExampleModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String text
+@JsonKey(fromJson: idFromJson) String id,@JsonKey(name: 'title') String text
 });
 
 
@@ -63,7 +72,7 @@ class _$ExampleModelCopyWithImpl<$Res>
 /// Create a copy of ExampleModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? text = null,}) {
-  return _then(_self.copyWith(
+  return _then(ExampleModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
 as String,
@@ -151,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String text)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: idFromJson)  String id, @JsonKey(name: 'title')  String text)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ExampleModel() when $default != null:
 return $default(_that.id,_that.text);case _:
@@ -172,7 +181,7 @@ return $default(_that.id,_that.text);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String text)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: idFromJson)  String id, @JsonKey(name: 'title')  String text)  $default,) {final _that = this;
 switch (_that) {
 case _ExampleModel():
 return $default(_that.id,_that.text);case _:
@@ -192,7 +201,7 @@ return $default(_that.id,_that.text);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String text)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: idFromJson)  String id, @JsonKey(name: 'title')  String text)?  $default,) {final _that = this;
 switch (_that) {
 case _ExampleModel() when $default != null:
 return $default(_that.id,_that.text);case _:
@@ -204,14 +213,14 @@ return $default(_that.id,_that.text);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _ExampleModel implements ExampleModel {
-  const _ExampleModel({required this.id, required this.text});
-  
+  const _ExampleModel({@JsonKey(fromJson: idFromJson) required this.id, @JsonKey(name: 'title') required this.text});
+  factory _ExampleModel.fromJson(Map<String, dynamic> json) => _$ExampleModelFromJson(json);
 
-@override final  String id;
-@override final  String text;
+@override@JsonKey(fromJson: idFromJson) final  String id;
+@override@JsonKey(name: 'title') final  String text;
 
 /// Create a copy of ExampleModel
 /// with the given fields replaced by the non-null parameter values.
@@ -219,20 +228,25 @@ class _ExampleModel implements ExampleModel {
 @pragma('vm:prefer-inline')
 _$ExampleModelCopyWith<_ExampleModel> get copyWith => __$ExampleModelCopyWithImpl<_ExampleModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$ExampleModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExampleModel&&(identical(other.id, id) || other.id == id)&&(identical(other.text, text) || other.text == text));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExampleModel&&(identical(other.id, id) || other.id == id)&&(identical(other.text, text) || other.text == text));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,text);
+int get hashCode {
+    return Object.hash(runtimeType,id,text);
+}
 
 @override
 String toString() {
-  return 'ExampleModel(id: $id, text: $text)';
+    return 'ExampleModel(id: $id, text: $text)';
 }
 
 
@@ -243,7 +257,7 @@ abstract mixin class _$ExampleModelCopyWith<$Res> implements $ExampleModelCopyWi
   factory _$ExampleModelCopyWith(_ExampleModel value, $Res Function(_ExampleModel) _then) = __$ExampleModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String text
+@JsonKey(fromJson: idFromJson) String id,@JsonKey(name: 'title') String text
 });
 
 

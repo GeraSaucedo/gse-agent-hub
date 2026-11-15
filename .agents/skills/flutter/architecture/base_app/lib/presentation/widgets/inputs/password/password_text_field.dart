@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_localization/generated/app_localizations.dart';
+import 'package:material_ui/material_ui.dart';
 
 class PasswordTextField extends StatefulWidget {
-  const PasswordTextField({
+  const new({
     super.key,
     this.controller,
     this.focusNode,
@@ -32,17 +32,16 @@ class PasswordTextField extends StatefulWidget {
 
 class _PasswordTextFieldState extends State<PasswordTextField> {
   bool _obscureText = true;
-  late FocusNode _focusNode;
+  // Only created (and disposed) when the parent doesn't pass one: a node
+  // received from outside belongs to the parent.
+  FocusNode? _ownFocusNode;
 
-  @override
-  void initState() {
-    _focusNode = widget.focusNode ?? FocusNode();
-    super.initState();
-  }
+  FocusNode get _focusNode =>
+      widget.focusNode ?? (_ownFocusNode ??= FocusNode());
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    _ownFocusNode?.dispose();
     super.dispose();
   }
 
@@ -53,7 +52,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       controller: widget.controller,
       onChanged: widget.onChanged,
       enabled: widget.enabled,
-      focusNode: widget.focusNode ?? _focusNode,
+      focusNode: _focusNode,
       obscureText: _obscureText,
       readOnly: widget.readOnly,
       maxLength: 40,

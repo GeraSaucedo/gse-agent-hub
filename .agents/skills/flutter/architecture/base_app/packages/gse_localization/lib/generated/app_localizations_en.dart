@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -358,4 +359,78 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get onboardingDescription3 =>
       'You\'re one step away from getting started. Create your account or sign in!';
+
+  @override
+  String get validationRequired => 'This field is required';
+
+  @override
+  String get validationEmailFormat => 'Invalid email format';
+
+  @override
+  String validationPasswordMinLength(int min) {
+    return 'Must be at least $min characters';
+  }
+
+  @override
+  String get validationPasswordNumber => 'Must contain at least 1 number';
+
+  @override
+  String get validationPasswordLowercase =>
+      'Must contain at least 1 lowercase letter';
+
+  @override
+  String get validationPasswordUppercase =>
+      'Must contain at least 1 uppercase letter';
+
+  @override
+  String get validationPasswordSpecialChar =>
+      'Must contain at least 1 special character or space';
+
+  @override
+  String get validationPasswordMismatch => 'Passwords do not match';
+
+  @override
+  String get loginNoAccount => 'Don\'t have an account? ';
+
+  @override
+  String get homeTitle => 'Home';
+
+  @override
+  String get drawerPaginatedList => 'Paginated list';
+
+  @override
+  String get drawerDesignSystem => 'Design System';
+
+  @override
+  String get paginationTitle => 'Pagination';
+
+  @override
+  String get exampleCreateItem => 'Create item';
+
+  @override
+  String get exampleEditItem => 'Edit item';
+
+  @override
+  String get exampleTextHint => 'Text';
+
+  @override
+  String exampleItemDeleted(String text) {
+    return 'Item \"$text\" deleted';
+  }
+
+  @override
+  String get undoButton => 'Undo';
+
+  @override
+  String get editButton => 'Edit';
+
+  @override
+  String get deleteButton => 'Delete';
+
+  @override
+  String get addButton => 'Add';
+
+  @override
+  String get registerAutoLoginFailed =>
+      'Your account is ready. Log in to continue.';
 }

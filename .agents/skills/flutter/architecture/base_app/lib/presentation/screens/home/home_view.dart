@@ -1,25 +1,16 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/material.dart';
-import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_base_app/core/constants/app_constants.dart';
 import 'package:gse_base_app/core/environments/env_config.dart';
 import 'package:gse_base_app/presentation/widgets/drawer/app_drawer.dart';
 import 'package:gse_base_app/presentation/widgets/utils/app_logo.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:gse_localization/gse_localization.dart';
+import 'package:material_ui/material_ui.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({
+class HomeView extends StatelessWidget {
+  const new({
     super.key,
   });
-
-  @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +34,7 @@ class _HomeViewState extends State<HomeView> {
                   SizedBox(height: context.h(3)),
                   FadeInUp(
                     child: Text(
-                      'App Home',
+                      AppLocalizations.of(context)!.homeTitle,
                       style: context.textStyles.headSmall,
                     ),
                   ),

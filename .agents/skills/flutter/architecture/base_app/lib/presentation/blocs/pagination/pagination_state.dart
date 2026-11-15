@@ -11,7 +11,7 @@ enum PaginationStatus {
 
 @immutable
 class PaginationParams {
-  const PaginationParams({this.searchQuery, this.filters});
+  const new({this.searchQuery, this.filters});
 
   final String? searchQuery;
   final Map<String, dynamic>? filters;
@@ -23,14 +23,12 @@ class PaginationParams {
     Object? filters = _undefined,
   }) {
     return PaginationParams(
-      searchQuery:
-          identical(searchQuery, _undefined)
-              ? this.searchQuery
-              : searchQuery as String?,
-      filters:
-          identical(filters, _undefined)
-              ? this.filters
-              : filters as Map<String, dynamic>?,
+      searchQuery: identical(searchQuery, _undefined)
+          ? this.searchQuery
+          : searchQuery as String?,
+      filters: identical(filters, _undefined)
+          ? this.filters
+          : filters as Map<String, dynamic>?,
     );
   }
 
@@ -42,7 +40,15 @@ class PaginationParams {
           _mapsEqual(filters, other.filters);
 
   @override
-  int get hashCode => Object.hash(searchQuery, filters);
+  // Hashes the map content (order-independent), matching `_mapsEqual`.
+  int get hashCode => Object.hash(
+    searchQuery,
+    filters == null
+        ? null
+        : Object.hashAllUnordered(
+            filters!.entries.map((e) => Object.hash(e.key, e.value)),
+          ),
+  );
 
   static bool _mapsEqual(
     Map<String, dynamic>? a,
@@ -60,7 +66,7 @@ class PaginationParams {
 
 @immutable
 class PaginationState<T> {
-  const PaginationState({
+  const new({
     required this.items,
     required this.status,
     required this.nextPage,
@@ -69,7 +75,7 @@ class PaginationState<T> {
     this.error,
   });
 
-  factory PaginationState.initial() => PaginationState<T>(
+  factory initial() => PaginationState<T>(
     items: const [],
     status: PaginationStatus.initial,
     nextPage: 0,
@@ -82,7 +88,9 @@ class PaginationState<T> {
   final int nextPage;
   final bool hasMore;
   final PaginationParams params;
-  final Object? error;
+
+  /// Feature failure returned by the repository (e.g. `ExampleFailure`).
+  final Exception? error;
 
   static const Object _undefined = Object();
 
@@ -100,7 +108,7 @@ class PaginationState<T> {
       nextPage: nextPage ?? this.nextPage,
       hasMore: hasMore ?? this.hasMore,
       params: params ?? this.params,
-      error: identical(error, _undefined) ? this.error : error,
+      error: identical(error, _undefined) ? this.error : error as Exception?,
     );
   }
 

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'register_bloc.dart';
@@ -9,6 +9,7 @@ part of 'register_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$RegisterEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RegisterEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is RegisterEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'RegisterEvent()';
+    return 'RegisterEvent()';
 }
 
 
@@ -55,14 +56,15 @@ extension RegisterEventPatterns on RegisterEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( EmailChanged value)?  emailChanged,TResult Function( NameChanged value)?  nameChanged,TResult Function( PasswordChanged value)?  passwordChanged,TResult Function( FormSubmitted value)?  formSubmitted,TResult Function( CleanState value)?  cleanState,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( EmailChanged value)?  emailChanged,TResult Function( NameChanged value)?  nameChanged,TResult Function( PasswordChanged value)?  passwordChanged,TResult Function( FormSubmitted value)?  formSubmitted,TResult Function( AutoLoginRequested value)?  autoLoginRequested,TResult Function( CleanState value)?  cleanState,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case EmailChanged() when emailChanged != null:
 return emailChanged(_that);case NameChanged() when nameChanged != null:
 return nameChanged(_that);case PasswordChanged() when passwordChanged != null:
 return passwordChanged(_that);case FormSubmitted() when formSubmitted != null:
-return formSubmitted(_that);case CleanState() when cleanState != null:
+return formSubmitted(_that);case AutoLoginRequested() when autoLoginRequested != null:
+return autoLoginRequested(_that);case CleanState() when cleanState != null:
 return cleanState(_that);case _:
   return orElse();
 
@@ -81,14 +83,15 @@ return cleanState(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( EmailChanged value)  emailChanged,required TResult Function( NameChanged value)  nameChanged,required TResult Function( PasswordChanged value)  passwordChanged,required TResult Function( FormSubmitted value)  formSubmitted,required TResult Function( CleanState value)  cleanState,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( EmailChanged value)  emailChanged,required TResult Function( NameChanged value)  nameChanged,required TResult Function( PasswordChanged value)  passwordChanged,required TResult Function( FormSubmitted value)  formSubmitted,required TResult Function( AutoLoginRequested value)  autoLoginRequested,required TResult Function( CleanState value)  cleanState,}){
 final _that = this;
 switch (_that) {
 case EmailChanged():
 return emailChanged(_that);case NameChanged():
 return nameChanged(_that);case PasswordChanged():
 return passwordChanged(_that);case FormSubmitted():
-return formSubmitted(_that);case CleanState():
+return formSubmitted(_that);case AutoLoginRequested():
+return autoLoginRequested(_that);case CleanState():
 return cleanState(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -106,14 +109,15 @@ return cleanState(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( EmailChanged value)?  emailChanged,TResult? Function( NameChanged value)?  nameChanged,TResult? Function( PasswordChanged value)?  passwordChanged,TResult? Function( FormSubmitted value)?  formSubmitted,TResult? Function( CleanState value)?  cleanState,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( EmailChanged value)?  emailChanged,TResult? Function( NameChanged value)?  nameChanged,TResult? Function( PasswordChanged value)?  passwordChanged,TResult? Function( FormSubmitted value)?  formSubmitted,TResult? Function( AutoLoginRequested value)?  autoLoginRequested,TResult? Function( CleanState value)?  cleanState,}){
 final _that = this;
 switch (_that) {
 case EmailChanged() when emailChanged != null:
 return emailChanged(_that);case NameChanged() when nameChanged != null:
 return nameChanged(_that);case PasswordChanged() when passwordChanged != null:
 return passwordChanged(_that);case FormSubmitted() when formSubmitted != null:
-return formSubmitted(_that);case CleanState() when cleanState != null:
+return formSubmitted(_that);case AutoLoginRequested() when autoLoginRequested != null:
+return autoLoginRequested(_that);case CleanState() when cleanState != null:
 return cleanState(_that);case _:
   return null;
 
@@ -131,13 +135,14 @@ return cleanState(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String email)?  emailChanged,TResult Function( String name)?  nameChanged,TResult Function( String password)?  passwordChanged,TResult Function()?  formSubmitted,TResult Function()?  cleanState,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String email)?  emailChanged,TResult Function( String name)?  nameChanged,TResult Function( String password)?  passwordChanged,TResult Function()?  formSubmitted,TResult Function()?  autoLoginRequested,TResult Function()?  cleanState,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case EmailChanged() when emailChanged != null:
 return emailChanged(_that.email);case NameChanged() when nameChanged != null:
 return nameChanged(_that.name);case PasswordChanged() when passwordChanged != null:
 return passwordChanged(_that.password);case FormSubmitted() when formSubmitted != null:
-return formSubmitted();case CleanState() when cleanState != null:
+return formSubmitted();case AutoLoginRequested() when autoLoginRequested != null:
+return autoLoginRequested();case CleanState() when cleanState != null:
 return cleanState();case _:
   return orElse();
 
@@ -156,13 +161,14 @@ return cleanState();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String email)  emailChanged,required TResult Function( String name)  nameChanged,required TResult Function( String password)  passwordChanged,required TResult Function()  formSubmitted,required TResult Function()  cleanState,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String email)  emailChanged,required TResult Function( String name)  nameChanged,required TResult Function( String password)  passwordChanged,required TResult Function()  formSubmitted,required TResult Function()  autoLoginRequested,required TResult Function()  cleanState,}) {final _that = this;
 switch (_that) {
 case EmailChanged():
 return emailChanged(_that.email);case NameChanged():
 return nameChanged(_that.name);case PasswordChanged():
 return passwordChanged(_that.password);case FormSubmitted():
-return formSubmitted();case CleanState():
+return formSubmitted();case AutoLoginRequested():
+return autoLoginRequested();case CleanState():
 return cleanState();case _:
   throw StateError('Unexpected subclass');
 
@@ -180,13 +186,14 @@ return cleanState();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String email)?  emailChanged,TResult? Function( String name)?  nameChanged,TResult? Function( String password)?  passwordChanged,TResult? Function()?  formSubmitted,TResult? Function()?  cleanState,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String email)?  emailChanged,TResult? Function( String name)?  nameChanged,TResult? Function( String password)?  passwordChanged,TResult? Function()?  formSubmitted,TResult? Function()?  autoLoginRequested,TResult? Function()?  cleanState,}) {final _that = this;
 switch (_that) {
 case EmailChanged() when emailChanged != null:
 return emailChanged(_that.email);case NameChanged() when nameChanged != null:
 return nameChanged(_that.name);case PasswordChanged() when passwordChanged != null:
 return passwordChanged(_that.password);case FormSubmitted() when formSubmitted != null:
-return formSubmitted();case CleanState() when cleanState != null:
+return formSubmitted();case AutoLoginRequested() when autoLoginRequested != null:
+return autoLoginRequested();case CleanState() when cleanState != null:
 return cleanState();case _:
   return null;
 
@@ -214,16 +221,18 @@ $EmailChangedCopyWith<EmailChanged> get copyWith => _$EmailChangedCopyWithImpl<E
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EmailChanged&&(identical(other.email, email) || other.email == email));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is EmailChanged&&(identical(other.email, email) || other.email == email));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,email);
+int get hashCode {
+    return Object.hash(runtimeType,email);
+}
 
 @override
 String toString() {
-  return 'RegisterEvent.emailChanged(email: $email)';
+    return 'RegisterEvent.emailChanged(email: $email)';
 }
 
 
@@ -280,16 +289,18 @@ $NameChangedCopyWith<NameChanged> get copyWith => _$NameChangedCopyWithImpl<Name
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NameChanged&&(identical(other.name, name) || other.name == name));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is NameChanged&&(identical(other.name, name) || other.name == name));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name);
+int get hashCode {
+    return Object.hash(runtimeType,name);
+}
 
 @override
 String toString() {
-  return 'RegisterEvent.nameChanged(name: $name)';
+    return 'RegisterEvent.nameChanged(name: $name)';
 }
 
 
@@ -346,16 +357,18 @@ $PasswordChangedCopyWith<PasswordChanged> get copyWith => _$PasswordChangedCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PasswordChanged&&(identical(other.password, password) || other.password == password));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is PasswordChanged&&(identical(other.password, password) || other.password == password));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,password);
+int get hashCode {
+    return Object.hash(runtimeType,password);
+}
 
 @override
 String toString() {
-  return 'RegisterEvent.passwordChanged(password: $password)';
+    return 'RegisterEvent.passwordChanged(password: $password)';
 }
 
 
@@ -407,7 +420,7 @@ class FormSubmitted implements RegisterEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FormSubmitted);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is FormSubmitted);
 }
 
 
@@ -416,7 +429,39 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'RegisterEvent.formSubmitted()';
+    return 'RegisterEvent.formSubmitted()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class AutoLoginRequested implements RegisterEvent {
+  const AutoLoginRequested();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is AutoLoginRequested);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+    return 'RegisterEvent.autoLoginRequested()';
 }
 
 
@@ -439,7 +484,7 @@ class CleanState implements RegisterEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CleanState);
 }
 
 
@@ -448,7 +493,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'RegisterEvent.cleanState()';
+    return 'RegisterEvent.cleanState()';
 }
 
 
@@ -471,16 +516,21 @@ $RegisterStateCopyWith<RegisterState> get copyWith => _$RegisterStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RegisterState&&(identical(other.status, status) || other.status == status)&&(identical(other.email, email) || other.email == email)&&(identical(other.name, name) || other.name == name)&&(identical(other.password, password) || other.password == password)&&(identical(other.failure, failure) || other.failure == failure));
+  final _this = this as RegisterState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RegisterState&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.password, _this.password) || other.password == _this.password)&&(identical(other.failure, _this.failure) || other.failure == _this.failure));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,email,name,password,failure);
+int get hashCode {
+  final _this = this as RegisterState;
+  return Object.hash(runtimeType,_this.status,_this.email,_this.name,_this.password,_this.failure);
+}
 
 @override
 String toString() {
-  return 'RegisterState(status: $status, email: $email, name: $name, password: $password, failure: $failure)';
+  final _this = this as RegisterState;
+  return 'RegisterState(status: ${_this.status}, email: ${_this.email}, name: ${_this.name}, password: ${_this.password}, failure: ${_this.failure})';
 }
 
 
@@ -509,7 +559,7 @@ class _$RegisterStateCopyWithImpl<$Res>
 /// Create a copy of RegisterState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? email = null,Object? name = null,Object? password = null,Object? failure = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(RegisterState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as EmailInput,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -675,16 +725,18 @@ _$RegisterStateCopyWith<_RegisterState> get copyWith => __$RegisterStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RegisterState&&(identical(other.status, status) || other.status == status)&&(identical(other.email, email) || other.email == email)&&(identical(other.name, name) || other.name == name)&&(identical(other.password, password) || other.password == password)&&(identical(other.failure, failure) || other.failure == failure));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _RegisterState&&(identical(other.status, status) || other.status == status)&&(identical(other.email, email) || other.email == email)&&(identical(other.name, name) || other.name == name)&&(identical(other.password, password) || other.password == password)&&(identical(other.failure, failure) || other.failure == failure));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,email,name,password,failure);
+int get hashCode {
+    return Object.hash(runtimeType,status,email,name,password,failure);
+}
 
 @override
 String toString() {
-  return 'RegisterState(status: $status, email: $email, name: $name, password: $password, failure: $failure)';
+    return 'RegisterState(status: $status, email: $email, name: $name, password: $password, failure: $failure)';
 }
 
 

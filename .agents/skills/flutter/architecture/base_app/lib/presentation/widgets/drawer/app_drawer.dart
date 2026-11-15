@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:gse_design_system/gse_design_system.dart';
 import 'package:gse_base_app/presentation/widgets/buttons/app_logout_button.dart';
 import 'package:gse_base_app/presentation/widgets/drawer/drawer_options.dart';
 import 'package:gse_base_app/presentation/widgets/drawer/widgets/app_drawer_header.dart';
+import 'package:gse_design_system/gse_design_system.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({
+  const new({
     super.key,
   });
 

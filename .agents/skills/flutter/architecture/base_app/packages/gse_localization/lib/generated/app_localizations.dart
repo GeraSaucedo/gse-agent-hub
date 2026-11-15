@@ -739,6 +739,138 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Estás a un paso de comenzar. ¡Crea tu cuenta o inicia sesión!'**
   String get onboardingDescription3;
+
+  /// Error de validación: campo vacío
+  ///
+  /// In es, this message translates to:
+  /// **'Este campo es requerido'**
+  String get validationRequired;
+
+  /// Error de validación: correo con formato incorrecto
+  ///
+  /// In es, this message translates to:
+  /// **'Formato de correo inválido'**
+  String get validationEmailFormat;
+
+  /// Error de validación: contraseña demasiado corta
+  ///
+  /// In es, this message translates to:
+  /// **'Debe tener al menos {min} caracteres'**
+  String validationPasswordMinLength(int min);
+
+  /// Error de validación: contraseña sin número
+  ///
+  /// In es, this message translates to:
+  /// **'Debe tener al menos 1 número'**
+  String get validationPasswordNumber;
+
+  /// Error de validación: contraseña sin minúscula
+  ///
+  /// In es, this message translates to:
+  /// **'Debe tener al menos 1 letra minúscula'**
+  String get validationPasswordLowercase;
+
+  /// Error de validación: contraseña sin mayúscula
+  ///
+  /// In es, this message translates to:
+  /// **'Debe tener al menos 1 letra mayúscula'**
+  String get validationPasswordUppercase;
+
+  /// Error de validación: contraseña sin carácter especial
+  ///
+  /// In es, this message translates to:
+  /// **'Debe tener al menos 1 carácter especial o espacio'**
+  String get validationPasswordSpecialChar;
+
+  /// Error de validación: la confirmación no coincide
+  ///
+  /// In es, this message translates to:
+  /// **'Las contraseñas no coinciden'**
+  String get validationPasswordMismatch;
+
+  /// Texto antes del enlace de registro en el login
+  ///
+  /// In es, this message translates to:
+  /// **'¿No tienes cuenta? '**
+  String get loginNoAccount;
+
+  /// Título de la pantalla de inicio
+  ///
+  /// In es, this message translates to:
+  /// **'Inicio'**
+  String get homeTitle;
+
+  /// Opción del menú: ejemplo de lista paginada
+  ///
+  /// In es, this message translates to:
+  /// **'Lista paginada'**
+  String get drawerPaginatedList;
+
+  /// Opción del menú: demo del design system
+  ///
+  /// In es, this message translates to:
+  /// **'Design System'**
+  String get drawerDesignSystem;
+
+  /// Título de la pantalla de ejemplo de paginación
+  ///
+  /// In es, this message translates to:
+  /// **'Paginación'**
+  String get paginationTitle;
+
+  /// Título del diálogo para crear un elemento
+  ///
+  /// In es, this message translates to:
+  /// **'Crear elemento'**
+  String get exampleCreateItem;
+
+  /// Título del diálogo para editar un elemento
+  ///
+  /// In es, this message translates to:
+  /// **'Editar elemento'**
+  String get exampleEditItem;
+
+  /// Placeholder del texto de un elemento
+  ///
+  /// In es, this message translates to:
+  /// **'Texto'**
+  String get exampleTextHint;
+
+  /// Snackbar al eliminar un elemento
+  ///
+  /// In es, this message translates to:
+  /// **'Elemento \"{text}\" eliminado'**
+  String exampleItemDeleted(String text);
+
+  /// Botón para deshacer
+  ///
+  /// In es, this message translates to:
+  /// **'Deshacer'**
+  String get undoButton;
+
+  /// Botón/opción para editar
+  ///
+  /// In es, this message translates to:
+  /// **'Editar'**
+  String get editButton;
+
+  /// Botón/opción para eliminar
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar'**
+  String get deleteButton;
+
+  /// Botón para añadir
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir'**
+  String get addButton;
+
+  /// Aviso cuando el inicio de sesión automático tras el registro falla
+  ///
+  /// In es, this message translates to:
+  /// **'Tu cuenta está lista. Inicia sesión para continuar.'**
+  String get registerAutoLoginFailed;
 }
 
 class _AppLocalizationsDelegate

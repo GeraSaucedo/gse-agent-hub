@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppTextField extends StatefulWidget {
-  const AppTextField({
+  const new({
     super.key,
     this.controller,
     this.hintText,
@@ -32,8 +32,7 @@ class _AppTextFieldState extends State<AppTextField> {
   void initState() {
     super.initState();
     if (widget.controller == null && widget.initialValue != null) {
-      _internalController =
-          TextEditingController(text: widget.initialValue);
+      _internalController = TextEditingController(text: widget.initialValue);
     }
   }
 
@@ -55,8 +54,7 @@ class _AppTextFieldState extends State<AppTextField> {
         hintStyle: TextStyle(color: context.colors.textSecondary),
         errorText: widget.errorText,
         filled: widget.filled,
-        fillColor:
-            widget.filled ? context.colors.scaffoldBackground : null,
+        fillColor: widget.filled ? context.colors.scaffoldBackground : null,
       ),
     );
   }

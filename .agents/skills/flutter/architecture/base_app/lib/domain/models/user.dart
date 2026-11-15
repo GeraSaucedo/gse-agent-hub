@@ -1,35 +1,15 @@
-import 'dart:convert';
-
+import 'package:gse_base_app/core/utils/json_parsers.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.freezed.dart';
+part 'user.g.dart';
 
-@Freezed(fromJson: false, toJson: false)
+@freezed
 abstract class User with _$User {
-  const factory User({
-    required String id,
+  const factory({
+    @JsonKey(fromJson: idFromJson) required String id,
     required String name,
   }) = _User;
 
-  const User._();
-
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
-      id: map['id'] as String,
-      name: map['name'] as String,
-    );
-  }
-
-  factory User.fromJson(String source) => User.fromMap(
-    json.decode(source) as Map<String, dynamic>,
-  );
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'name': name,
-    };
-  }
-
-  String toJson() => json.encode(toMap());
+  factory fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

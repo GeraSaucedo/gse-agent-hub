@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppTextButton extends StatelessWidget {
-  const AppTextButton({
+  const new({
     required this.text,
     this.onPressed,
     super.key,

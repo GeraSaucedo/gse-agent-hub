@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppTabBar extends StatefulWidget {
-  const AppTabBar({
+  const new({
     required this.tabs,
     required this.views,
     this.onPressTab,

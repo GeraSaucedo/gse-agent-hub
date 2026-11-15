@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/gse_design_system.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppDrawerButton extends StatelessWidget {
-  const AppDrawerButton({
+  const new({
     required this.icon,
     required this.text,
     this.onPressed,

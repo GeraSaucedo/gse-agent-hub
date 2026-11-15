@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:gse_design_system/src/config/ds_config.dart';
 import 'package:gse_design_system/src/sizes/app_dimensions.dart';
+import 'package:material_ui/material_ui.dart';
 
 export 'package:gse_design_system/src/texts/weight_extension.dart';
 
@@ -17,7 +17,7 @@ export 'package:gse_design_system/src/texts/weight_extension.dart';
 /// ```
 class TextStyles {
   /// Creates [TextStyles] bound to [context] for responsive scaling.
-  TextStyles(this.context);
+  new(this.context);
 
   /// Build context used to scale font sizes via `sp()`.
   final BuildContext context;
@@ -25,11 +25,11 @@ class TextStyles {
   static const String _font = DSConfig.fontPrimary;
 
   TextStyle _base(double size, FontWeight weight, double height) => TextStyle(
-        fontFamily: _font,
-        fontSize: size,
-        fontWeight: weight,
-        height: height,
-      );
+    fontFamily: _font,
+    fontSize: size,
+    fontWeight: weight,
+    height: height,
+  );
 
   // ── Head ──────────────────────────────────────────────────────────────────
 

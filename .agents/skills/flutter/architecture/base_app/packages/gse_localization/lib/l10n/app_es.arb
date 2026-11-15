@@ -224,7 +224,6 @@
   "@registerFailureInvalidData": {
     "description": "Error de datos inválidos en registro"
   },
-
   "loginScreenTitle": "Inicio de sesión",
   "@loginScreenTitle": {
     "description": "Título de la pantalla de login"
@@ -305,7 +304,6 @@
   "@navigationPlaceholder": {
     "description": "Placeholder de navegación en drawer"
   },
-
   "dsTitle": "Design System",
   "@dsTitle": {
     "description": "Título de la pantalla del design system"
@@ -403,7 +401,6 @@
   "@dsActiveState": {
     "description": "Texto de ejemplo de estado activo"
   },
-
   "languageScreenTitle": "Idioma",
   "@languageScreenTitle": {
     "description": "Título de la pantalla de selección de idioma"
@@ -416,7 +413,6 @@
   "@languageEnglish": {
     "description": "Nombre del idioma inglés"
   },
-
   "onboardingSkip": "Omitir",
   "@onboardingSkip": {
     "description": "Botón para omitir el onboarding"
@@ -456,5 +452,103 @@
   "onboardingDescription3": "Estás a un paso de comenzar. ¡Crea tu cuenta o inicia sesión!",
   "@onboardingDescription3": {
     "description": "Descripción de la tercera página del onboarding"
+  },
+  "validationRequired": "Este campo es requerido",
+  "@validationRequired": {
+    "description": "Error de validación: campo vacío"
+  },
+  "validationEmailFormat": "Formato de correo inválido",
+  "@validationEmailFormat": {
+    "description": "Error de validación: correo con formato incorrecto"
+  },
+  "validationPasswordMinLength": "Debe tener al menos {min} caracteres",
+  "@validationPasswordMinLength": {
+    "description": "Error de validación: contraseña demasiado corta",
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "validationPasswordNumber": "Debe tener al menos 1 número",
+  "@validationPasswordNumber": {
+    "description": "Error de validación: contraseña sin número"
+  },
+  "validationPasswordLowercase": "Debe tener al menos 1 letra minúscula",
+  "@validationPasswordLowercase": {
+    "description": "Error de validación: contraseña sin minúscula"
+  },
+  "validationPasswordUppercase": "Debe tener al menos 1 letra mayúscula",
+  "@validationPasswordUppercase": {
+    "description": "Error de validación: contraseña sin mayúscula"
+  },
+  "validationPasswordSpecialChar": "Debe tener al menos 1 carácter especial o espacio",
+  "@validationPasswordSpecialChar": {
+    "description": "Error de validación: contraseña sin carácter especial"
+  },
+  "validationPasswordMismatch": "Las contraseñas no coinciden",
+  "@validationPasswordMismatch": {
+    "description": "Error de validación: la confirmación no coincide"
+  },
+  "loginNoAccount": "¿No tienes cuenta? ",
+  "@loginNoAccount": {
+    "description": "Texto antes del enlace de registro en el login"
+  },
+  "homeTitle": "Inicio",
+  "@homeTitle": {
+    "description": "Título de la pantalla de inicio"
+  },
+  "drawerPaginatedList": "Lista paginada",
+  "@drawerPaginatedList": {
+    "description": "Opción del menú: ejemplo de lista paginada"
+  },
+  "drawerDesignSystem": "Design System",
+  "@drawerDesignSystem": {
+    "description": "Opción del menú: demo del design system"
+  },
+  "paginationTitle": "Paginación",
+  "@paginationTitle": {
+    "description": "Título de la pantalla de ejemplo de paginación"
+  },
+  "exampleCreateItem": "Crear elemento",
+  "@exampleCreateItem": {
+    "description": "Título del diálogo para crear un elemento"
+  },
+  "exampleEditItem": "Editar elemento",
+  "@exampleEditItem": {
+    "description": "Título del diálogo para editar un elemento"
+  },
+  "exampleTextHint": "Texto",
+  "@exampleTextHint": {
+    "description": "Placeholder del texto de un elemento"
+  },
+  "exampleItemDeleted": "Elemento \"{text}\" eliminado",
+  "@exampleItemDeleted": {
+    "description": "Snackbar al eliminar un elemento",
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "undoButton": "Deshacer",
+  "@undoButton": {
+    "description": "Botón para deshacer"
+  },
+  "editButton": "Editar",
+  "@editButton": {
+    "description": "Botón/opción para editar"
+  },
+  "deleteButton": "Eliminar",
+  "@deleteButton": {
+    "description": "Botón/opción para eliminar"
+  },
+  "addButton": "Añadir",
+  "@addButton": {
+    "description": "Botón para añadir"
+  },
+  "registerAutoLoginFailed": "Tu cuenta está lista. Inicia sesión para continuar.",
+  "@registerAutoLoginFailed": {
+    "description": "Aviso cuando el inicio de sesión automático tras el registro falla"
   }
 }

@@ -1,13 +1,13 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gse_base_app/core/utils/result.dart';
 import 'package:gse_base_app/data/inputs/field_confirm_password.dart';
+import 'package:gse_base_app/data/inputs/field_email.dart';
 import 'package:gse_base_app/data/inputs/field_password.dart';
 import 'package:gse_base_app/data/repositories/recovery_code/recovery_code_failures.dart';
 import 'package:gse_base_app/data/repositories/recovery_code/recovery_code_repository.dart';
-import 'package:gse_base_app/presentation/widgets/inputs/email/field_email.dart';
+import 'package:formz/formz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'forgot_password_bloc.freezed.dart';
 part 'forgot_password_events.dart';
@@ -15,11 +15,9 @@ part 'forgot_password_state.dart';
 
 class ForgotPasswordBloc
     extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
-  ForgotPasswordBloc({
-    required RecoveryCodeRepository repository,
-  }) : _repository = repository,
-
-       super(const ForgotPasswordState()) {
+  new({
+    required this._repository,
+  }) : super(const ForgotPasswordState()) {
     on<EmailChanged>(_onEmailChanged);
     on<PasswordChanged>(_onPasswordChanged);
     on<ConfirmPasswordChanged>(_onConfirmPasswordChanged);
@@ -35,25 +33,27 @@ class ForgotPasswordBloc
     CodeRequested event,
     Emitter<ForgotPasswordState> emit,
   ) async {
-    emit(
-      state.copyWith(failure: null),
-    );
-
     final email = state.email.value;
 
     if (email.isEmpty) {
-      emit(
-        state.copyWith(
-          failure: RecoveryCodeFailure.emptyUsername,
-        ),
-      );
+      emit(state.copyWith(failure: RecoveryCodeFailure.emptyUsername));
       return;
     }
 
+    emit(state.copyWith(requestingCode: true, failure: null));
+
     final result = await _repository.requestRecoveryCode(email: email);
 
-    if (result case Failure(:final exception)) {
-      emit(state.copyWith(failure: exception));
+    switch (result) {
+      case Success():
+        emit(
+          state.copyWith(
+            requestingCode: false,
+            codesSent: state.codesSent + 1,
+          ),
+        );
+      case Failure(:final exception):
+        emit(state.copyWith(requestingCode: false, failure: exception));
     }
   }
 
@@ -112,16 +112,31 @@ class ForgotPasswordBloc
     Emitter<ForgotPasswordState> emit,
   ) {
     final password = PasswordInput.dirty(event.password);
-    emit(state.copyWith(newPassword: password));
+    final confirmed = state.confirmedNewPassword;
+    emit(
+      state.copyWith(
+        newPassword: password,
+        // Re-validate the confirmation against the new password, so a
+        // "mismatch" error (or its absence) never refers to an old value.
+        confirmedNewPassword: confirmed.isPure
+            ? confirmed
+            : ConfirmedPasswordInput.dirty(
+                password: password.value,
+                value: confirmed.value,
+              ),
+      ),
+    );
   }
 
   void _onConfirmPasswordChanged(
     ConfirmPasswordChanged event,
     Emitter<ForgotPasswordState> emit,
   ) {
+    // Not trimmed: the password isn't either, so trimming here made
+    // "abc " vs "abc " a mismatch.
     final confirmedPassword = ConfirmedPasswordInput.dirty(
       password: state.newPassword.value,
-      value: event.password.trim(),
+      value: event.password,
     );
     emit(state.copyWith(confirmedNewPassword: confirmedPassword));
   }
@@ -134,12 +149,13 @@ class ForgotPasswordBloc
     emit(const ForgotPasswordState());
   }
 
-  bool _isFormDataValid() {
-    final result = Formz.validate([
-      state.newPassword,
-      state.confirmedNewPassword,
-    ]);
-
-    return result;
-  }
+  /// The whole flow, not just the last step: email (step 1) and code
+  /// (step 2) are sent with the new password.
+  bool _isFormDataValid() =>
+      Formz.validate([
+        state.email,
+        state.newPassword,
+        state.confirmedNewPassword,
+      ]) &&
+      state.code.trim().isNotEmpty;
 }

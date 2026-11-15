@@ -1,32 +1,48 @@
+import 'package:gse_base_app/core/services/api/dio_client.dart';
+import 'package:gse_base_app/core/services/api/error_mapping.dart';
 import 'package:gse_base_app/core/services/logger/app_logger.dart';
+import 'package:gse_base_app/core/utils/result.dart';
+import 'package:gse_base_app/data/repositories/config/config_failures.dart';
+import 'package:gse_base_app/data/storage/user_manager.dart';
 
-/// Repository for initializing application configuration and
-/// obtaining OAuth2 tokens.
+/// Loads the data the app needs right after login (profile, feature flags,
+/// remote config...). `HomeScreen` waits for it before showing the home.
 ///
-/// Handles the bootstrap process of fetching authentication tokens for both
-/// NetSuite and ISO/Warehouses systems using OAuth2 client_credentials flow.
-/// Tokens are obtained in parallel for performance optimization.
+/// Template: replace the body of [getAppConfig] with the real request(s).
 class ConfigRepository {
-  ConfigRepository(
-    /* {
-    required ApiClient apiClient,
-    required ConfigManager configManager,
-    required TokenManager tokenManager,
-  } */
-  ); /* : _apiClient = apiClient,
-       _configManager = configManager,
-       _tokenManager = tokenManager; */
+  new({
+    required this._apiClient,
+    required this._userManager,
+  });
 
-  /* final ApiClient _apiClient;
-  final ConfigManager _configManager;
-  final TokenManager _tokenManager; */
+  // Used once the real request is added.
+  // ignore: unused_field
+  final ApiClient _apiClient;
+  final UserManager _userManager;
 
-  Future<void> getAppConfig() async {
+  Future<Result<void, ConfigFailure>> getAppConfig() async {
     try {
-      //  implement method to call user data or something after login
+      // Loads the user saved on disk into memory, so `UserManager.current`
+      // is ready for the whole app.
+      await _userManager.getUser();
+
+      // Then refresh it from the server, e.g.:
+      // final data = await _apiClient.get<Map<String, dynamic>>('/me');
+      // await _userManager.saveUser(User.fromJson(data));
+      return const Success(null);
     } catch (e, stack) {
-      AppLogger.e('Error on get app config', error: e, stackTrace: stack);
-      rethrow;
+      AppLogger.e(
+        'ConfigRepository.getAppConfig',
+        error: e,
+        stackTrace: stack,
+      );
+      return Failure(
+        switch (e) {
+          NetworkException() => ConfigFailure.network,
+          ApiHttpException(statusCode: >= 500) => ConfigFailure.server,
+          _ => ConfigFailure.unknown,
+        },
+      );
     }
   }
 }
